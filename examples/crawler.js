@@ -1,4 +1,8 @@
 /**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
+/**
  * Example: Production JavaScript/Node.js Web Scraping on Termux
  * Run with: node examples/crawler.js
  */

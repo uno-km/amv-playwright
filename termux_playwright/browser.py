@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """Browser launcher and execution engine for Termux Playwright.
 
 Provides explicit configuration of Chromium execution parameters,

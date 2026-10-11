@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
 // AMEVA Auto-Generated i18n Dictionary
 if (window.i18nManager) {
   window.i18nManager.registerTranslations({

@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """Typed Exception hierarchy for termux-playwright.
 
 Provides distinct, actionable exceptions without masking underlying faults.

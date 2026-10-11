@@ -1,4 +1,8 @@
 /**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
+/**
  * Termux-Playwright Documentation - Multilingual (i18n) Core Engine
  * Client-Side Internationalization with Multi-Tier Storage & Auto-Detector
  * @license MIT

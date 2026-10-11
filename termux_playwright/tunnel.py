@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """Direct Socket DNS Bypass-Tunnel and In-Process CONNECT Proxy.
 
 Bypasses Android non-root VPN / dnsproxyd blackhole by performing direct UDP

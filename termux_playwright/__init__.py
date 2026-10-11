@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """Termux-Playwright: Hardened, Architecture-Aware Playwright Integration for Android Termux.
 
 Next-Gen Autonomous Scraping & Evasion Engine (Python & Node.js Dual Engine).

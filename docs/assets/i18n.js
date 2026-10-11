@@ -1,4 +1,8 @@
 /**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
+/**
  * AMEVA Ecosystem - Multilingual (i18n) Core Engine (SSOT)
  * Version: 1.0.0
  * Zero-dependency, client-side internationalization manager with auto-detection,

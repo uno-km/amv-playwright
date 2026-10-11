@@ -1,4 +1,8 @@
 /**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
+/**
  * Termux-Playwright Documentation - Multilingual Translation Dictionary
  * Languages: English (en), Chinese (zh), Japanese (ja), Korean (ko), Spanish (es), Hindi (hi)
  * @license MIT

@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """Automated installation and dependency resolution engine for Termux Playwright.
 
 Executes verifiable, fail-safe installation of native system packages,

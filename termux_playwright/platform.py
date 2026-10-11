@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """Platform, architecture, and storage inspection engine for Termux Playwright.
 
 Provides symlink-safe binary resolution, Android SDK/W^X policy inspection,

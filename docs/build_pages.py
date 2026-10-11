@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
 Build all HTML pages for Termux-Playwright GitHub Pages documentation.
 Dual-Engine (Python & Node.js / TypeScript) Architecture + Ultimate SEO & AI GEO (Generative Engine Optimization)

@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """Dual-Mode Cellular IP Rotator for termux-playwright.
 
 Supports Termux Native device execution and PC ADB Bridge execution to rotate

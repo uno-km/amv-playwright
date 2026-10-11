@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """Atomic and verifiable patcher for Playwright coreBundle.js.
 
 Provides transactional byte-level patch injection, dynamic bundle path discovery,

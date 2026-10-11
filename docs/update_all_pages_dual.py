@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
 Update build_pages.py to feature Dual-Stack (Python & Node.js/TypeScript)
 on EVERY single documentation page: index.html, installation.html, quickstart.html, api-reference.html.

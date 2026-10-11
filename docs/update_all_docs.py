@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
 Update docs/i18n-translations.js and docs/build_pages.py to fully incorporate
 the Node.js & Memory Architecture deep-dive across all 6 languages.
