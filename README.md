@@ -20,6 +20,14 @@ Transform any spare Android smartphone into a 24/7 autonomous web scraping and d
 
 ---
 
+## What's New in v1.82.0 — Platform Detection Standardization & TermuxWakeLock Interface
+
+- Refactored TermuxWakeLock interface for long-running headless Chromium automation.
+- Standardized is_termux platform detection across Android Bionic environments.
+- Removed redundant pip self-upgrade antipatterns and enforced SPDX Apache-2.0 headers.
+
+---
+
 ## ⚡ Quick Start (1-Click Installation)
 
 ### 🐍 Python:
