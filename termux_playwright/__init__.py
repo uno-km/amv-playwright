@@ -91,7 +91,7 @@ from .installer import (
     fetch_pypi_wheel_info,
 )
 
-__version__ = "1.81.2"
+__version__ = "1.82.0"
 
 __all__ = [
     # Exceptions
