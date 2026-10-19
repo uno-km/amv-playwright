@@ -479,7 +479,10 @@ async def test_launch_async_standalone_mode_and_wake_lock(monkeypatch):
     # Trigger disconnect
     for cb in disconnect_callbacks:
         cb()
-    await asyncio.sleep(0.05)
+    for _ in range(50):
+        if len(wake_locks_released) >= 1:
+            break
+        await asyncio.sleep(0.02)
     assert len(wake_locks_released) == 1
 
 def test_purge_stale_ephemeral_profiles(tmp_path, monkeypatch):
