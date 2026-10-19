@@ -90,6 +90,7 @@ def test_get_wheel_tag_unsupported():
 def test_find_chromium_binary_from_env(monkeypatch, tmp_path):
     fake_chromium = tmp_path / "my_custom_chromium"
     fake_chromium.write_text("dummy binary", encoding="utf-8")
+    fake_chromium.chmod(0o755)
     monkeypatch.setenv("PLAYWRIGHT_CHROMIUM_PATH", str(fake_chromium))
     monkeypatch.setattr("shutil.which", lambda _: None)
     assert find_chromium_binary() == os.path.realpath(str(fake_chromium))
@@ -103,6 +104,7 @@ def test_find_chromium_binary_termux_native(monkeypatch, tmp_path):
     chromium_launcher = mock_prefix / "lib" / "chromium" / "chromium-launcher.sh"
     chromium_launcher.parent.mkdir(parents=True, exist_ok=True)
     chromium_launcher.write_text("#!/bin/sh\nexec true", encoding="utf-8")
+    chromium_launcher.chmod(0o755)
     
     monkeypatch.setattr("termux_playwright.platform.get_termux_prefix", lambda: str(mock_prefix))
     monkeypatch.setattr("shutil.which", lambda _: None)
@@ -123,14 +125,19 @@ def test_find_chromium_binary_not_found(monkeypatch):
         find_chromium_binary()
 
 def test_find_node_binary_success(monkeypatch, tmp_path):
+    monkeypatch.delenv("PLAYWRIGHT_NODEJS_PATH", raising=False)
     fake_node = tmp_path / "node"
     fake_node.write_text("dummy node", encoding="utf-8")
+    fake_node.chmod(0o755)
     monkeypatch.setattr("shutil.which", lambda cmd: str(fake_node) if cmd == "node" else None)
+    monkeypatch.setattr("termux_playwright.platform.get_termux_prefix", lambda: None)
     assert find_node_binary() == os.path.realpath(str(fake_node))
 
 def test_find_node_binary_not_found(monkeypatch):
+    monkeypatch.delenv("PLAYWRIGHT_NODEJS_PATH", raising=False)
     monkeypatch.setattr("termux_playwright.platform.is_termux", lambda: False)
     monkeypatch.setattr("shutil.which", lambda _: None)
+    monkeypatch.setattr("termux_playwright.platform.get_termux_prefix", lambda: None)
     with pytest.raises(BinaryNotFoundError, match="Node.js executable not found"):
         find_node_binary()
 
@@ -221,11 +228,13 @@ def test_find_chromium_binary_windows_desktop_fallback(monkeypatch, tmp_path):
     
     fake_chrome = tmp_path / "chrome.exe"
     fake_chrome.write_text("mock binary", encoding="utf-8")
+    fake_chrome.chmod(0o755)
     
     monkeypatch.setenv("ProgramFiles", str(tmp_path))
     target_chrome = tmp_path / "Google" / "Chrome" / "Application" / "chrome.exe"
     target_chrome.parent.mkdir(parents=True, exist_ok=True)
     target_chrome.write_text("mock chrome", encoding="utf-8")
+    target_chrome.chmod(0o755)
     
     found = find_chromium_binary()
     assert os.path.realpath(str(target_chrome)) == found

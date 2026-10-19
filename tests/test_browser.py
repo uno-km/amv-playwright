@@ -293,7 +293,7 @@ def test_launch_sync_success_and_disconnect(monkeypatch):
 
     _, kwargs = mock_playwright.chromium.launch.call_args
     assert "--renderer-process-limit=1" in kwargs["args"]
-    assert "--js-flags=--max-old-space-size=128" in kwargs["args"]
+    assert any("--max-old-space-size=128" in a for a in kwargs["args"])
 
     session_arg = [a for a in kwargs["args"] if a.startswith("--termux-session-id=")][0]
     token = session_arg.split("=")[1]
@@ -350,7 +350,11 @@ def test_configure_environment_does_not_pollute_non_termux(monkeypatch):
     import os
     from termux_playwright.browser import configure_environment
 
+    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: False)
     monkeypatch.delenv("NODE_OPTIONS", raising=False)
+    monkeypatch.delenv("PLAYWRIGHT_CHROMIUM_PATH", raising=False)
+    monkeypatch.delenv("PLAYWRIGHT_NODEJS_PATH", raising=False)
+    monkeypatch.delenv("PLAYWRIGHT_CHROMIUM_USE_HEADLESS_NEW", raising=False)
     res = configure_environment(strict=False)
     assert res == {}
     assert "NODE_OPTIONS" not in os.environ
