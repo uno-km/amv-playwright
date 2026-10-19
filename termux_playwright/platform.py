@@ -249,7 +249,11 @@ def find_chromium_binary() -> str:
     # 4. Windows standard desktop installations fallback (dynamic wildcard search)
     if sys.platform == "win32":
         for base in filter(None, [os.environ.get("ProgramFiles"), os.environ.get("ProgramFiles(x86)"), os.environ.get("LOCALAPPDATA")]):
-            for pattern in (r"*\Chrome\Application\chrome.exe", r"*\Edge\Application\msedge.exe", r"*\Chromium\Application\chrome.exe"):
+            for pattern in (
+                os.path.join("*", "Chrome", "Application", "chrome.exe"),
+                os.path.join("*", "Edge", "Application", "msedge.exe"),
+                os.path.join("*", "Chromium", "Application", "chrome.exe"),
+            ):
                 matches = glob.glob(os.path.join(base, pattern))
                 if matches and os.path.isfile(matches[0]):
                     return os.path.realpath(matches[0])

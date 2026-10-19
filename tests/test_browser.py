@@ -16,6 +16,7 @@ def reset_reaper_state(monkeypatch):
     ProcessReaper._tracked_sessions.clear()
     ProcessReaper._cleaning_up = False
     monkeypatch.setattr(ProcessReaper, "_install_hooks_if_needed", lambda: None)
+    monkeypatch.setattr("termux_playwright.browser.is_core_bundle_patched", lambda: True)
     yield
     ProcessReaper._tracked_pids.clear()
     ProcessReaper._tracked_sessions.clear()
