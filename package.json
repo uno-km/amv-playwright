@@ -5,10 +5,10 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "bin": {
-    "termux-playwright": "bin/cli.js",
-    "termux-playwright-install": "bin/cli.js",
-    "termux-playwright-doctor": "bin/cli.js",
-    "termux-playwright-reap": "bin/cli.js"
+    "amv-playwright": "bin/cli.js",
+    "amv-playwright-install": "bin/cli.js",
+    "amv-playwright-doctor": "bin/cli.js",
+    "amv-playwright-reap": "bin/cli.js"
   },
   "files": [
     "lib",
@@ -38,12 +38,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uno-km/termux-playwright.git"
+    "url": "git+https://github.com/uno-km/amv-playwright.git"
   },
   "bugs": {
-    "url": "https://github.com/uno-km/termux-playwright/issues"
+    "url": "https://github.com/uno-km/amv-playwright/issues"
   },
-  "homepage": "https://uno-km.github.io/termux-playwright/",
+  "homepage": "https://uno-km.github.io/amv-playwright/",
   "peerDependencies": {
     "playwright-core": ">=1.40.0"
   },

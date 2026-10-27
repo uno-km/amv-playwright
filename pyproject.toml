@@ -29,16 +29,16 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/uno-km/termux-playwright"
-Documentation = "https://uno-km.github.io/termux-playwright/"
-Repository = "https://github.com/uno-km/termux-playwright"
-"Bug Tracker" = "https://github.com/uno-km/termux-playwright/issues"
+Homepage = "https://github.com/uno-km/amv-playwright"
+Documentation = "https://uno-km.github.io/amv-playwright/"
+Repository = "https://github.com/uno-km/amv-playwright"
+"Bug Tracker" = "https://github.com/uno-km/amv-playwright/issues"
 
 [project.scripts]
-termux-playwright = "termux_playwright.cli_protocol:main"
+amv-playwright = "termux_playwright.cli_protocol:main"
 
 [project.entry-points."ameva.components"]
-termux-playwright = "termux_playwright.adapter:create_adapter"
+amv-playwright = "termux_playwright.adapter:create_adapter"
 
 [tool.setuptools.packages.find]
 include = ["termux_playwright*"]
