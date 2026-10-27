@@ -1,5 +1,5 @@
 {
-  "name": "termux-playwright",
+  "name": "amv-playwright",
   "version": "1.82.0",
   "description": "Production-grade Playwright & Chromium browser automation and stealth runtime optimizer for Android Termux",
   "main": "lib/index.js",

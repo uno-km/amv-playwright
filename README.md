@@ -1,8 +1,12 @@
-# 📱 Termux-Playwright
+# 📱 AMV-Playwright
 
-[![PyPI version](https://img.shields.io/pypi/v/termux-playwright.svg?color=blue)](https://pypi.org/project/termux-playwright/)
-[![npm version](https://img.shields.io/npm/v/termux-playwright.svg?color=red)](https://www.npmjs.com/package/termux-playwright)
-[![Total Downloads](https://img.shields.io/pepy/dt/termux-playwright?color=orange)](https://pepy.tech/projects/termux-playwright)
+> **마이그레이션 안내**: 이 패키지는 `termux-playwright`에서 `amv-playwright`로 이름이 바뀌었습니다. 기존 `termux-playwright` 배포본(PyPI/npm)은 호환을 위해 당분간 유지되나 deprecated 상태이며 더 이상 갱신되지 않습니다. `pip install amv-playwright` / `npm install amv-playwright`로 전환하십시오.
+>
+> Android **Termux 환경** 또는 **안드로이드 Linux 커널(루팅 없이 Linux 환경이 구동되는 모든 디바이스)** 에서 동작합니다 — Termux 전용이 아닙니다.
+
+[![PyPI version](https://img.shields.io/pypi/v/amv-playwright.svg?color=blue)](https://pypi.org/project/amv-playwright/)
+[![npm version](https://img.shields.io/npm/v/amv-playwright.svg?color=red)](https://www.npmjs.com/package/amv-playwright)
+[![Total Downloads](https://img.shields.io/pepy/dt/amv-playwright?color=orange)](https://pepy.tech/projects/amv-playwright)
 [![Open Collective](https://img.shields.io/badge/Open_Collective-AOSF_Fund-004499?style=flat&logo=opencollective)](https://opencollective.com/ameva-fund)
 [![GitHub Sponsors](https://img.shields.io/badge/GitHub_Sponsors-uno--km-ea4aaa?style=flat&logo=githubsponsors)](https://github.com/sponsors/uno-km)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -32,17 +36,17 @@ Transform any spare Android smartphone into a 24/7 autonomous web scraping and d
 
 ### 🐍 Python:
 ```bash
-pip install termux-playwright && termux-playwright-install
+pip install amv-playwright && amv-playwright-install
 ```
 
 ### ☕ Node.js / JavaScript:
 ```bash
-npm install termux-playwright && npx termux-playwright install
+npm install amv-playwright && npx amv-playwright install
 ```
 
 ### 🪄 Universal Shell Bootstrapper (Zero-Friction):
 ```bash
-curl -sL https://raw.githubusercontent.com/uno-km/termux-playwright/main/install.sh | bash
+curl -sL https://raw.githubusercontent.com/uno-km/amv-playwright/main/install.sh | bash
 ```
 
 > [!TIP]
@@ -53,7 +57,7 @@ curl -sL https://raw.githubusercontent.com/uno-km/termux-playwright/main/install
 > 1. Provisions native Termux packages (`x11-repo`, `chromium`, `nodejs`, `python-greenlet`, `procps`, `termux-api`) with zero 1.2GB Clang build bloat.
 > 2. Downloads and injects the official architecture-specific Playwright wheel as platform-agnostic `none-any.whl`.
 > 3. Atomically applies the `coreBundle.js` platform verification bypass patch.
-> 4. Runs a comprehensive 7-phase `termux-playwright-doctor` diagnostic health check.
+> 4. Runs a comprehensive 7-phase `amv-playwright-doctor` diagnostic health check.
 
 ---
 
@@ -68,7 +72,7 @@ curl -sL https://raw.githubusercontent.com/uno-km/termux-playwright/main/install
 | **4. Power Management** | `termux-api` | **`pkg`** | C Binary | Android API | Prevents CPU sleep when screen is off (`termux-wake-lock`) |
 | **5. Pure Python (A)** | `typing-extensions` | **`pip`** | Pure Python | `python` | Backported type hinting compatibility across Python versions |
 | **6. Pure Python (B)** | `pyee` | **`pip`** | Pure Python | `python` | High-performance event emitter for browser events |
-| **7. Runtime Optimizer** | `termux-playwright` | **`pip`** | Pure Python | `pyee`, `typing-ext` | Android runtime tuning, installer, and session zombie reaper |
+| **7. Runtime Optimizer** | `amv-playwright` | **`pip`** | Pure Python | `pyee`, `typing-ext` | Android runtime tuning, installer, and session zombie reaper |
 | **8. Upstream Core Wheel**| `playwright` (aarch64/x86_64) | **`pip (bypass)`** | Wheel Packaging | `python-greenlet` | Official PyPI wheel injected via `none-any` platform bypass |
 | **9. Core JS Engine Patch** | `coreBundle.js` Patch | **Internal** | JS Byte Injection | `playwright` | Spoofs `process.platform = 'linux'` in driver RPC bundle |
 
@@ -91,11 +95,11 @@ flowchart TD
 
     subgraph S2["[Phase 2] Lightweight Python Dependencies (pip)"]
         C1["pip install pyee typing-extensions"]
-        C2["pip install termux-playwright<br/>(Instant install without C compiler)"]
+        C2["pip install amv-playwright<br/>(Instant install without C compiler)"]
     end
 
     subgraph S3["[Phase 3] Playwright Wheel Bypass Injection (Installer)"]
-        D1["termux-playwright-install"]
+        D1["amv-playwright-install"]
         D2["Fetch verified architecture wheel from PyPI"]
         D3["Rename to none-any.whl & pip inject"]
     end
@@ -106,7 +110,7 @@ flowchart TD
     end
 
     subgraph S5["[Phase 5] Diagnostic Health Verification (Doctor)"]
-        F["termux-playwright-doctor (7/7 Checks Passed)"]
+        F["amv-playwright-doctor (7/7 Checks Passed)"]
     end
 
     A --> B1 & B2 & B3 & B4
@@ -141,7 +145,7 @@ pkg install -y x11-repo chromium nodejs python python-greenlet procps termux-api
 Install pure-Python dependencies cleanly:
 ```bash
 pip install --upgrade pip setuptools
-pip install pyee typing-extensions termux-playwright
+pip install pyee typing-extensions amv-playwright
 ```
 
 > [!NOTE]
@@ -154,19 +158,19 @@ pip install pyee typing-extensions termux-playwright
 ### 🟠 Step 3~4: Automated Wheel Bypass & Core JS Patching
 Download the architecture wheel, apply the platform verification bypass, and patch `coreBundle.js`:
 ```bash
-termux-playwright-install
+amv-playwright-install
 ```
 
 ### 🟣 Step 5: Diagnostic Verification (`doctor`)
 Verify system readiness across all 7 health indicators:
 ```bash
-termux-playwright-doctor
+amv-playwright-doctor
 ```
 
 > [!TIP]
 > **💡 Key Engineering Design Principles:**
 > 1. **Greenlet Ownership Isolation:** Pre-compiled `python-greenlet` MUST be installed via `pkg` to prevent `pip` from invoking `clang` compilation failure on Android Bionic.
-> 2. **Slim `setup.py` Metadata:** `termux-playwright` specifies pure-Python dependencies to enable instant 1-second installation on mobile devices.
+> 2. **Slim `setup.py` Metadata:** `amv-playwright` specifies pure-Python dependencies to enable instant 1-second installation on mobile devices.
 > 3. **Deterministic Order:** `pkg` $\rightarrow$ `pip` $\rightarrow$ `installer (wheel + patch)` $\rightarrow$ `doctor` maintains a 100% fail-safe deployment.
 
 ---
@@ -181,7 +185,7 @@ termux-playwright-doctor
   ```
 * **Pip Cache Acceleration:** To conserve mobile internal storage (eMMC), disable temporary wheel caching during fast script installs:
   ```bash
-  pip install --no-cache-dir termux-playwright
+  pip install --no-cache-dir amv-playwright
   ```
 * **Poetry / Pipenv Configuration:** If using modern dependency managers in Termux, tell them to inherit system packages:
   ```toml
@@ -200,7 +204,7 @@ termux-playwright-doctor
 * **pnpm Hardlink Deduplication (Saves ~70% Storage):** Use `pnpm` to share package binaries across projects without duplicating files on mobile flash storage:
   ```bash
   pkg install -y pnpm
-  pnpm add termux-playwright
+  pnpm add amv-playwright
   ```
 * **V8 Heap Constraint on Mobile:** Default Node.js allocates up to 1.4GB heap. On 2GB~4GB RAM phones, always limit V8 heap size to prevent Android Low Memory Killer (LMK) execution:
   ```bash
@@ -211,7 +215,7 @@ termux-playwright-doctor
 
 ### 🛡️ 3. Native Bionic vs PRoot / Virtualization (Why Native Wins)
 * **Zero Virtualization Overhead:** Do **NOT** install `proot-distro` (Ubuntu/Debian) just to run Playwright. PRoot intercepts every system call via `ptrace`, causing 3x~5x CPU latency, 60% higher RAM consumption, and broken `/dev/shm` shared memory.
-* **Native Speed:** `termux-playwright` orchestrates Termux's native Android Bionic-compiled Chromium and Node.js directly, delivering full ARM64 hardware performance with zero root required.
+* **Native Speed:** `amv-playwright` orchestrates Termux's native Android Bionic-compiled Chromium and Node.js directly, delivering full ARM64 hardware performance with zero root required.
 
 ---
 
@@ -261,7 +265,7 @@ Android 12~14 limits background child processes to 32. Heavy browsers spawn mult
 > **Overcoming the Android VPN DNS Blackhole (Tailscale, WireGuard, AdGuard):**  
 > On non-root Android 14~16 devices operating under active VPN tunnels (such as Tailscale or WireGuard), standard OS `getaddrinfo()` system queries pass through Android's system `dnsproxyd`. When MagicDNS or local VPN resolvers encounter public domain requests from unprivileged Termux sandbox processes, DNS resolution stalls or deadlocks on internal gateway interfaces (`100.100.100.100`), causing browser navigations (`page.goto`) to exceed timeouts and fail.  
 >  
-> `termux-playwright` v1.81.0 introduces a **Zero-Dependency RFC 1035 Direct Socket UDP Resolver** coupled with an **In-Process Loopback HTTP CONNECT Proxy** (`127.0.0.1:<port>`). By resolving public DNS records directly via low-level UDP sockets (defaulting to Google `8.8.8.8` or Cloudflare `1.1.1.1` or any custom upstream DNS) and establishing transparent TCP tunnels upstream, browser automation remains 100% immune to OS VPN deadlocks.
+> `amv-playwright` v1.81.0 introduces a **Zero-Dependency RFC 1035 Direct Socket UDP Resolver** coupled with an **In-Process Loopback HTTP CONNECT Proxy** (`127.0.0.1:<port>`). By resolving public DNS records directly via low-level UDP sockets (defaulting to Google `8.8.8.8` or Cloudflare `1.1.1.1` or any custom upstream DNS) and establishing transparent TCP tunnels upstream, browser automation remains 100% immune to OS VPN deadlocks.
 
 #### 📊 Live Benchmark on Real Hardware (Samsung Galaxy A35 5G · Android 16):
 | Configuration | Tailscale VPN State | DNS Query Mode | Navigation Result | Dynamic DOM Extraction | Total Latency |
@@ -292,7 +296,7 @@ if __name__ == "__main__":
 
 #### ☕ Node.js / JavaScript SDK: Fluent `BrowserBuilder`
 ```javascript
-const { BrowserBuilder } = require('termux-playwright');
+const { BrowserBuilder } = require('amv-playwright');
 
 async function main() {
     const browser = await new BrowserBuilder()
@@ -312,10 +316,10 @@ main().catch(console.error);
 #### 🖥️ Multi-Platform CLI Crawl Command
 ```bash
 # Automated headless crawl with direct socket DNS bypass tunnel
-termux-playwright crawl https://www.naver.com --bypass-tunnel
+amv-playwright crawl https://www.naver.com --bypass-tunnel
 
 # Specify a custom upstream DNS server (e.g. Cloudflare DNS)
-termux-playwright crawl https://news.ycombinator.com --bypass-tunnel --dns 1.1.1.1
+amv-playwright crawl https://news.ycombinator.com --bypass-tunnel --dns 1.1.1.1
 ```
 
 ---
@@ -343,7 +347,7 @@ if __name__ == "__main__":
 
 ### ☕ Node.js / JavaScript API (`examples/crawler.js`)
 ```javascript
-const { launch, setupStealthContext, blockHeavyResources } = require('termux-playwright');
+const { launch, setupStealthContext, blockHeavyResources } = require('amv-playwright');
 
 async function main() {
     // Automatically provisions session ledger, eMMC RAM cache, and WakeLock
@@ -516,7 +520,7 @@ const {
     HumanKeyboard,
     CellularIpRotator,
     TurnstileEvaluator
-} = require('termux-playwright');
+} = require('amv-playwright');
 
 async function main() {
     const browser = await launch(null, { headless: true, stealth: true });
@@ -541,7 +545,7 @@ main();
 
 ## 🏰 Standalone Fortress Mode vs. Cooperative Multi-Tasking Mode
 
-`termux-playwright` provides two distinct execution profiles designed for different concurrency and isolation requirements:
+`amv-playwright` provides two distinct execution profiles designed for different concurrency and isolation requirements:
 
 ```python
 # 🤝 1. Default Mode: Cooperative Multi-Tasking
@@ -571,14 +575,14 @@ browser = await launch(p, headless=True, standalone_mode=True, wake_lock=True)
 
 If Playwright is updated in the future (e.g. `pip install --upgrade playwright`), the upstream package overwrites `coreBundle.js` with its unpatched version. 
 
-`termux-playwright` detects this automatically in 0.001s upon `launch()` / `launch_sync()` and **auto-applies the platform patch on the fly**, guaranteeing 100% zero-friction operation without throwing cryptic `Unsupported platform: android` errors.
+`amv-playwright` detects this automatically in 0.001s upon `launch()` / `launch_sync()` and **auto-applies the platform patch on the fly**, guaranteeing 100% zero-friction operation without throwing cryptic `Unsupported platform: android` errors.
 
 ---
 
 ## 📁 Repository Structure
 
 ```
-termux-playwright/
+amv-playwright/
 ├── docs/                     # Technical documentation & guides
 │   ├── blog_post.md          # Complete Korean engineering writeup
 │   └── PHANTOM_PROCESS_KILLER_GUIDE.md  # Step-by-step Phantom Killer ADB guide
@@ -844,7 +848,7 @@ if __name__ == "__main__":
 * **Fluent `BrowserBuilder` SDK**:
   - Python: `BrowserBuilder().headless(True).bypass_tunnel(True, dns="8.8.8.8").launch()`
   - Node.js: `new BrowserBuilder().headless(true).bypassTunnel(true, '8.8.8.8').launch()`
-* **Unified CLI Crawl Subcommand**: `termux-playwright crawl <url> [--bypass-tunnel] [--dns <ip>]` with headless execution and dynamic DOM extraction.
+* **Unified CLI Crawl Subcommand**: `amv-playwright crawl <url> [--bypass-tunnel] [--dns <ip>]` with headless execution and dynamic DOM extraction.
 * **100% Full Verification**: Verified on real hardware (Samsung Galaxy A35 Android 16) with active Tailscale VPN (7.34s crawl vs 12.91s standard timeout) and 142 automated tests passed (111 Python + 31 Node.js).
 
 ### 🔵 [Previous] v1.80.4 — Enterprise Hardening & Adapter Contract Sync
@@ -856,7 +860,7 @@ if __name__ == "__main__":
 * **Storage Auto-Purge Rescue:** Automatic pre-flight cleanup of unowned ephemeral profiles on storage exhaustion.
 
 ### 🔵 [Previous] v1.61.1 — Doctor Diagnostics & Dev-Shm (2026-08-18)
-* **Diagnostic Tooling:** Added `termux-playwright-doctor`, `termux-playwright-install`, `termux-playwright-patch`, and `termux-playwright-reap` CLI commands.
+* **Diagnostic Tooling:** Added `amv-playwright-doctor`, `amv-playwright-install`, `amv-playwright-patch`, and `amv-playwright-reap` CLI commands.
 * **eMMC Protection & Memory Optimization:** `/dev/shm` RAM disk cache and Node.js V8 512MB heap limits.
 * **Standalone Fortress Mode & WakeLock:** Clean-room ephemeral profiles (`tp_solo_*`) and Android CPU wake lock integration.
 
