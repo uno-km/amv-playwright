@@ -428,7 +428,7 @@ def verify_runtime_dependencies() -> None:
                     "Native 'greenlet' dependency is missing on Termux.\n"
                     "Please install the system C-extension package via:\n"
                     "  pkg install python-greenlet\n"
-                    "Or run 'termux-playwright-install' to set up all dependencies automatically."
+                    "Or run 'amv-playwright-install' to set up all dependencies automatically."
                 ) from e
 
 @asynccontextmanager
@@ -554,7 +554,7 @@ async def launch(
             raise PatchingError(
                 "Playwright coreBundle.js is not patched for Android Termux. "
                 "Node.js RPC driver will crash with 'Unsupported platform: android'. "
-                "Please run 'termux-playwright-install' or grant write permissions to site-packages."
+                "Please run 'amv-playwright-install' or grant write permissions to site-packages."
             )
 
     # 3. Pre-flight storage health check (guarantees >= 50MB free in /tmp)
@@ -752,7 +752,7 @@ def launch_sync(
             raise PatchingError(
                 "Playwright coreBundle.js is not patched for Android Termux. "
                 "Node.js RPC driver will crash with 'Unsupported platform: android'. "
-                "Please run 'termux-playwright-install' or grant write permissions to site-packages."
+                "Please run 'amv-playwright-install' or grant write permissions to site-packages."
             )
 
     if is_termux():

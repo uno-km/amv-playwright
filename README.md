@@ -276,7 +276,7 @@ Android 12~14 limits background child processes to 32. Heavy browsers spawn mult
 #### 🐍 Python SDK: Fluent `BrowserBuilder`
 ```python
 import asyncio
-from termux_playwright import BrowserBuilder
+from amv_playwright import BrowserBuilder
 
 async def main():
     # Fluent builder pattern with automatic VPN bypass tunnel
@@ -327,7 +327,7 @@ amv-playwright crawl https://news.ycombinator.com --bypass-tunnel --dns 1.1.1.1
 ### Python Asynchronous API (`examples/basic_crawler.py`)
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch
+from amv_playwright import async_playwright_termux, launch
 
 async def main():
     # async_playwright_termux configures memory caps and ensures child process cleanup
@@ -381,7 +381,7 @@ main().catch(console.error);
 ### 🔋 24/7 Unattended Crawling with WakeLock & Context Recycling (`examples/advanced_crawler.py`)
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch, TermuxWakeLock
+from amv_playwright import async_playwright_termux, launch, TermuxWakeLock
 
 async def run_247_crawler():
     # Acquire Termux WakeLock to prevent Android CPU sleep when phone screen is off
@@ -429,7 +429,7 @@ Bypass Cloudflare, DataDome, CreepJS, and advanced fingerprinting engines with p
 
 ```python
 import asyncio
-from termux_playwright import (
+from amv_playwright import (
     async_playwright_termux,
     launch,
     setup_stealth_context,
@@ -489,12 +489,12 @@ if __name__ == "__main__":
 
 ---
 
-### 📱 Dual-Mode Cellular IP Rotator (`termux_playwright.mobile`)
+### 📱 Dual-Mode Cellular IP Rotator (`amv_playwright.mobile`)
 Rotate your mobile carrier (LTE/5G) residential IP within 2~3 seconds via Android airplane mode toggling:
 
 ```python
 import asyncio
-from termux_playwright import CellularIpRotator, RotationMode
+from amv_playwright import CellularIpRotator, RotationMode
 
 async def rotate_ip_demo():
     # Auto-detects whether running inside Termux or on PC via ADB bridge
@@ -599,7 +599,7 @@ amv-playwright/
 │   ├── waf.js                # Cloudflare Turnstile auto-solver
 │   ├── reaper.js             # Node process reaper & WakeLock
 │   └── platform.js           # Node platform & storage checks
-├── termux_playwright/        # Python Dual Engine package
+├── amv_playwright/        # Python Dual Engine package
 │   ├── __init__.py
 │   ├── browser.py            # Android-hardened browser launcher & V8 args
 │   ├── stealth.py            # Canvas 2D LSB & Audio noise engine
@@ -725,7 +725,7 @@ Chromium's V8 JavaScript engine has two execution tiers:
 Because complex Single-Page Applications (SPAs like Naver, YouTube, Twitter) execute megabytes of JS, running without JIT on low-power mobile CPUs can take 20~40 seconds to complete full rendering. Use our built-in 1-line accelerator and best practices:
 
 ```python
-from termux_playwright import async_playwright_termux, launch, block_heavy_resources
+from amv_playwright import async_playwright_termux, launch, block_heavy_resources
 
 async with async_playwright_termux() as p:
     browser = await launch(p, headless=True)
@@ -788,7 +788,7 @@ For uninterrupted multi-day execution, configure your smartphone OS settings:
 
 ### Method 3: Python Context Manager (Optional Helper)
 ```python
-from termux_playwright import TermuxWakeLock, async_playwright_termux, launch
+from amv_playwright import TermuxWakeLock, async_playwright_termux, launch
 
 # Acquire CPU wake lock for the duration of the crawler block
 with TermuxWakeLock(fail_silently=True):
@@ -816,11 +816,11 @@ This repository conforms to the standard [llms.txt](llms.txt) specification for 
 ### 🎯 Canonical Golden Pattern for LLMs:
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch
+from amv_playwright import async_playwright_termux, launch
 
 async def main():
     async with async_playwright_termux() as p:
-        # ALWAYS use termux_playwright.launch(), NEVER playwright.chromium.launch()
+        # ALWAYS use amv_playwright.launch(), NEVER playwright.chromium.launch()
         browser = await launch(p, headless=True)
         page = await browser.new_page()
         await page.goto("https://example.com", timeout=45000)
@@ -832,7 +832,7 @@ if __name__ == "__main__":
 ```
 
 ### 🚫 Rules for AI-Generated Code:
-1. **Never** invoke standard `playwright.chromium.launch()` directly on Termux without `termux_playwright.launch()`.
+1. **Never** invoke standard `playwright.chromium.launch()` directly on Termux without `amv_playwright.launch()`.
 2. **Always** use `async_playwright_termux()` or `sync_playwright_termux()` to guarantee process reaper tracking.
 3. Use `low_memory_mode=True` when generating code for low-spec mobile devices ($\le$ 2GB RAM).
 4. For Android 14+ devices without ADB access, pass `single_process=True` to prevent the OS Phantom Killer.
@@ -843,7 +843,7 @@ if __name__ == "__main__":
 ## 📜 Version History & Changelog
 
 ### 🟢 [Current] v1.81.0 — Direct Socket DNS Bypass-Tunnel (2026-09-06)
-* **Direct Socket RFC 1035 UDP DNS Resolver**: Zero-dependency pure socket DNS client in Python (`termux_playwright.tunnel`) and Node.js (`lib/tunnel.js`) to completely circumvent Android 14~16 VPN (Tailscale, WireGuard) `dnsproxyd` deadlocks.
+* **Direct Socket RFC 1035 UDP DNS Resolver**: Zero-dependency pure socket DNS client in Python (`amv_playwright.tunnel`) and Node.js (`lib/tunnel.js`) to completely circumvent Android 14~16 VPN (Tailscale, WireGuard) `dnsproxyd` deadlocks.
 * **In-Process HTTP CONNECT Proxy**: High-performance loopback proxy (`127.0.0.1:<dynamic_port>`) establishing transparent TCP tunnels upstream via direct socket resolution.
 * **Fluent `BrowserBuilder` SDK**:
   - Python: `BrowserBuilder().headless(True).bypass_tunnel(True, dns="8.8.8.8").launch()`
@@ -876,9 +876,9 @@ if __name__ == "__main__":
 
 ## 🌌 The AMEVA Mobile AI & Automation Ecosystem
 
-* **🎨 [Termux-Diffusion](https://github.com/uno-km/termux-diffusion)** ([PyPI](https://pypi.org/project/termux-diffusion/) | [npm](https://www.npmjs.com/package/termux-diffusion) | [📖 Official Docs](https://uno-km.github.io/termux-diffusion/)): Production-grade on-device Stable Diffusion AI image generation pipeline for Android Termux & Samsung Galaxy without root or PRoot.
-  * **Python:** `pip install termux-diffusion && termux-diffusion-install`
-  * **Node.js:** `npm install -g termux-diffusion && npx termux-diffusion install`
+* **🎨 [AMV-Diffusion](https://github.com/uno-km/amv-diffusion)** ([PyPI](https://pypi.org/project/amv-diffusion/) | [npm](https://www.npmjs.com/package/amv-diffusion) | [📖 Official Docs](https://uno-km.github.io/amv-diffusion/)): Production-grade on-device Stable Diffusion AI image generation pipeline for Android Termux & Samsung Galaxy without root or PRoot.
+  * **Python:** `pip install amv-diffusion && amv-diffusion-install`
+  * **Node.js:** `npm install -g amv-diffusion && npx amv-diffusion install`
 
 ---
 

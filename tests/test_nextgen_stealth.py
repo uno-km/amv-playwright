@@ -1,7 +1,7 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 import pytest
-from termux_playwright.stealth import (
+from amv_playwright.stealth import (
     generate_stealth_script,
     CanvasNoiseInjector,
     AudioNoiseInjector,

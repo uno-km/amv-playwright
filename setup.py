@@ -12,25 +12,25 @@ if os.path.exists("README.md"):
         long_description = "Production-grade automated Playwright integration and runtime optimizer for Android Termux"
 
 setup(
-    name="termux-playwright",
+    name="amv-playwright",
     version="1.81.2",
     description="Production-grade Playwright & Chromium browser automation and stealth runtime optimizer for Android Termux (Dual-Engine Python & Node.js)",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="uno-km (AMEVA Foundation)",
     author_email="hosequelbo@gmail.com",
-    url="https://github.com/uno-km/termux-playwright",
+    url="https://github.com/uno-km/amv-playwright",
     project_urls={
-        "Documentation": "https://uno-km.github.io/termux-playwright/",
-        "npm Package": "https://www.npmjs.com/package/termux-playwright",
-        "Bug Tracker": "https://github.com/uno-km/termux-playwright/issues",
-        "Source": "https://github.com/uno-km/termux-playwright",
+        "Documentation": "https://uno-km.github.io/amv-playwright/",
+        "npm Package": "https://www.npmjs.com/package/amv-playwright",
+        "Bug Tracker": "https://github.com/uno-km/amv-playwright/issues",
+        "Source": "https://github.com/uno-km/amv-playwright",
     },
     license="MIT",
     keywords=["playwright", "termux", "android", "chromium", "automation", "web-scraping"],
     packages=find_packages(),
     package_data={
-        "termux_playwright": ["py.typed"],
+        "amv_playwright": ["py.typed"],
     },
     include_package_data=True,
     install_requires=[
@@ -43,10 +43,10 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'termux-playwright-install=termux_playwright.installer:run_installation_pipeline',
-            'termux-playwright-patch=termux_playwright.patcher:cli_patch_core_bundle',
-            'termux-playwright-doctor=termux_playwright.installer:doctor',
-            'termux-playwright-reap=termux_playwright.reaper:cli_reap_orphans',
+            'amv-playwright-install=amv_playwright.installer:run_installation_pipeline',
+            'amv-playwright-patch=amv_playwright.patcher:cli_patch_core_bundle',
+            'amv-playwright-doctor=amv_playwright.installer:doctor',
+            'amv-playwright-reap=amv_playwright.reaper:cli_reap_orphans',
         ],
     },
     classifiers=[

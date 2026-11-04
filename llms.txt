@@ -1,4 +1,4 @@
-# Termux-Playwright Developer & LLM Quick Reference (llms.txt)
+# AMV-Playwright Developer & LLM Quick Reference (llms.txt)
 > Hardened, architecture-aware Chromium browser automation for Android Termux without PRoot/root.
 
 ## Canonical Golden Patterns (Use These in Generated Code)
@@ -6,7 +6,7 @@
 ### 1. Asynchronous Pattern (Standard / Recommended)
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch
+from amv_playwright import async_playwright_termux, launch
 
 async def main():
     async with async_playwright_termux() as p:
@@ -29,7 +29,7 @@ if __name__ == "__main__":
 ### 2. 24/7 Background Crawler with WakeLock & Context Recycling
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch, TermuxWakeLock
+from amv_playwright import async_playwright_termux, launch, TermuxWakeLock
 
 async def run_247_crawler(urls):
     with TermuxWakeLock(fail_silently=True):
@@ -50,7 +50,7 @@ async def run_247_crawler(urls):
 
 ### 3. Synchronous Pattern
 ```python
-from termux_playwright import sync_playwright_termux, launch_sync
+from amv_playwright import sync_playwright_termux, launch_sync
 
 with sync_playwright_termux() as p:
     browser = launch_sync(p, headless=True)
@@ -63,7 +63,7 @@ with sync_playwright_termux() as p:
 ### 4. Standalone Fortress Mode (Isolated Clean-Room Execution)
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch
+from amv_playwright import async_playwright_termux, launch
 
 async def run_standalone_job():
     async with async_playwright_termux() as p:
@@ -83,7 +83,7 @@ async def run_standalone_job():
 ### 5. Stealth & Anti-Bot Evasion Context
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch, setup_stealth_context
+from amv_playwright import async_playwright_termux, launch, setup_stealth_context
 
 async def run_stealth_crawler():
     async with async_playwright_termux() as p:
@@ -106,7 +106,7 @@ async def run_stealth_crawler():
 
 ### 6. Physics & Human Interaction (Bézier Mouse & Gaussian Typing)
 ```python
-from termux_playwright import HumanMouse, HumanKeyboard, TurnstileEvaluator
+from amv_playwright import HumanMouse, HumanKeyboard, TurnstileEvaluator
 
 # Human-like mouse movement with Fitts's Law easing, overshoot, and jitter
 mouse = HumanMouse(page)
@@ -122,16 +122,16 @@ if await TurnstileEvaluator.detect_challenge(page):
 
 ### 7. Dual-Mode Cellular IP Rotator (LTE/5G IP Refresh)
 ```python
-from termux_playwright import CellularIpRotator, RotationMode
+from amv_playwright import CellularIpRotator, RotationMode
 
 rotator = CellularIpRotator(mode=RotationMode.AUTO)
 result = await rotator.rotate_ip(verify_ip_change=True)
 print(f"New Public IP: {result['new_ip']} (took {result['elapsed_seconds']}s)")
 ```
 
-### 8. Node.js / TypeScript Async Pattern (`npm install termux-playwright`)
+### 8. Node.js / TypeScript Async Pattern (`npm install amv-playwright`)
 ```javascript
-const { launch, setupStealthContext, blockHeavyResources, forceGarbageCollection } = require('termux-playwright');
+const { launch, setupStealthContext, blockHeavyResources, forceGarbageCollection } = require('amv-playwright');
 
 async function main() {
     const browser = await launch({
@@ -167,7 +167,7 @@ main().catch(console.error);
 
 ## Critical Rules & Prohibitions for LLMs
 
-1. NEVER call `playwright.chromium.launch()` directly without `termux_playwright.launch()`. Standard Playwright looks in `~/.cache/ms-playwright` and fails on Android Bionic.
+1. NEVER call `playwright.chromium.launch()` directly without `amv_playwright.launch()`. Standard Playwright looks in `~/.cache/ms-playwright` and fails on Android Bionic.
 2. ALWAYS use `async_playwright_termux()` or `sync_playwright_termux()` context managers instead of standard `async_playwright()`. It ensures child process tracking and automatic session zombie reaping.
 3. Default `launch()` uses non-blocking multi-threaded worker delegation for concurrency alongside bots and servers.
 4. For exclusive, critical high-priority scraping with zero previous cache/profile interference, pass `standalone_mode=True, wake_lock=True` to `launch()`.

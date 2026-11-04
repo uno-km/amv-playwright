@@ -1,12 +1,12 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
-"""Typed Exception hierarchy for termux-playwright.
+"""Typed Exception hierarchy for amv-playwright.
 
 Provides distinct, actionable exceptions without masking underlying faults.
 """
 
 class TermuxPlaywrightError(Exception):
-    """Base exception for all termux-playwright errors."""
+    """Base exception for all amv-playwright errors."""
     pass
 
 class UnsupportedPlatformError(TermuxPlaywrightError):

@@ -1,7 +1,7 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
-termux_playwright.control.status — Playwright 상태 파일 Writer + Heartbeat
+amv_playwright.control.status — Playwright 상태 파일 Writer + Heartbeat
 
 브라우저 특화 동작:
   - notify_job_start() → Browser Task 시작

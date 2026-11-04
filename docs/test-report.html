@@ -5,8 +5,8 @@
   <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galaxy S20 Real-Device Audit Report (v1.61.4) | Termux-Playwright</title>
-  <meta name="description" content="Technical verification, benchmark telemetry, and platform compatibility audit report for Termux-Playwright on physical Samsung Galaxy S20 5G hardware.">
+  <title>Galaxy S20 Real-Device Audit Report (v1.61.4) | AMV-Playwright</title>
+  <meta name="description" content="Technical verification, benchmark telemetry, and platform compatibility audit report for AMV-Playwright on physical Samsung Galaxy S20 5G hardware.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <script src="i18n.js"></script>
   <script src="i18n-translations.js"></script>
@@ -110,15 +110,15 @@
     <header>
         <a href="index.html" class="header-brand">
             <img src="favicon.svg" alt="Logo">
-            <h1 data-i18n="common.brand">Termux-Playwright</h1>
+            <h1 data-i18n="common.brand">AMV-Playwright</h1>
         </a>
         <div class="header-controls">
             <span class="release-tag" data-i18n="common.releaseTag">v1.61.4 (Dual Engine)</span>
             <div class="lang-selector-wrapper"></div>
-            <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (Python)</a>
-            <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="header-btn" style="background:#cb3837;color:#fff;">npm (Node.js)</a>
+            <a href="https://pypi.org/project/amv-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (Python)</a>
+            <a href="https://www.npmjs.com/package/amv-playwright" target="_blank" class="header-btn" style="background:#cb3837;color:#fff;">npm (Node.js)</a>
             <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">💖 Sponsor</a>
-            <a href="https://github.com/uno-km/termux-playwright" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repository</a>
+            <a href="https://github.com/uno-km/amv-playwright" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repository</a>
         </div>
     </header>
 
@@ -142,10 +142,10 @@
                 <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
                 <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
                 <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-                <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-                <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-                <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-                <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+                <li><a href="/lib/playwright/">AMV-Playwright (Automation)</a></li>
+                <li><a href="/lib/stt/">AMV-STT (Voice STT)</a></li>
+                <li><a href="/lib/diffusion/">AMV-Diffusion (Image AI)</a></li>
+                <li><a href="/lib/train/">AMV-Train (LoRA Engine)</a></li>
                 <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
                 <li><a href="/foundation/">AMEVA Foundation</a></li>
                 <li><a href="/index.html">Founder Digital CV</a></li>
@@ -207,7 +207,7 @@ Hardware & Software Configuration (Ground Truth Telemetry)
 • Python Runtime     : Python 3.14.6 (with native libexpat & greenlet)
 • Chromium Engine    : Chromium 149.0.0.0 (Native Termux Build)
 • Node.js Engine     : Node.js v26.4.0 (Bionic Linked)
-• Target Version     : termux-playwright v1.61.4 (Commit aded78e)
+• Target Version     : amv-playwright v1.61.4 (Commit aded78e)
 ================================================================================</div>
 
             <h3>2. 0-Point Baseline 4-Phase E2E Verification Results</h3>
@@ -384,7 +384,7 @@ Hardware & Software Configuration (Ground Truth Telemetry)
                 <h4 style="margin-bottom: 8px;">5.1 Anti-Bot 55-Item Audit Script (<code>bot_audit.py</code>)</h4>
                 <div class="code-block">
                     <pre><code>from playwright.sync_api import sync_playwright
-from termux_playwright.browser import launch_sync, setup_stealth_context_sync
+from amv_playwright.browser import launch_sync, setup_stealth_context_sync
 
 def run_bot_audit():
     with sync_playwright() as pw:
@@ -427,8 +427,8 @@ def run_bot_audit():
                 <div class="code-block">
                     <pre><code>import os, time
 from playwright.sync_api import sync_playwright
-from termux_playwright.browser import launch_sync
-from termux_playwright.reaper import ProcessReaper, TermuxWakeLock
+from amv_playwright.browser import launch_sync
+from amv_playwright.reaper import ProcessReaper, TermuxWakeLock
 
 def get_process_memory_mb():
     with open(f"/proc/{os.getpid()}/status", "r") as f:
@@ -457,12 +457,12 @@ def run_lmk_stress(cycles=30):
             </div>
 
             <h3>6. Conclusion &amp; Production Readiness Verdict</h3>
-            <p>Based on comprehensive physical hardware evaluation on the Samsung Galaxy S20 (Android 13 / Termux aarch64), <code>termux-playwright</code> (v1.61.4) satisfies all engineering requirements for <strong>zero-root execution, Bionic libc syscall compatibility, anti-bot evasion, and persistent process reaping</strong>.</p>
+            <p>Based on comprehensive physical hardware evaluation on the Samsung Galaxy S20 (Android 13 / Termux aarch64), <code>amv-playwright</code> (v1.61.4) satisfies all engineering requirements for <strong>zero-root execution, Bionic libc syscall compatibility, anti-bot evasion, and persistent process reaping</strong>.</p>
         </main>
     </div>
 
     <footer>
-        <span data-i18n="common.footerText">&copy; 2026 Termux-Playwright Project. Released under the MIT License.</span>
+        <span data-i18n="common.footerText">&copy; 2026 AMV-Playwright Project. Released under the MIT License.</span>
     </footer>
 </body>
 </html>

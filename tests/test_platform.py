@@ -4,7 +4,7 @@ import os
 import sys
 import shutil
 import pytest
-from termux_playwright.platform import (
+from amv_playwright.platform import (
     is_termux,
     get_cpu_architecture,
     get_wheel_tag_for_arch,
@@ -15,7 +15,7 @@ from termux_playwright.platform import (
     SUPPORTED_ARCHITECTURES,
     ANDROID_10_SDK_VERSION,
 )
-from termux_playwright.exceptions import UnsupportedPlatformError, BinaryNotFoundError, StorageExhaustionError
+from amv_playwright.exceptions import UnsupportedPlatformError, BinaryNotFoundError, StorageExhaustionError
 
 def test_is_termux_with_prefix(monkeypatch):
     monkeypatch.setenv("PREFIX", "/data/data/com.termux/files/usr")
@@ -97,7 +97,7 @@ def test_find_chromium_binary_from_env(monkeypatch, tmp_path):
 
 def test_find_chromium_binary_termux_native(monkeypatch, tmp_path):
     monkeypatch.delenv("PLAYWRIGHT_CHROMIUM_PATH", raising=False)
-    monkeypatch.setattr("termux_playwright.platform.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.platform.is_termux", lambda: True)
     
     mock_prefix = tmp_path / "usr"
     mock_prefix.mkdir(parents=True, exist_ok=True)
@@ -106,7 +106,7 @@ def test_find_chromium_binary_termux_native(monkeypatch, tmp_path):
     chromium_launcher.write_text("#!/bin/sh\nexec true", encoding="utf-8")
     chromium_launcher.chmod(0o755)
     
-    monkeypatch.setattr("termux_playwright.platform.get_termux_prefix", lambda: str(mock_prefix))
+    monkeypatch.setattr("amv_playwright.platform.get_termux_prefix", lambda: str(mock_prefix))
     monkeypatch.setattr("shutil.which", lambda _: None)
     
     found = find_chromium_binary()
@@ -114,8 +114,8 @@ def test_find_chromium_binary_termux_native(monkeypatch, tmp_path):
 
 def test_find_chromium_binary_not_found(monkeypatch):
     monkeypatch.delenv("PLAYWRIGHT_CHROMIUM_PATH", raising=False)
-    monkeypatch.setattr("termux_playwright.platform.is_termux", lambda: False)
-    monkeypatch.setattr("termux_playwright.platform.get_termux_prefix", lambda: "/tmp/nonexistent_prefix_path")
+    monkeypatch.setattr("amv_playwright.platform.is_termux", lambda: False)
+    monkeypatch.setattr("amv_playwright.platform.get_termux_prefix", lambda: "/tmp/nonexistent_prefix_path")
     monkeypatch.setattr("shutil.which", lambda _: None)
     monkeypatch.setattr("glob.glob", lambda _: [])
     monkeypatch.setattr("os.path.isfile", lambda _: False)
@@ -130,14 +130,14 @@ def test_find_node_binary_success(monkeypatch, tmp_path):
     fake_node.write_text("dummy node", encoding="utf-8")
     fake_node.chmod(0o755)
     monkeypatch.setattr("shutil.which", lambda cmd: str(fake_node) if cmd == "node" else None)
-    monkeypatch.setattr("termux_playwright.platform.get_termux_prefix", lambda: None)
+    monkeypatch.setattr("amv_playwright.platform.get_termux_prefix", lambda: None)
     assert find_node_binary() == os.path.realpath(str(fake_node))
 
 def test_find_node_binary_not_found(monkeypatch):
     monkeypatch.delenv("PLAYWRIGHT_NODEJS_PATH", raising=False)
-    monkeypatch.setattr("termux_playwright.platform.is_termux", lambda: False)
+    monkeypatch.setattr("amv_playwright.platform.is_termux", lambda: False)
     monkeypatch.setattr("shutil.which", lambda _: None)
-    monkeypatch.setattr("termux_playwright.platform.get_termux_prefix", lambda: None)
+    monkeypatch.setattr("amv_playwright.platform.get_termux_prefix", lambda: None)
     with pytest.raises(BinaryNotFoundError, match="Node.js executable not found"):
         find_node_binary()
 
@@ -160,7 +160,7 @@ def test_check_preflight_storage_healthy(monkeypatch, tmp_path):
     assert free_mb == 500
 
 def test_check_preflight_storage_custom_env_override(monkeypatch, tmp_path):
-    import termux_playwright.platform as plat
+    import amv_playwright.platform as plat
     monkeypatch.setattr(plat, "MINIMUM_REQUIRED_STORAGE_MB", 300)
     class FakeUsage:
         free = 200 * 1024 * 1024
@@ -170,11 +170,11 @@ def test_check_preflight_storage_custom_env_override(monkeypatch, tmp_path):
         check_preflight_storage(str(tmp_path))
 
 def test_get_android_sdk_version_non_android(monkeypatch):
-    monkeypatch.setattr("termux_playwright.platform.is_termux", lambda: False)
+    monkeypatch.setattr("amv_playwright.platform.is_termux", lambda: False)
     assert get_android_sdk_version() == 0
 
 def test_get_android_sdk_version_termux_success(monkeypatch):
-    monkeypatch.setattr("termux_playwright.platform.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.platform.is_termux", lambda: True)
     if hasattr(sys, "getandroidapilevel"):
         monkeypatch.delattr(sys, "getandroidapilevel")
     monkeypatch.setattr("shutil.which", lambda cmd: "/bin/getprop" if cmd == "getprop" else None)
@@ -186,7 +186,7 @@ def test_get_android_sdk_version_termux_success(monkeypatch):
     assert get_android_sdk_version() == 31
 
 def test_get_android_sdk_version_termux_fallback_on_failure(monkeypatch):
-    monkeypatch.setattr("termux_playwright.platform.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.platform.is_termux", lambda: True)
     monkeypatch.setattr("shutil.which", lambda _: None)
     monkeypatch.setattr("os.path.isfile", lambda _: False)
     if hasattr(sys, "getandroidapilevel"):
@@ -195,12 +195,12 @@ def test_get_android_sdk_version_termux_fallback_on_failure(monkeypatch):
     assert get_android_sdk_version() == ANDROID_10_SDK_VERSION
 
 def test_get_android_sdk_version_tier1_sys_api_level(monkeypatch):
-    monkeypatch.setattr("termux_playwright.platform.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.platform.is_termux", lambda: True)
     monkeypatch.setattr(sys, "getandroidapilevel", lambda: 26, raising=False)
     assert get_android_sdk_version() == 26
 
 def test_get_android_sdk_version_tier3_build_prop(monkeypatch, tmp_path):
-    monkeypatch.setattr("termux_playwright.platform.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.platform.is_termux", lambda: True)
     monkeypatch.setattr("shutil.which", lambda _: None)
     if hasattr(sys, "getandroidapilevel"):
         monkeypatch.delattr(sys, "getandroidapilevel")
@@ -221,7 +221,7 @@ def test_get_android_sdk_version_tier3_build_prop(monkeypatch, tmp_path):
     assert get_android_sdk_version() == 26
 
 def test_find_chromium_binary_windows_desktop_fallback(monkeypatch, tmp_path):
-    monkeypatch.setattr("termux_playwright.platform.is_termux", lambda: False)
+    monkeypatch.setattr("amv_playwright.platform.is_termux", lambda: False)
     monkeypatch.delenv("PLAYWRIGHT_CHROMIUM_PATH", raising=False)
     monkeypatch.setattr(sys, "platform", "win32")
     monkeypatch.setattr("shutil.which", lambda _: None)
@@ -240,15 +240,15 @@ def test_find_chromium_binary_windows_desktop_fallback(monkeypatch, tmp_path):
     assert os.path.realpath(str(target_chrome)) == found
 
 def test_get_installed_chromium_version_success(monkeypatch, tmp_path):
-    import termux_playwright.platform as tp_platform
-    from termux_playwright.platform import get_installed_chromium_version
+    import amv_playwright.platform as tp_platform
+    from amv_playwright.platform import get_installed_chromium_version
     import subprocess
 
     tp_platform._cached_chromium_stat = None
 
     fake_chrome = tmp_path / "chromium"
     fake_chrome.write_text("mock binary", encoding="utf-8")
-    monkeypatch.setattr("termux_playwright.platform.find_chromium_binary", lambda: str(fake_chrome))
+    monkeypatch.setattr("amv_playwright.platform.find_chromium_binary", lambda: str(fake_chrome))
     def mock_run(cmd, *args, **kwargs):
         class MockRes:
             returncode = 0
@@ -263,15 +263,15 @@ def test_get_installed_chromium_version_success(monkeypatch, tmp_path):
 
 def test_get_installed_chromium_version_mtime_invalidation(monkeypatch, tmp_path):
     import time
-    import termux_playwright.platform as tp_platform
-    from termux_playwright.platform import get_installed_chromium_version
+    import amv_playwright.platform as tp_platform
+    from amv_playwright.platform import get_installed_chromium_version
     import subprocess
 
     tp_platform._cached_chromium_stat = None
 
     fake_chrome = tmp_path / "chromium"
     fake_chrome.write_text("mock binary v1", encoding="utf-8")
-    monkeypatch.setattr("termux_playwright.platform.find_chromium_binary", lambda: str(fake_chrome))
+    monkeypatch.setattr("amv_playwright.platform.find_chromium_binary", lambda: str(fake_chrome))
 
     call_count = 0
     def mock_run(cmd, *args, **kwargs):
@@ -303,11 +303,11 @@ def test_get_installed_chromium_version_mtime_invalidation(monkeypatch, tmp_path
     tp_platform._cached_chromium_stat = None
 
 def test_get_installed_chromium_version_fallback_on_error(monkeypatch):
-    import termux_playwright.platform as tp_platform
-    from termux_playwright.platform import get_installed_chromium_version
+    import amv_playwright.platform as tp_platform
+    from amv_playwright.platform import get_installed_chromium_version
     tp_platform._cached_chromium_stat = None
 
-    monkeypatch.setattr("termux_playwright.platform.find_chromium_binary", lambda: (_ for _ in ()).throw(Exception("binary missing")))
+    monkeypatch.setattr("amv_playwright.platform.find_chromium_binary", lambda: (_ for _ in ()).throw(Exception("binary missing")))
 
     full_v, major_v = get_installed_chromium_version()
     assert full_v == "130.0.0.0"

@@ -3,14 +3,14 @@
 import json
 import pytest
 from unittest.mock import MagicMock
-from termux_playwright.installer import (
+from amv_playwright.installer import (
     resolve_latest_compatible_version,
     fetch_pypi_wheel_info,
     install_system_dependencies,
     doctor,
     DEFAULT_PLAYWRIGHT_VERSION,
 )
-from termux_playwright.exceptions import InstallationError
+from amv_playwright.exceptions import InstallationError
 
 def test_resolve_latest_compatible_version_success(monkeypatch):
     fake_data = json.dumps({"info": {"version": "1.65.0"}}).encode("utf-8")
@@ -56,7 +56,7 @@ def test_fetch_pypi_wheel_info_default_uses_verified_lts(monkeypatch):
         def __exit__(self, *args):
             pass
 
-    monkeypatch.setattr("termux_playwright.installer.get_cpu_architecture", lambda: "aarch64")
+    monkeypatch.setattr("amv_playwright.installer.get_cpu_architecture", lambda: "aarch64")
     monkeypatch.setattr("urllib.request.urlopen", lambda req, timeout=15: FakeResponse())
 
     url, filename, version = fetch_pypi_wheel_info()
@@ -83,8 +83,8 @@ def test_fetch_pypi_wheel_info_latest_flag(monkeypatch):
         def __exit__(self, *args):
             pass
 
-    monkeypatch.setattr("termux_playwright.installer.get_cpu_architecture", lambda: "aarch64")
-    monkeypatch.setattr("termux_playwright.installer.resolve_latest_compatible_version", lambda: "1.62.0")
+    monkeypatch.setattr("amv_playwright.installer.get_cpu_architecture", lambda: "aarch64")
+    monkeypatch.setattr("amv_playwright.installer.resolve_latest_compatible_version", lambda: "1.62.0")
     monkeypatch.setattr("urllib.request.urlopen", lambda req, timeout=15: FakeResponse())
 
     url, filename, version = fetch_pypi_wheel_info(version="latest")
@@ -135,28 +135,28 @@ def test_install_system_dependencies_success(monkeypatch):
 
 
 def test_doctor_healthy(monkeypatch):
-    monkeypatch.setattr("termux_playwright.installer.is_termux", lambda: True)
-    monkeypatch.setattr("termux_playwright.installer.check_preflight_storage", lambda: 500)
-    monkeypatch.setattr("termux_playwright.installer.get_cpu_architecture", lambda: "aarch64")
-    monkeypatch.setattr("termux_playwright.installer.find_node_binary", lambda: "/mock/node")
-    monkeypatch.setattr("termux_playwright.installer.find_chromium_binary", lambda: "/mock/chromium")
-    monkeypatch.setattr("termux_playwright.installer.locate_playwright_package_dir", lambda: "/mock/playwright")
-    monkeypatch.setattr("termux_playwright.installer.is_core_bundle_patched", lambda: True)
+    monkeypatch.setattr("amv_playwright.installer.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.installer.check_preflight_storage", lambda: 500)
+    monkeypatch.setattr("amv_playwright.installer.get_cpu_architecture", lambda: "aarch64")
+    monkeypatch.setattr("amv_playwright.installer.find_node_binary", lambda: "/mock/node")
+    monkeypatch.setattr("amv_playwright.installer.find_chromium_binary", lambda: "/mock/chromium")
+    monkeypatch.setattr("amv_playwright.installer.locate_playwright_package_dir", lambda: "/mock/playwright")
+    monkeypatch.setattr("amv_playwright.installer.is_core_bundle_patched", lambda: True)
 
     assert doctor() is True
 
 def test_doctor_unhealthy_when_binary_missing(monkeypatch):
-    from termux_playwright.exceptions import BinaryNotFoundError
+    from amv_playwright.exceptions import BinaryNotFoundError
 
-    monkeypatch.setattr("termux_playwright.installer.is_termux", lambda: True)
-    monkeypatch.setattr("termux_playwright.installer.check_preflight_storage", lambda: 500)
-    monkeypatch.setattr("termux_playwright.installer.get_cpu_architecture", lambda: "aarch64")
-    monkeypatch.setattr("termux_playwright.installer.find_node_binary", lambda: "/mock/node")
+    monkeypatch.setattr("amv_playwright.installer.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.installer.check_preflight_storage", lambda: 500)
+    monkeypatch.setattr("amv_playwright.installer.get_cpu_architecture", lambda: "aarch64")
+    monkeypatch.setattr("amv_playwright.installer.find_node_binary", lambda: "/mock/node")
     
     def mock_find_chrome():
         raise BinaryNotFoundError("Chromium not found")
-    monkeypatch.setattr("termux_playwright.installer.find_chromium_binary", mock_find_chrome)
-    monkeypatch.setattr("termux_playwright.installer.locate_playwright_package_dir", lambda: "/mock/playwright")
-    monkeypatch.setattr("termux_playwright.installer.is_core_bundle_patched", lambda: True)
+    monkeypatch.setattr("amv_playwright.installer.find_chromium_binary", mock_find_chrome)
+    monkeypatch.setattr("amv_playwright.installer.locate_playwright_package_dir", lambda: "/mock/playwright")
+    monkeypatch.setattr("amv_playwright.installer.is_core_bundle_patched", lambda: True)
 
     assert doctor() is False

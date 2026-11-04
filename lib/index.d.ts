@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
  */
 /**
- * TypeScript Type Definitions for termux-playwright (Next-Gen)
+ * TypeScript Type Definitions for amv-playwright (Next-Gen)
  */
 
 import type { Browser, BrowserContext, Page, LaunchOptions, BrowserContextOptions } from 'playwright-core';

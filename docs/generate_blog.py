@@ -5,9 +5,9 @@ Generate ultra-comprehensive technical deep-dive documentation for Tistory HTML 
 """
 import os
 
-blog_markdown = """# [오픈소스] 안드로이드 Termux 환경에서 Playwright와 Chromium을 완벽 구동하는 엔지니어링 심층 아키텍처 및 라이브러리 개발기 (termux-playwright)
+blog_markdown = """# [오픈소스] 안드로이드 Termux 환경에서 Playwright와 Chromium을 완벽 구동하는 엔지니어링 심층 아키텍처 및 라이브러리 개발기 (amv-playwright)
 
-> **안드로이드 스마트폰(ARM64/x86_64) 환경에서 루팅, PRoot, X11 가상화 없이 공식 Chromium 브라우저를 24시간 무인 자율 구동하는 프로덕션급 오픈소스 라이브러리 `termux-playwright`의 설계 원리와 기술적 구현 전 과정을 심층 공유합니다.**
+> **안드로이드 스마트폰(ARM64/x86_64) 환경에서 루팅, PRoot, X11 가상화 없이 공식 Chromium 브라우저를 24시간 무인 자율 구동하는 프로덕션급 오픈소스 라이브러리 `amv-playwright`의 설계 원리와 기술적 구현 전 과정을 심층 공유합니다.**
 
 ---
 
@@ -21,7 +21,7 @@ blog_markdown = """# [오픈소스] 안드로이드 Termux 환경에서 Playwrig
 * **자체 내장 무정전 전원장치(UPS):** 정전 시에도 꺼지지 않는 4000mAh+ 배터리
 * **소비전력:** 24시간 풀로드 가동 시에도 월 전기세 100원 미만 (5W 미만)
 
-그러나 공식 Playwright를 안드로이드의 대표적인 터미널 환경인 **Termux(터먹스)**에서 실행하려고 하면 수많은 시스템 레벨 크래시와 마주치게 됩니다. 이 문제를 원천 해결하기 위해 밑바닥부터 설계한 `termux-playwright` 라이브러리의 구조와 핵심 메커니즘을 설명합니다.
+그러나 공식 Playwright를 안드로이드의 대표적인 터미널 환경인 **Termux(터먹스)**에서 실행하려고 하면 수많은 시스템 레벨 크래시와 마주치게 됩니다. 이 문제를 원천 해결하기 위해 밑바닥부터 설계한 `amv-playwright` 라이브러리의 구조와 핵심 메커니즘을 설명합니다.
 
 ---
 
@@ -47,7 +47,7 @@ Playwright 파이썬 클라이언트는 비동기 코루틴 컨텍스트 스위�
 
 ---
 
-## 3. termux-playwright의 핵심 아키텍처 및 솔루션
+## 3. amv-playwright의 핵심 아키텍처 및 솔루션
 
 ### 3.1 런타임 계층 분리 및 전수조사 총괄표
 
@@ -60,20 +60,20 @@ Playwright 파이썬 클라이언트는 비동기 코루틴 컨텍스트 스위�
 | **4. 전원 관리** | `termux-api` | **`pkg`** | C 바이너리 | 화면 꺼짐 시 CPU 절전 방지 (WakeLock) |
 | **5. 순수 파이썬 A** | `typing-extensions` | **`pip`** | Pure Python | 파이썬 버전 간 타입 힌트 호환성 제공 |
 | **6. 순수 파이썬 B** | `pyee` | **`pip`** | Pure Python | 브라우저 DOM 이벤트 리스너 디스패치 |
-| **7. 플랫폼 코어 엔진** | `termux-playwright` | **`pip`** | Pure Python | 좀비 리퍼, 디스크 장부, 스텔스 주입, eMMC 보호 |
+| **7. 플랫폼 코어 엔진** | `amv-playwright` | **`pip`** | Pure Python | 좀비 리퍼, 디스크 장부, 스텔스 주입, eMMC 보호 |
 | **8. 공식 코어 휠** | `playwright` (aarch64) | **`pip (우회)`** | Wheel 패키징 | 공식 aarch64 휠을 `none-any`로 주입 |
 | **9. JS 드라이버 패치** | `coreBundle.js` 패치 | **자체 엔진** | JS 바이트 주입 | Node.js의 안드로이드 플랫폼 검증 무력화 |
 
 ### 3.2 디스크 기반 세션 영속 장부 (Persistent Disk Ledger)
 기존 메모리 기반 프로세스 관리자는 안드로이드 LMK(Low Memory Killer)나 `kill -9`로 파이썬이 사살될 경우 추적 장부가 증발하는 치명적인 결함이 있었습니다.
-`termux-playwright`는 세션 시작 시 `$TMPDIR/.tp_ledger/{token}.session`에 파일로 소유자 PID를 원자적으로 기록합니다. 다음번 크롤러 기동 시, 살아있는 OS PID 테이블을 스캔하여 이전 크래시로 방치된 고아 크로미움 프로세스를 100% 추적하여 사살합니다.
+`amv-playwright`는 세션 시작 시 `$TMPDIR/.tp_ledger/{token}.session`에 파일로 소유자 PID를 원자적으로 기록합니다. 다음번 크롤러 기동 시, 살아있는 OS PID 테이블을 스캔하여 이전 크래시로 방치된 고아 크로미움 프로세스를 100% 추적하여 사살합니다.
 
 ### 3.3 프로토타입 체인 안전 안티봇 스텔스 (Stealth Evasion)
 Cloudflare Turnstile, DataDome, Akamai 등 최신 안티봇 시스템은 `Object.defineProperty(navigator, 'webdriver')` 수준의 단순 위장을 쉽게 탐지합니다. `navigator.hasOwnProperty('webdriver') === true`인지 검사하기 때문입니다.
-`termux-playwright`는 프로토타입 체인 자체에서 속성을 삭제(`delete Object.getPrototypeOf(navigator).webdriver`)하고, 네이티브 C++ 함수 형태의 `permissions.query`와 `window.chrome.runtime` 객체를 동적으로 에뮬레이션합니다.
+`amv-playwright`는 프로토타입 체인 자체에서 속성을 삭제(`delete Object.getPrototypeOf(navigator).webdriver`)하고, 네이티브 C++ 함수 형태의 `permissions.query`와 `window.chrome.runtime` 객체를 동적으로 에뮬레이션합니다.
 
 ### 3.4 eMMC 플래시 메모리 수명 보호 (RAM 캐시 강제 주입)
-모바일 기기의 eMMC/UFS 저장장치는 잦은 쓰기 작업 시 수명이 급격히 단축됩니다. `termux-playwright`는 Chromium 기동 시 `--disk-cache-dir=/dev/shm`, `--disk-cache-size=1`, `--media-cache-size=1` 플래그를 자동 주입하여 디스크 I/O를 RAM으로 전환, 기기 수명을 영구 보존합니다.
+모바일 기기의 eMMC/UFS 저장장치는 잦은 쓰기 작업 시 수명이 급격히 단축됩니다. `amv-playwright`는 Chromium 기동 시 `--disk-cache-dir=/dev/shm`, `--disk-cache-size=1`, `--media-cache-size=1` 플래그를 자동 주입하여 디스크 I/O를 RAM으로 전환, 기기 수명을 영구 보존합니다.
 
 ### 3.5 안드로이드 14 단일 프로세스 모드 (`single_process=True`)
 루팅이나 ADB 권한이 없는 순정 안드로이드 기기에서도 32개 프로세스 한계(Phantom Process Killer)를 우회할 수 있도록 `single_process=True` 옵션을 제공합니다. 모든 브라우저 탭과 렌더러를 단 1개의 프로세스로 통합 가동합니다.
@@ -84,7 +84,7 @@ Cloudflare Turnstile, DataDome, Akamai 등 최신 안티봇 시스템은 `Object
 
 ### 4.1 초간단 1줄 자동 설치 (추천)
 ```bash
-pip install termux-playwright && termux-playwright-install
+pip install amv-playwright && amv-playwright-install
 ```
 
 ### 4.2 수동 정석 5단계 설치 파이프라인
@@ -97,13 +97,13 @@ python -m venv --system-site-packages myenv
 source myenv/bin/activate
 
 # 3단계: 파이썬 패키지 설치
-pip install termux-playwright
+pip install amv-playwright
 
 # 4단계: 핵심 드라이버 원자적 패치
-termux-playwright-patch
+amv-playwright-patch
 
 # 5단계: 시스템 무결성 자가 진단
-termux-playwright-doctor
+amv-playwright-doctor
 ```
 
 ---
@@ -113,7 +113,7 @@ termux-playwright-doctor
 ### 레시피 1: Cloudflare Turnstile 우회 스텔스 크롤러
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch, setup_stealth_context
+from amv_playwright import async_playwright_termux, launch, setup_stealth_context
 
 async def main():
     async with async_playwright_termux() as p:
@@ -139,7 +139,7 @@ if __name__ == "__main__":
 ### 레시피 2: 24시간 무인 가동 저전력 데몬 (WakeLock & 리소스 차단)
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch, block_heavy_resources
+from amv_playwright import async_playwright_termux, launch, block_heavy_resources
 
 async def run_worker():
     while True:
@@ -168,7 +168,7 @@ if __name__ == "__main__":
 
 ## 6. 벤치마크 및 성능 비교
 
-| 항목 | 데스크톱 Linux (x86_64) | PRoot Ubuntu 컨테이너 | termux-playwright (네이티브) |
+| 항목 | 데스크톱 Linux (x86_64) | PRoot Ubuntu 컨테이너 | amv-playwright (네이티브) |
 | :--- | :---: | :---: | :---: |
 | **초기 구동 메모리(RAM)** | ~450 MB | ~1.2 GB | **~140 MB (68% 절감)** |
 | **브라우저 콜드 스타트** | ~1.2 초 | ~8.5 초 | **~1.8 초** |
@@ -180,11 +180,11 @@ if __name__ == "__main__":
 
 ## 7. 공식 오픈소스 리소스 및 링크
 
-* **공식 PyPI 패키지:** [https://pypi.org/project/termux-playwright/](https://pypi.org/project/termux-playwright/)
-* **GitHub 소스코드 저장소:** [https://github.com/uno-km/termux-playwright](https://github.com/uno-km/termux-playwright)
-* **공식 문서 웹사이트:** [https://uno-km.github.io/termux-playwright/](https://uno-km.github.io/termux-playwright/)
-* **AI Coding Agent 스펙 (`llms.txt`):** [https://uno-km.github.io/termux-playwright/llms.txt](https://uno-km.github.io/termux-playwright/llms.txt)
-* **AI Full API Reference (`llms-full.txt`):** [https://uno-km.github.io/termux-playwright/llms-full.txt](https://uno-km.github.io/termux-playwright/llms-full.txt)
+* **공식 PyPI 패키지:** [https://pypi.org/project/amv-playwright/](https://pypi.org/project/amv-playwright/)
+* **GitHub 소스코드 저장소:** [https://github.com/uno-km/amv-playwright](https://github.com/uno-km/amv-playwright)
+* **공식 문서 웹사이트:** [https://uno-km.github.io/amv-playwright/](https://uno-km.github.io/amv-playwright/)
+* **AI Coding Agent 스펙 (`llms.txt`):** [https://uno-km.github.io/amv-playwright/llms.txt](https://uno-km.github.io/amv-playwright/llms.txt)
+* **AI Full API Reference (`llms-full.txt`):** [https://uno-km.github.io/amv-playwright/llms-full.txt](https://uno-km.github.io/amv-playwright/llms-full.txt)
 """
 
 tistory_html = """<!DOCTYPE html>
@@ -192,23 +192,23 @@ tistory_html = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[오픈소스] 안드로이드 Termux 환경에서 Playwright와 Chromium을 완벽 구동하는 엔지니어링 심층 아키텍처 및 개발기 (termux-playwright)</title>
+    <title>[오픈소스] 안드로이드 Termux 환경에서 Playwright와 Chromium을 완벽 구동하는 엔지니어링 심층 아키텍처 및 개발기 (amv-playwright)</title>
     
     <!-- AI Crawlers & Global Multi-language SEO Honeytrap -->
-    <meta name="description" content="안드로이드 Termux 환경에서 루팅, PRoot 없이 Playwright와 Chromium 브라우저를 네이티브로 구동하는 오픈소스 termux-playwright의 심층 아키텍처, 좀비 프로세스 차단, 스텔스 안티봇 우회 및 프로덕션 레시피 완벽 가이드">
-    <meta name="keywords" content="Termux, Playwright, Android, Web Scraping, Chromium, Python, termux-playwright, Crawler, Bionic libc, Anti-bot, Cloudflare Turnstile, DataDome, 自动化, 爬虫, 安卓, 网页抓取, ブラウザ自動化, クローラー, スクレイピング, كشط الويب, الأتمتة, वेब स्क्रैपिंग, ऑटोमेशन, 파이썬 크롤링, 터먹스 크롬, 공기계 서버, 데이터사이언스, 파이썬자동화">
+    <meta name="description" content="안드로이드 Termux 환경에서 루팅, PRoot 없이 Playwright와 Chromium 브라우저를 네이티브로 구동하는 오픈소스 amv-playwright의 심층 아키텍처, 좀비 프로세스 차단, 스텔스 안티봇 우회 및 프로덕션 레시피 완벽 가이드">
+    <meta name="keywords" content="Termux, Playwright, Android, Web Scraping, Chromium, Python, amv-playwright, Crawler, Bionic libc, Anti-bot, Cloudflare Turnstile, DataDome, 自动化, 爬虫, 安卓, 网页抓取, ブラウザ自動化, クローラー, スクレイピング, كشط الويب, الأتمتة, वेब स्क्रैपिंग, ऑटोमेशन, 파이썬 크롤링, 터먹스 크롬, 공기계 서버, 데이터사이언스, 파이썬자동화">
     <meta name="author" content="uno-km (쌩초보코딩단)">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="article">
-    <meta property="og:title" content="[오픈소스] 안드로이드 Termux 환경에서 Playwright/Chromium 구동 기술 아키텍처 (termux-playwright)">
+    <meta property="og:title" content="[오픈소스] 안드로이드 Termux 환경에서 Playwright/Chromium 구동 기술 아키텍처 (amv-playwright)">
     <meta property="og:description" content="루팅, PRoot 없이 안드로이드 기기에서 24시간 무인 Playwright 웹 크롤러를 구동하는 완전한 아키텍처 가이드">
-    <meta property="og:url" content="https://uno-km.github.io/termux-playwright/">
+    <meta property="og:url" content="https://uno-km.github.io/amv-playwright/">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Termux-Playwright: Production Browser Automation on Android">
+    <meta name="twitter:title" content="AMV-Playwright: Production Browser Automation on Android">
     <meta name="twitter:description" content="Production-grade Playwright & Chromium automation toolkit for Android Termux.">
     
     <!-- Schema.org JSON-LD Structured Data for AI & Search Engines -->
@@ -216,23 +216,23 @@ tistory_html = """<!DOCTYPE html>
     {
       "@context": "https://schema.org",
       "@type": "TechArticle",
-      "headline": "[오픈소스] 안드로이드 Termux 환경에서 Playwright와 Chromium을 완벽 구동하는 엔지니어링 심층 아키텍처 및 개발기 (termux-playwright)",
-      "description": "Comprehensive engineering deep-dive on running native Playwright and Chromium on Android Termux without root or PRoot using termux-playwright.",
+      "headline": "[오픈소스] 안드로이드 Termux 환경에서 Playwright와 Chromium을 완벽 구동하는 엔지니어링 심층 아키텍처 및 개발기 (amv-playwright)",
+      "description": "Comprehensive engineering deep-dive on running native Playwright and Chromium on Android Termux without root or PRoot using amv-playwright.",
       "author": {
         "@type": "Person",
         "name": "uno-km"
       },
       "publisher": {
         "@type": "Organization",
-        "name": "Termux-Playwright Project",
-        "url": "https://uno-km.github.io/termux-playwright/"
+        "name": "AMV-Playwright Project",
+        "url": "https://uno-km.github.io/amv-playwright/"
       },
-      "mainEntityOfPage": "https://uno-km.github.io/termux-playwright/",
+      "mainEntityOfPage": "https://uno-km.github.io/amv-playwright/",
       "keywords": "Playwright, Termux, Android, Python, Web Scraping, Chromium, Stealth, Bionic libc, Process Reaper",
       "about": [
         {
           "@type": "SoftwareApplication",
-          "name": "termux-playwright",
+          "name": "amv-playwright",
           "operatingSystem": "Android Termux, Linux, Windows, macOS",
           "applicationCategory": "DeveloperApplication",
           "softwareVersion": "1.61.2",
@@ -255,7 +255,7 @@ tistory_html = """<!DOCTYPE html>
     <div style="border-bottom: 2px solid #004499; padding-bottom: 16px; margin-bottom: 28px;">
         <span style="display: inline-block; background-color: #e8f0fe; color: #004499; font-size: 13px; font-weight: bold; padding: 4px 10px; border-radius: 4px; margin-bottom: 10px; font-family: Consolas, monospace;">OPEN SOURCE RELEASE v1.61.2</span>
         <h1 style="color: #003366; font-size: 27px; margin: 0 0 10px 0; line-height: 1.4; letter-spacing: -0.5px;">
-            [오픈소스] 안드로이드 Termux 환경에서 Playwright와 Chromium을 완벽 구동하는 엔지니어링 심층 아키텍처 및 개발기 (termux-playwright)
+            [오픈소스] 안드로이드 Termux 환경에서 Playwright와 Chromium을 완벽 구동하는 엔지니어링 심층 아키텍처 및 개발기 (amv-playwright)
         </h1>
         <div style="color: #57606a; font-size: 14px;">
             작성자: <strong>uno-km (쌩초보코딩단)</strong> | 대상: <strong>데이터 엔지니어, 파이썬 개발자, 자동화 아키텍트</strong>
@@ -267,7 +267,7 @@ tistory_html = """<!DOCTYPE html>
         <strong style="color: #004499; font-size: 16px; display: block; margin-bottom: 6px;">1줄 초간단 원클릭 설치 (PyPI 공식 릴리즈)</strong>
         <p style="margin: 0 0 10px 0; font-size: 14px; color: #334155;">복잡한 컴파일 없이 Termux 터미널에서 다음 명령어 한 줄만 실행하면 모든 Bionic 의존성과 플랫폼 패치가 자동 프로비저닝됩니다:</p>
         <div style="background-color: #0f172a; color: #38bdf8; padding: 14px 18px; border-radius: 6px; font-family: Consolas, monospace; font-size: 14px; overflow-x: auto;">
-            <code>pip install termux-playwright &amp;&amp; termux-playwright-install</code>
+            <code>pip install amv-playwright &amp;&amp; amv-playwright-install</code>
         </div>
     </div>
 
@@ -309,7 +309,7 @@ tistory_html = """<!DOCTYPE html>
 
     <!-- Section 3 -->
     <h2 style="color: #003366; font-size: 21px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-top: 40px;">
-        3. termux-playwright의 핵심 아키텍처 및 솔루션
+        3. amv-playwright의 핵심 아키텍처 및 솔루션
     </h2>
 
     <h3 style="color: #0055cc; font-size: 17px; margin-top: 24px;">3.1 런타임 계층 분리 및 전수조사 총괄표</h3>
@@ -356,7 +356,7 @@ tistory_html = """<!DOCTYPE html>
                 </tr>
                 <tr style="background-color: #f8fafc;">
                     <td style="padding: 10px 14px; border: 1px solid #cbd5e1;"><strong>5. 플랫폼 코어 엔진</strong></td>
-                    <td style="padding: 10px 14px; border: 1px solid #cbd5e1;"><code>termux-playwright</code></td>
+                    <td style="padding: 10px 14px; border: 1px solid #cbd5e1;"><code>amv-playwright</code></td>
                     <td style="padding: 10px 14px; border: 1px solid #cbd5e1; color: #16a34a; font-weight: bold;">pip</td>
                     <td style="padding: 10px 14px; border: 1px solid #cbd5e1;">디스크 장부, 좀비 리퍼, 스텔스 주입, eMMC 보호</td>
                 </tr>
@@ -365,13 +365,13 @@ tistory_html = """<!DOCTYPE html>
     </div>
 
     <h3 style="color: #0055cc; font-size: 17px; margin-top: 24px;">3.2 디스크 기반 세션 영속 장부 (Persistent Disk Ledger)</h3>
-    <p>기존 메모리 기반 프로세스 관리자는 안드로이드 LMK(Low Memory Killer)나 <code>kill -9</code>로 파이썬이 사살될 경우 추적 장부가 증발하는 치명적인 결함이 있었습니다. <strong>termux-playwright</strong>는 세션 시작 시 <code>$TMPDIR/.tp_ledger/{token}.session</code>에 파일로 소유자 PID를 원자적으로 기록합니다. 다음번 크롤러 기동 시, 살아있는 OS PID 테이블을 스캔하여 이전 크래시로 방치된 고아 크로미움 프로세스를 100% 추적하여 사살합니다.</p>
+    <p>기존 메모리 기반 프로세스 관리자는 안드로이드 LMK(Low Memory Killer)나 <code>kill -9</code>로 파이썬이 사살될 경우 추적 장부가 증발하는 치명적인 결함이 있었습니다. <strong>amv-playwright</strong>는 세션 시작 시 <code>$TMPDIR/.tp_ledger/{token}.session</code>에 파일로 소유자 PID를 원자적으로 기록합니다. 다음번 크롤러 기동 시, 살아있는 OS PID 테이블을 스캔하여 이전 크래시로 방치된 고아 크로미움 프로세스를 100% 추적하여 사살합니다.</p>
 
     <h3 style="color: #0055cc; font-size: 17px; margin-top: 24px;">3.3 프로토타입 체인 안전 안티봇 스텔스 (Stealth Evasion)</h3>
-    <p>Cloudflare Turnstile, DataDome, Akamai 등 최신 안티봇 시스템은 단순 <code>Object.defineProperty</code> 위장을 <code>navigator.hasOwnProperty('webdriver') === true</code> 검사로 즉시 적발합니다. termux-playwright는 <code>delete Object.getPrototypeOf(navigator).webdriver</code>로 프로토타입 체인에서 원천 제거하고, 네이티브 C++ 바인딩 형태의 <code>permissions.query</code>와 <code>window.chrome.runtime</code>을 에뮬레이션합니다.</p>
+    <p>Cloudflare Turnstile, DataDome, Akamai 등 최신 안티봇 시스템은 단순 <code>Object.defineProperty</code> 위장을 <code>navigator.hasOwnProperty('webdriver') === true</code> 검사로 즉시 적발합니다. amv-playwright는 <code>delete Object.getPrototypeOf(navigator).webdriver</code>로 프로토타입 체인에서 원천 제거하고, 네이티브 C++ 바인딩 형태의 <code>permissions.query</code>와 <code>window.chrome.runtime</code>을 에뮬레이션합니다.</p>
 
     <h3 style="color: #0055cc; font-size: 17px; margin-top: 24px;">3.4 eMMC 플래시 메모리 수명 보호</h3>
-    <p>스마트폰의 eMMC/UFS 저장장치는 잦은 캐시 쓰기 시 수명이 급감합니다. termux-playwright는 <code>--disk-cache-dir=/dev/shm</code> 및 <code>--disk-cache-size=1</code> 플래그를 자동 주입하여 디스크 쓰기를 RAM 메모리로 전환, 기기 수명을 보존합니다.</p>
+    <p>스마트폰의 eMMC/UFS 저장장치는 잦은 캐시 쓰기 시 수명이 급감합니다. amv-playwright는 <code>--disk-cache-dir=/dev/shm</code> 및 <code>--disk-cache-size=1</code> 플래그를 자동 주입하여 디스크 쓰기를 RAM 메모리로 전환, 기기 수명을 보존합니다.</p>
 
     <!-- Section 4 -->
     <h2 style="color: #003366; font-size: 21px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-top: 40px;">
@@ -381,7 +381,7 @@ tistory_html = """<!DOCTYPE html>
     <h3 style="color: #0055cc; font-size: 17px; margin-top: 24px;">4.1 Cloudflare Turnstile 우회 스텔스 크롤러</h3>
     <div style="background-color: #0f172a; color: #f8fafc; padding: 18px 20px; border-radius: 6px; font-family: Consolas, monospace; font-size: 14px; overflow-x: auto; margin: 16px 0;">
 <pre style="margin: 0; padding: 0;"><code>import asyncio
-from termux_playwright import async_playwright_termux, launch, setup_stealth_context
+from amv_playwright import async_playwright_termux, launch, setup_stealth_context
 
 async def main():
     async with async_playwright_termux() as p:
@@ -407,7 +407,7 @@ if __name__ == "__main__":
     <h3 style="color: #0055cc; font-size: 17px; margin-top: 24px;">4.2 24시간 무인 가동 저전력 데몬 (WakeLock & 리소스 차단)</h3>
     <div style="background-color: #0f172a; color: #f8fafc; padding: 18px 20px; border-radius: 6px; font-family: Consolas, monospace; font-size: 14px; overflow-x: auto; margin: 16px 0;">
 <pre style="margin: 0; padding: 0;"><code>import asyncio
-from termux_playwright import async_playwright_termux, launch, block_heavy_resources
+from amv_playwright import async_playwright_termux, launch, block_heavy_resources
 
 async def run_worker():
     while True:
@@ -443,7 +443,7 @@ if __name__ == "__main__":
                     <th style="padding: 10px 14px; border: 1px solid #cbd5e1;">항목</th>
                     <th style="padding: 10px 14px; border: 1px solid #cbd5e1;">데스크톱 Linux (x86_64)</th>
                     <th style="padding: 10px 14px; border: 1px solid #cbd5e1;">PRoot Ubuntu 컨테이너</th>
-                    <th style="padding: 10px 14px; border: 1px solid #cbd5e1;">termux-playwright (네이티브)</th>
+                    <th style="padding: 10px 14px; border: 1px solid #cbd5e1;">amv-playwright (네이티브)</th>
                 </tr>
             </thead>
             <tbody>
@@ -480,10 +480,10 @@ if __name__ == "__main__":
         6. 공식 오픈소스 리소스 및 링크
     </h2>
     <ul style="padding-left: 22px; font-size: 15px; color: #334155;">
-        <li style="margin-bottom: 8px;"><strong>공식 PyPI 패키지:</strong> <a href="https://pypi.org/project/termux-playwright/" target="_blank" style="color: #0055cc; text-decoration: underline;">https://pypi.org/project/termux-playwright/</a></li>
-        <li style="margin-bottom: 8px;"><strong>GitHub 소스코드 저장소:</strong> <a href="https://github.com/uno-km/termux-playwright" target="_blank" style="color: #0055cc; text-decoration: underline;">https://github.com/uno-km/termux-playwright</a></li>
-        <li style="margin-bottom: 8px;"><strong>공식 기술 문서 사이트:</strong> <a href="https://uno-km.github.io/termux-playwright/" target="_blank" style="color: #0055cc; text-decoration: underline;">https://uno-km.github.io/termux-playwright/</a></li>
-        <li style="margin-bottom: 8px;"><strong>AI LLM 스펙 문서 (llms.txt):</strong> <a href="https://uno-km.github.io/termux-playwright/llms.txt" target="_blank" style="color: #0055cc; text-decoration: underline;">https://uno-km.github.io/termux-playwright/llms.txt</a></li>
+        <li style="margin-bottom: 8px;"><strong>공식 PyPI 패키지:</strong> <a href="https://pypi.org/project/amv-playwright/" target="_blank" style="color: #0055cc; text-decoration: underline;">https://pypi.org/project/amv-playwright/</a></li>
+        <li style="margin-bottom: 8px;"><strong>GitHub 소스코드 저장소:</strong> <a href="https://github.com/uno-km/amv-playwright" target="_blank" style="color: #0055cc; text-decoration: underline;">https://github.com/uno-km/amv-playwright</a></li>
+        <li style="margin-bottom: 8px;"><strong>공식 기술 문서 사이트:</strong> <a href="https://uno-km.github.io/amv-playwright/" target="_blank" style="color: #0055cc; text-decoration: underline;">https://uno-km.github.io/amv-playwright/</a></li>
+        <li style="margin-bottom: 8px;"><strong>AI LLM 스펙 문서 (llms.txt):</strong> <a href="https://uno-km.github.io/amv-playwright/llms.txt" target="_blank" style="color: #0055cc; text-decoration: underline;">https://uno-km.github.io/amv-playwright/llms.txt</a></li>
     </ul>
 
 </div>

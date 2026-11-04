@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
  */
 /**
- * Termux-Playwright Node.js Unit Test Suite
+ * AMV-Playwright Node.js Unit Test Suite
  * Runner: node:test (Zero External Dependencies)
  * @license MIT
  */

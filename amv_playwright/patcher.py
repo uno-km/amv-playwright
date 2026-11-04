@@ -202,7 +202,7 @@ def cleanup_backup(target_path: Optional[str] = None) -> bool:
         raise PatchingError(f"Failed to remove backup file '{backup_path}': {e}") from e
 
 def cli_patch_core_bundle() -> None:
-    """CLI entry point for termux-playwright-patch command with user feedback."""
+    """CLI entry point for amv-playwright-patch command with user feedback."""
     import sys
     try:
         newly_patched = apply_core_bundle_patch()

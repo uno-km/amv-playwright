@@ -1,14 +1,14 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 import pytest
-from termux_playwright.browser import (
+from amv_playwright.browser import (
     build_chromium_args,
     configure_environment,
     CORE_ANDROID_CHROMIUM_ARGS,
     LOW_MEMORY_CHROMIUM_ARGS,
 )
-from termux_playwright.exceptions import BinaryNotFoundError
-from termux_playwright.reaper import ProcessReaper
+from amv_playwright.exceptions import BinaryNotFoundError
+from amv_playwright.reaper import ProcessReaper
 
 @pytest.fixture(autouse=True)
 def reset_reaper_state(monkeypatch):
@@ -16,7 +16,7 @@ def reset_reaper_state(monkeypatch):
     ProcessReaper._tracked_sessions.clear()
     ProcessReaper._cleaning_up = False
     monkeypatch.setattr(ProcessReaper, "_install_hooks_if_needed", lambda: None)
-    monkeypatch.setattr("termux_playwright.browser.is_core_bundle_patched", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.is_core_bundle_patched", lambda: True)
     yield
     ProcessReaper._tracked_pids.clear()
     ProcessReaper._tracked_sessions.clear()
@@ -123,9 +123,9 @@ def test_build_chromium_args_ignore_cert_errors_opt_in():
     assert "--ignore-certificate-errors" in args_enabled
 
 def test_configure_environment_sets_node_memory_and_checks_strict(monkeypatch):
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: True)
-    monkeypatch.setattr("termux_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
-    monkeypatch.setattr("termux_playwright.browser.find_node_binary", lambda: "/mock/node")
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
+    monkeypatch.setattr("amv_playwright.browser.find_node_binary", lambda: "/mock/node")
     monkeypatch.delenv("NODE_OPTIONS", raising=False)
     monkeypatch.delenv("PLAYWRIGHT_CHROMIUM_PATH", raising=False)
     monkeypatch.delenv("PLAYWRIGHT_NODEJS_PATH", raising=False)
@@ -134,10 +134,10 @@ def test_configure_environment_sets_node_memory_and_checks_strict(monkeypatch):
     assert "--max-old-space-size=512" in cfg["NODE_OPTIONS"]
 
 def test_configure_environment_preserves_quoted_and_complex_node_options(monkeypatch):
-    from termux_playwright.browser import configure_environment
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: True)
-    monkeypatch.setattr("termux_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
-    monkeypatch.setattr("termux_playwright.browser.find_node_binary", lambda: "/mock/node")
+    from amv_playwright.browser import configure_environment
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
+    monkeypatch.setattr("amv_playwright.browser.find_node_binary", lambda: "/mock/node")
     monkeypatch.setenv("NODE_OPTIONS", '--trace-warnings --require "/custom path/shim.js"')
     
     cfg = configure_environment(strict=True)
@@ -149,12 +149,12 @@ def test_configure_environment_preserves_quoted_and_complex_node_options(monkeyp
 async def test_launch_async_success(monkeypatch):
     import asyncio
     from unittest.mock import AsyncMock, MagicMock
-    from termux_playwright.browser import launch
-    from termux_playwright.reaper import ProcessReaper
+    from amv_playwright.browser import launch
+    from amv_playwright.reaper import ProcessReaper
 
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: True)
-    monkeypatch.setattr("termux_playwright.browser.check_preflight_storage", lambda: 500)
-    monkeypatch.setattr("termux_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.check_preflight_storage", lambda: 500)
+    monkeypatch.setattr("amv_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
 
     reaped_on_disconnect = []
     monkeypatch.setattr(ProcessReaper, "reap_session_zombies", lambda tok: reaped_on_disconnect.append(tok) or 1)
@@ -194,12 +194,12 @@ def test_launch_disconnect_thread_reaps_even_without_loop(monkeypatch):
     import asyncio
     import time
     from unittest.mock import MagicMock
-    from termux_playwright.browser import launch
-    from termux_playwright.reaper import ProcessReaper
+    from amv_playwright.browser import launch
+    from amv_playwright.reaper import ProcessReaper
 
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: True)
-    monkeypatch.setattr("termux_playwright.browser.check_preflight_storage", lambda: 500)
-    monkeypatch.setattr("termux_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.check_preflight_storage", lambda: 500)
+    monkeypatch.setattr("amv_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
 
     reaped_on_disconnect = []
     monkeypatch.setattr(ProcessReaper, "reap_session_zombies", lambda tok: reaped_on_disconnect.append(tok) or 1)
@@ -229,12 +229,12 @@ def test_launch_disconnect_thread_reaps_even_without_loop(monkeypatch):
 @pytest.mark.asyncio
 async def test_launch_async_failure_triggers_cleanup(monkeypatch):
     from unittest.mock import AsyncMock, MagicMock
-    from termux_playwright.browser import launch
-    from termux_playwright.reaper import ProcessReaper
+    from amv_playwright.browser import launch
+    from amv_playwright.reaper import ProcessReaper
 
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: True)
-    monkeypatch.setattr("termux_playwright.browser.check_preflight_storage", lambda: 500)
-    monkeypatch.setattr("termux_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.check_preflight_storage", lambda: 500)
+    monkeypatch.setattr("amv_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
 
     reaped_sessions = []
     async def mock_reap_async(token):
@@ -255,12 +255,12 @@ async def test_launch_async_failure_triggers_cleanup(monkeypatch):
 @pytest.mark.asyncio
 async def test_launch_unpatched_self_heal_failure_raises_patching_error(monkeypatch):
     from unittest.mock import AsyncMock, MagicMock
-    from termux_playwright.browser import launch
-    from termux_playwright.exceptions import PatchingError
+    from amv_playwright.browser import launch
+    from amv_playwright.exceptions import PatchingError
 
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: True)
-    monkeypatch.setattr("termux_playwright.browser.is_core_bundle_patched", lambda: False)
-    monkeypatch.setattr("termux_playwright.browser.apply_core_bundle_patch", lambda: False)
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.is_core_bundle_patched", lambda: False)
+    monkeypatch.setattr("amv_playwright.browser.apply_core_bundle_patch", lambda: False)
 
     mock_playwright = MagicMock()
     mock_playwright.chromium.launch = AsyncMock()
@@ -272,15 +272,15 @@ async def test_launch_unpatched_self_heal_failure_raises_patching_error(monkeypa
 
 def test_launch_sync_success_and_disconnect(monkeypatch):
     from unittest.mock import MagicMock
-    from termux_playwright.browser import launch_sync
-    from termux_playwright.reaper import ProcessReaper
+    from amv_playwright.browser import launch_sync
+    from amv_playwright.reaper import ProcessReaper
 
     reaped_on_disconnect = []
     monkeypatch.setattr(ProcessReaper, "reap_session_zombies", lambda tok: reaped_on_disconnect.append(tok) or 1)
 
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: True)
-    monkeypatch.setattr("termux_playwright.browser.check_preflight_storage", lambda: 500)
-    monkeypatch.setattr("termux_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.check_preflight_storage", lambda: 500)
+    monkeypatch.setattr("amv_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
 
     mock_browser = MagicMock()
     disconnect_callbacks = []
@@ -308,12 +308,12 @@ def test_launch_sync_success_and_disconnect(monkeypatch):
 
 def test_launch_sync_failure_cleans_up(monkeypatch):
     from unittest.mock import MagicMock
-    from termux_playwright.browser import launch_sync
-    from termux_playwright.reaper import ProcessReaper
+    from amv_playwright.browser import launch_sync
+    from amv_playwright.reaper import ProcessReaper
 
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: True)
-    monkeypatch.setattr("termux_playwright.browser.check_preflight_storage", lambda: 500)
-    monkeypatch.setattr("termux_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.check_preflight_storage", lambda: 500)
+    monkeypatch.setattr("amv_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
 
     reaped_sessions = []
     def mock_reap(token):
@@ -332,13 +332,13 @@ def test_launch_sync_failure_cleans_up(monkeypatch):
 def test_launch_wires_configure_environment_sets_node_options(monkeypatch):
     import os
     from unittest.mock import MagicMock
-    from termux_playwright.browser import launch_sync
+    from amv_playwright.browser import launch_sync
 
     monkeypatch.delenv("NODE_OPTIONS", raising=False)
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: True)
-    monkeypatch.setattr("termux_playwright.browser.check_preflight_storage", lambda: 500)
-    monkeypatch.setattr("termux_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
-    monkeypatch.setattr("termux_playwright.browser.find_node_binary", lambda: "/mock/node")
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.check_preflight_storage", lambda: 500)
+    monkeypatch.setattr("amv_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
+    monkeypatch.setattr("amv_playwright.browser.find_node_binary", lambda: "/mock/node")
 
     mock_playwright = MagicMock()
     mock_playwright.chromium.launch = MagicMock(return_value=MagicMock())
@@ -349,9 +349,9 @@ def test_launch_wires_configure_environment_sets_node_options(monkeypatch):
 
 def test_configure_environment_does_not_pollute_non_termux(monkeypatch):
     import os
-    from termux_playwright.browser import configure_environment
+    from amv_playwright.browser import configure_environment
 
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: False)
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: False)
     monkeypatch.delenv("NODE_OPTIONS", raising=False)
     monkeypatch.delenv("PLAYWRIGHT_CHROMIUM_PATH", raising=False)
     monkeypatch.delenv("PLAYWRIGHT_NODEJS_PATH", raising=False)
@@ -362,9 +362,9 @@ def test_configure_environment_does_not_pollute_non_termux(monkeypatch):
 
 def test_verify_runtime_dependencies_termux_missing_greenlet_raises(monkeypatch):
     import builtins
-    from termux_playwright.browser import verify_runtime_dependencies
+    from amv_playwright.browser import verify_runtime_dependencies
 
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: True)
     real_import = builtins.__import__
 
     def mock_import(name, *args, **kwargs):
@@ -376,14 +376,14 @@ def test_verify_runtime_dependencies_termux_missing_greenlet_raises(monkeypatch)
 
     with pytest.raises(RuntimeError) as exc_info:
         verify_runtime_dependencies()
-    assert "termux-playwright-install" in str(exc_info.value)
+    assert "amv-playwright-install" in str(exc_info.value)
 
 def test_verify_runtime_dependencies_venv_guidance(monkeypatch, tmp_path):
     import builtins
     import sys
-    from termux_playwright.browser import verify_runtime_dependencies
+    from amv_playwright.browser import verify_runtime_dependencies
 
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: True)
     monkeypatch.setattr(sys, "prefix", str(tmp_path / "fake_venv"))
     monkeypatch.setattr(sys, "base_prefix", "/usr")
 
@@ -401,16 +401,16 @@ def test_verify_runtime_dependencies_venv_guidance(monkeypatch, tmp_path):
 
 def test_verify_runtime_dependencies_non_termux_noop(monkeypatch):
     import os
-    from termux_playwright.browser import verify_runtime_dependencies
+    from amv_playwright.browser import verify_runtime_dependencies
     monkeypatch.delenv("NODE_OPTIONS", raising=False)
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: False)
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: False)
     # Should not raise even if greenlet is not checked
     verify_runtime_dependencies()
     assert "NODE_OPTIONS" not in os.environ
 
 @pytest.mark.asyncio
 async def test_block_heavy_resources_async():
-    from termux_playwright.browser import block_heavy_resources
+    from amv_playwright.browser import block_heavy_resources
     
     routed_patterns = []
     class MockPage:
@@ -426,7 +426,7 @@ async def test_block_heavy_resources_async():
     assert routed_patterns[1] == "**/*.analytics.js"
 
 def test_block_heavy_resources_sync():
-    from termux_playwright.browser import block_heavy_resources_sync
+    from amv_playwright.browser import block_heavy_resources_sync
     
     routed_patterns = []
     class MockPage:
@@ -443,12 +443,12 @@ def test_block_heavy_resources_sync():
 async def test_launch_async_standalone_mode_and_wake_lock(monkeypatch):
     import asyncio
     from unittest.mock import AsyncMock, MagicMock
-    from termux_playwright.browser import launch
-    from termux_playwright.reaper import ProcessReaper, TermuxWakeLock
+    from amv_playwright.browser import launch
+    from amv_playwright.reaper import ProcessReaper, TermuxWakeLock
 
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: True)
-    monkeypatch.setattr("termux_playwright.browser.check_preflight_storage", lambda: 500)
-    monkeypatch.setattr("termux_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.check_preflight_storage", lambda: 500)
+    monkeypatch.setattr("amv_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
     monkeypatch.setattr(ProcessReaper, "reap_session_zombies_async", AsyncMock(return_value=1))
 
     wake_locks_acquired = []
@@ -488,8 +488,8 @@ async def test_launch_async_standalone_mode_and_wake_lock(monkeypatch):
 def test_purge_stale_ephemeral_profiles(tmp_path, monkeypatch):
     import os
     import time
-    from termux_playwright.browser import _purge_stale_ephemeral_profiles
-    from termux_playwright.reaper import ProcessReaper
+    from amv_playwright.browser import _purge_stale_ephemeral_profiles
+    from amv_playwright.reaper import ProcessReaper
 
     monkeypatch.setattr("tempfile.gettempdir", lambda: str(tmp_path))
 
@@ -535,7 +535,7 @@ def test_purge_stale_ephemeral_profiles(tmp_path, monkeypatch):
     assert other_dir.exists()
 
 def test_build_chromium_args_stealth_and_single_process():
-    from termux_playwright.browser import build_chromium_args
+    from amv_playwright.browser import build_chromium_args
     args = build_chromium_args(stealth=True, single_process=True)
     assert "--disable-blink-features=AutomationControlled" in args
     assert "--disable-features=IsolateOrigins,site-per-process" in args
@@ -545,7 +545,7 @@ def test_build_chromium_args_stealth_and_single_process():
 @pytest.mark.asyncio
 async def test_setup_stealth_context_async():
     from unittest.mock import AsyncMock, MagicMock
-    from termux_playwright.browser import setup_stealth_context
+    from amv_playwright.browser import setup_stealth_context
 
     mock_browser = MagicMock()
     mock_context = MagicMock()
@@ -567,7 +567,7 @@ async def test_setup_stealth_context_async():
 
 def test_setup_stealth_context_sync():
     from unittest.mock import MagicMock
-    from termux_playwright.browser import setup_stealth_context_sync
+    from amv_playwright.browser import setup_stealth_context_sync
 
     mock_browser = MagicMock()
     mock_context = MagicMock()
@@ -588,7 +588,7 @@ def test_setup_stealth_context_sync():
     assert mock_context.add_init_script.called
 
 def test_stealth_init_script_properties():
-    from termux_playwright.browser import STEALTH_INIT_SCRIPT
+    from amv_playwright.browser import STEALTH_INIT_SCRIPT
     assert "delete proto.webdriver" in STEALTH_INIT_SCRIPT
     assert "delete navigator.webdriver" in STEALTH_INIT_SCRIPT
     assert "window.chrome = {" in STEALTH_INIT_SCRIPT
@@ -597,11 +597,11 @@ def test_stealth_init_script_properties():
 @pytest.mark.asyncio
 async def test_launch_storage_exhaustion_auto_purge_rescue(monkeypatch):
     from unittest.mock import AsyncMock, MagicMock
-    from termux_playwright.browser import launch
-    from termux_playwright.exceptions import StorageExhaustionError
+    from amv_playwright.browser import launch
+    from amv_playwright.exceptions import StorageExhaustionError
 
-    monkeypatch.setattr("termux_playwright.browser.is_termux", lambda: True)
-    monkeypatch.setattr("termux_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
+    monkeypatch.setattr("amv_playwright.browser.is_termux", lambda: True)
+    monkeypatch.setattr("amv_playwright.browser.find_chromium_binary", lambda: "/mock/chromium")
 
     check_calls = 0
     def mock_check_storage():
@@ -611,8 +611,8 @@ async def test_launch_storage_exhaustion_auto_purge_rescue(monkeypatch):
             raise StorageExhaustionError("Low storage")
         return 100
 
-    monkeypatch.setattr("termux_playwright.browser.check_preflight_storage", mock_check_storage)
-    monkeypatch.setattr("termux_playwright.browser._purge_stale_ephemeral_profiles", lambda max_age_seconds: 2)
+    monkeypatch.setattr("amv_playwright.browser.check_preflight_storage", mock_check_storage)
+    monkeypatch.setattr("amv_playwright.browser._purge_stale_ephemeral_profiles", lambda max_age_seconds: 2)
 
     mock_browser = MagicMock()
     mock_playwright = MagicMock()

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Termux-Playwright | Official Documentation</title>
+  <title>AMV-Playwright | Official Documentation</title>
   <meta name="description" content="Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root or graphical servers.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
@@ -13,15 +13,15 @@
 <body>
   <header>
     <a href="index.html" class="header-brand">
-      <img src="favicon.svg" alt="Termux-Playwright Logo">
-      <h1 data-i18n="common.brand">Termux-Playwright</h1>
+      <img src="favicon.svg" alt="AMV-Playwright Logo">
+      <h1 data-i18n="common.brand">AMV-Playwright</h1>
     </a>
     <div class="header-controls">
       <span class="release-tag" data-i18n="common.releaseTag">v1.2.0 (Active Stable)</span>
       <div class="lang-selector-wrapper"></div>
-      <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
-      <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm (Node.js)</a>
-      <a href="https://github.com/uno-km/termux-playwright" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="https://pypi.org/project/amv-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
+      <a href="https://www.npmjs.com/package/amv-playwright" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm (Node.js)</a>
+      <a href="https://github.com/uno-km/amv-playwright" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
     </div>
   </header>
 
@@ -45,11 +45,11 @@
       <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
       <li><a href="/lib/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-      <li><a href="/lib/playwright/" class="active">Termux-Playwright (Automation)</a></li>
-      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/bitnet/">AMV-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/playwright/" class="active">AMV-Playwright (Automation)</a></li>
+      <li><a href="/lib/diffusion/">AMV-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/stt/">AMV-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">AMV-Train (LoRA Engine)</a></li>
       <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
       <li><a href="/foundation/">AMEVA Foundation</a></li>
       <li><a href="/">Founder Digital CV</a></li>
@@ -65,15 +65,15 @@
 
     <main class="content">
       <!-- Section 1: Main Title & Subtitle -->
-      <h2 data-i18n="home.title">Termux-Playwright</h2>
+      <h2 data-i18n="home.title">AMV-Playwright</h2>
       <p class="subtitle" data-i18n="home.subtitle">Non-Root Chromium Browser Automation & CDP Engine for Android Termux</p>
 
       <!-- Section 2: Badges Bar -->
       <div class="badges-bar">
-        <a href="https://pypi.org/project/termux-playwright/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-playwright.svg?color=004499" alt="PyPI Version"></a>
-        <a href="https://pypistats.org/packages/termux-playwright" target="_blank"><img src="https://img.shields.io/pypi/dm/termux-playwright.svg?color=2563eb&label=PyPI%20Downloads" alt="PyPI Downloads"></a>
-        <a href="https://www.npmjs.com/package/termux-playwright" target="_blank"><img src="https://img.shields.io/npm/v/termux-playwright.svg?color=cb3837" alt="npm Version"></a>
-        <a href="https://www.npmjs.com/package/termux-playwright" target="_blank"><img src="https://img.shields.io/npm/dm/termux-playwright.svg?color=2563eb&label=npm%20Downloads" alt="npm Downloads"></a>
+        <a href="https://pypi.org/project/amv-playwright/" target="_blank"><img src="https://img.shields.io/pypi/v/amv-playwright.svg?color=004499" alt="PyPI Version"></a>
+        <a href="https://pypistats.org/packages/amv-playwright" target="_blank"><img src="https://img.shields.io/pypi/dm/amv-playwright.svg?color=2563eb&label=PyPI%20Downloads" alt="PyPI Downloads"></a>
+        <a href="https://www.npmjs.com/package/amv-playwright" target="_blank"><img src="https://img.shields.io/npm/v/amv-playwright.svg?color=cb3837" alt="npm Version"></a>
+        <a href="https://www.npmjs.com/package/amv-playwright" target="_blank"><img src="https://img.shields.io/npm/dm/amv-playwright.svg?color=2563eb&label=npm%20Downloads" alt="npm Downloads"></a>
         <img src="https://img.shields.io/badge/license-Apache-2.0-success.svg" alt="License">
         <img src="https://img.shields.io/badge/tests-100%25_PASS-success.svg" alt="Tests">
         <img src="https://img.shields.io/badge/platform-Android_ARM64_/_Termux_Bionic-blueviolet.svg" alt="Platform">
@@ -83,8 +83,8 @@
       <div class="alert alert-tip">
         <span class="alert-title" data-i18n="home.quickInstallTitle">1-Line Quick Installation</span>
         <p data-i18n="home.quickInstallDesc">Install the official package directly into your runtime:</p>
-        <pre><code>pip install termux-playwright
-# or: npm install termux-playwright</code></pre>
+        <pre><code>pip install amv-playwright
+# or: npm install amv-playwright</code></pre>
       </div>
 
       <!-- Section 4: Engineering Challenge & Architectural Breakthrough -->
@@ -148,7 +148,7 @@
           <button class="code-tab-btn" type="button">Node.js (npm)</button>
         </div>
         <div class="code-tab-content" style="display:block;">
-          <pre><code>from termux_playwright import chromium
+          <pre><code>from amv_playwright import chromium
 
 async def main():
     browser = await chromium.launch(headless=True)
@@ -163,7 +163,7 @@ asyncio.run(main())
 </code></pre>
         </div>
         <div class="code-tab-content" style="display:none;">
-          <pre><code>import { chromium } from "termux-playwright";
+          <pre><code>import { chromium } from "amv-playwright";
 
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage();

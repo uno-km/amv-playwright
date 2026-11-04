@@ -561,7 +561,7 @@ class ProcessReaper:
 
 def cli_reap_orphans() -> None:
     """CLI entry point: Scan for and terminate orphaned Chromium processes
-    tagged with termux-playwright session markers.
+    tagged with amv-playwright session markers.
     
     Scans /proc/*/cmdline for any process containing --termux-session-id= flag
     and terminates them. Intended for manual cleanup of leaked browser processes.
@@ -613,7 +613,7 @@ def cli_reap_orphans() -> None:
                 found_pids.add(pid)
 
     if not found_pids:
-        print("[*] No orphaned termux-playwright Chromium processes found.")
+        print("[*] No orphaned amv-playwright Chromium processes found.")
         return
 
     reaped = 0

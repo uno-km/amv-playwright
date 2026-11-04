@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
  */
 /**
- * Termux-Playwright Documentation - Multilingual Translation Dictionary
+ * AMV-Playwright Documentation - Multilingual Translation Dictionary
  * Languages: English (en), Chinese (zh), Japanese (ja), Korean (ko), Spanish (es), Hindi (hi)
  * @license MIT
  */
@@ -14,7 +14,7 @@
     const DICT = {
         'en': {
             'common': {
-                'brand': 'Termux-Playwright',
+                'brand': 'AMV-Playwright',
                 'releaseTag': 'v1.80.1 (Dual Engine)',
                 'pypiBtn': 'PyPI (Python)',
                 'npmBtn': 'npm (Node.js)',
@@ -30,7 +30,7 @@
                     'phantomProcess': 'Android 14+ Phantom Killer',
                     'koreanBlog': 'Engineering Deep-Dive'
                 },
-                'footerText': '© 2026 Termux-Playwright Project. Released under the MIT License.'
+                'footerText': '© 2026 AMV-Playwright Project. Released under the MIT License.'
             },
             'home': {
                 'title': 'Production-Grade Playwright Automation on Android Termux',
@@ -38,7 +38,7 @@
                 'whyTitle': 'The Problem: Why Upstream Playwright Fails on Android',
                 'whyText': 'Upstream Playwright is hardcoded to strictly support desktop Linux glibc, macOS, and Windows. When invoked on Android Termux, it fails due to incompatible pre-compiled binaries, Bionic libc syscall differences, dynamic shared memory (/dev/shm) crashes, and Android kernel process reaping.',
                 'solTitle': 'The Architectural Solution',
-                'solText': 'Termux-Playwright provides native Bionic binary orchestration, targeted session process isolation (ProcessReaper), persistent disk ledger recovery (.tp_ledger), prototype-safe anti-bot stealth, and flash memory wear protection.',
+                'solText': 'AMV-Playwright provides native Bionic binary orchestration, targeted session process isolation (ProcessReaper), persistent disk ledger recovery (.tp_ledger), prototype-safe anti-bot stealth, and flash memory wear protection.',
                 'capTitle': 'Key Capabilities & Built-in Hardening',
                 'cap1': 'Zero-Root Native Execution: Orchestrates Termux-compiled Chromium and Node.js without PRoot overhead.',
                 'cap2': 'Persistent Disk Session Ledger: Guarantees 100% orphan process reaping across hard kernel crashes (SIGKILL / LMK).',
@@ -66,7 +66,7 @@
         },
         'zh': {
             'common': {
-                'brand': 'Termux-Playwright',
+                'brand': 'AMV-Playwright',
                 'releaseTag': 'v1.61.3 (双引擎版)',
                 'pypiBtn': 'PyPI (Python)',
                 'npmBtn': 'npm (Node.js)',
@@ -82,7 +82,7 @@
                     'phantomProcess': 'Android 14 幽灵杀手',
                     'koreanBlog': '深度工程博客'
                 },
-                'footerText': '© 2026 Termux-Playwright 项目。遵循 MIT 开源许可证。'
+                'footerText': '© 2026 AMV-Playwright 项目。遵循 MIT 开源许可证。'
             },
             'home': {
                 'title': '适用于 Android Termux 的生产级 Playwright 自动化工具',
@@ -90,7 +90,7 @@
                 'whyTitle': '核心痛点：为什么原生 Playwright 在 Android 上无法运行',
                 'whyText': '官方 Playwright 仅支持桌面级 Linux (glibc)、macOS 和 Windows。在 Android Termux 上运行时，会因缺少预编译二进制、Bionic libc 系统调用差异、共享内存崩溃以及 Android 内核进程清理机制而直接崩溃。',
                 'solTitle': '系统级架构解决方案',
-                'solText': 'Termux-Playwright 提供原生 Bionic 二进制编排、基于 Session 的精准进程回收 (ProcessReaper)、持久化磁盘台账 (.tp_ledger)、原型链安全的反爬虫隐身技术以及 eMMC 闪存防磨损保护。',
+                'solText': 'AMV-Playwright 提供原生 Bionic 二进制编排、基于 Session 的精准进程回收 (ProcessReaper)、持久化磁盘台账 (.tp_ledger)、原型链安全的反爬虫隐身技术以及 eMMC 闪存防磨损保护。',
                 'capTitle': '核心功能与加固特性',
                 'cap1': '无需 Root 原生执行：直接调度 Termux 编译的 Chromium 与 Node.js，零 PRoot 性能损耗。',
                 'cap2': '持久化磁盘会话台账：在发生内核硬崩溃 (SIGKILL/LMK) 时仍能 100% 自动清理残留僵尸进程。',
@@ -118,7 +118,7 @@
         },
         'ja': {
             'common': {
-                'brand': 'Termux-Playwright',
+                'brand': 'AMV-Playwright',
                 'releaseTag': 'v1.61.3 (デュアルエンジン)',
                 'pypiBtn': 'PyPI (Python)',
                 'npmBtn': 'npm (Node.js)',
@@ -134,7 +134,7 @@
                     'phantomProcess': 'Android 14+ ファントムキラー',
                     'koreanBlog': '技術詳細ブログ'
                 },
-                'footerText': '© 2026 Termux-Playwright Project. MIT License の下で公開。'
+                'footerText': '© 2026 AMV-Playwright Project. MIT License の下で公開。'
             },
             'home': {
                 'title': 'Android Termux 向け本番対応 Playwright 自動化',
@@ -142,7 +142,7 @@
                 'whyTitle': '問題定義：公式 Playwright が Android でクラッシュする理由',
                 'whyText': '公式 Playwright はデスクトップ glibc 専用です。Android Termux で実行すると、Bionic libc の相違、/dev/shm 欠如、メモリ不足（OOM）により強制終了します。',
                 'solTitle': 'アーキテクチャによる根本的解決',
-                'solText': 'Termux-Playwright はネイティブ Bionic バイナリ連携、セッションプロセス隔離（ProcessReaper）、ディスク台帳復旧（.tp_ledger）、ステルス回避、eMMC 寿命保護を提供します。',
+                'solText': 'AMV-Playwright はネイティブ Bionic バイナリ連携、セッションプロセス隔離（ProcessReaper）、ディスク台帳復旧（.tp_ledger）、ステルス回避、eMMC 寿命保護を提供します。',
                 'capTitle': '主な機能と堅牢化メカニズム',
                 'cap1': 'Zero-Root ネイティブ実行：PRoot オーバーヘッドなしで Termux ネイティブの Chromium/Node.js を直接駆動。',
                 'cap2': '永続ディスクセッション台帳：カーネル強制終了（SIGKILL / LMK）時も孤立プロセスを 100% 追跡回収。',
@@ -170,7 +170,7 @@
         },
         'ko': {
             'common': {
-                'brand': 'Termux-Playwright',
+                'brand': 'AMV-Playwright',
                 'releaseTag': 'v1.80.1 (Dual Engine)',
                 'pypiBtn': 'PyPI (Python)',
                 'npmBtn': 'npm (Node.js)',
@@ -186,7 +186,7 @@
                     'phantomProcess': '안드로이드 14 팬텀 킬러',
                     'koreanBlog': '엔지니어링 개발기'
                 },
-                'footerText': '© 2026 Termux-Playwright Project. MIT 라이선스 하에 배포됩니다.'
+                'footerText': '© 2026 AMV-Playwright Project. MIT 라이선스 하에 배포됩니다.'
             },
             'home': {
                 'title': '안드로이드 Termux 프로덕션급 Playwright 브라우저 자동화',
@@ -208,7 +208,7 @@
                 'title': '듀얼 엔진 아키텍처: Node.js & 메모리 수명주기 관리',
                 'subtitle': 'CPython vs V8 가비지 컬렉션 차이, libuv 스트림 버퍼, 안드로이드 LMK 완벽 방어 전략.',
                 'divergenceTitle': '1. CPython vs V8 메모리 및 GC 차이 분석',
-                'divergenceDesc': '파이썬은 참조 카운팅(Ref-Counting)으로 스코프 종료 즉시 메모리를 반환하지만, Node.js V8은 메모리가 찰 때까지 GC를 미루는 Lazy GC 특성이 있어 모바일 LMK에 사살될 위험이 큽니다. termux-playwright는 V8 힙 상한선(128MB)과 forceGarbageCollection()으로 이를 완벽히 통제합니다.',
+                'divergenceDesc': '파이썬은 참조 카운팅(Ref-Counting)으로 스코프 종료 즉시 메모리를 반환하지만, Node.js V8은 메모리가 찰 때까지 GC를 미루는 Lazy GC 특성이 있어 모바일 LMK에 사살될 위험이 큽니다. amv-playwright는 V8 힙 상한선(128MB)과 forceGarbageCollection()으로 이를 완벽히 통제합니다.',
                 'actionsTitle': '2. 철옹성 런타임 방어 조치 (감사 보고서 조치 완료)',
                 'action1Title': '100% 동기식 시그널 & Exit 사살 가드',
                 'action1Desc': 'Node.js의 process.on("exit") 훅은 이벤트 루프가 정지되므로 비동기 코드가 무시됩니다. ProcessReaper는 순수 동기식 C-레벨 process.kill과 fs.unlinkSync만 사용하여 단 1마리의 좀비 프로세스도 남기지 않습니다.',
@@ -222,7 +222,7 @@
         },
         'es': {
             'common': {
-                'brand': 'Termux-Playwright',
+                'brand': 'AMV-Playwright',
                 'releaseTag': 'v1.61.3 (Motor Dual)',
                 'pypiBtn': 'PyPI (Python)',
                 'npmBtn': 'npm (Node.js)',
@@ -238,7 +238,7 @@
                     'phantomProcess': 'Android 14+ Phantom Killer',
                     'koreanBlog': 'Blog de Ingeniería'
                 },
-                'footerText': '© 2026 Proyecto Termux-Playwright. Publicado bajo Licencia MIT.'
+                'footerText': '© 2026 Proyecto AMV-Playwright. Publicado bajo Licencia MIT.'
             },
             'home': {
                 'title': 'Automatización Playwright de Nivel de Producción en Android Termux',
@@ -246,7 +246,7 @@
                 'whyTitle': 'El Problema: Por qué Playwright Oficial Falla en Android',
                 'whyText': 'Playwright oficial requiere glibc de escritorio. En Termux falla por llamadas Bionic libc incompatibles, falta de /dev/shm y fugas de procesos zombis.',
                 'solTitle': 'La Solución Arquitectónica',
-                'solText': 'Termux-Playwright proporciona orquestación binaria Bionic nativa, aislamiento de procesos, libro mayor persistente (.tp_ledger) y evasión stealth.',
+                'solText': 'AMV-Playwright proporciona orquestación binaria Bionic nativa, aislamiento de procesos, libro mayor persistente (.tp_ledger) y evasión stealth.',
                 'capTitle': 'Capacidades Clave y Blindaje',
                 'cap1': 'Ejecución Nativa Sin Root: Ejecuta Chromium y Node.js nativos sin sobrecarga de PRoot.',
                 'cap2': 'Libro Mayor Persistente en Disco: Garantiza la eliminación de procesos huérfanos tras caídas forzadas (SIGKILL / LMK).',
@@ -274,7 +274,7 @@
         },
         'hi': {
             'common': {
-                'brand': 'Termux-Playwright',
+                'brand': 'AMV-Playwright',
                 'releaseTag': 'v1.80.1 (Dual Engine)',
                 'pypiBtn': 'PyPI (Python)',
                 'npmBtn': 'npm (Node.js)',
@@ -290,7 +290,7 @@
                     'phantomProcess': 'Android 14+ फैंटम किलर',
                     'koreanBlog': 'इंजीनियरिंग ब्लॉग'
                 },
-                'footerText': '© 2026 Termux-Playwright Project. MIT लाइसेंस के तहत जारी।'
+                'footerText': '© 2026 AMV-Playwright Project. MIT लाइसेंस के तहत जारी।'
             },
             'home': {
                 'title': 'Android Termux पर प्रोडक्शन-ग्रेड Playwright ऑटोमेशन',
@@ -298,7 +298,7 @@
                 'whyTitle': 'समस्या: Playwright Android पर क्रैश क्यों होता है',
                 'whyText': 'आधिकारिक Playwright केवल डेस्कटॉप glibc का समर्थन करता है। Termux पर Bionic libc अंतर और /dev/shm की कमी के कारण यह क्रैश हो जाता है।',
                 'solTitle': 'आर्किटेक्चरल समाधान',
-                'solText': 'Termux-Playwright नेटिव Bionic बाइनरी ऑर्케स्ट्रेशन, प्रोसेस लेजर (.tp_ledger) और स्टेल्थ एंटी-बॉट सुरक्षा प्रदान करता है।',
+                'solText': 'AMV-Playwright नेटिव Bionic बाइनरी ऑर्케स्ट्रेशन, प्रोसेस लेजर (.tp_ledger) और स्टेल्थ एंटी-बॉट सुरक्षा प्रदान करता है।',
                 'capTitle': 'मुख्य क्षमताएं और सुरक्षा',
                 'cap1': 'Zero-Root नेटिव निष्पादन: PRoot ओवरहेड के बिना Chromium और Node.js का संचालन।',
                 'cap2': 'स्थिर डिस्क लेजर: SIGKILL या LMK क्रैश के बाद 100% ज़ॉम्비 प्रोसेस की सफाई।',
@@ -312,7 +312,7 @@
                 'title': 'डुअल-इंजन आर्किटेक्चर: Node.js और मेमोरी प्रबंधन',
                 'subtitle': 'CPython बनाम V8 GC अंतर और Android LMK सुरक्षा रणनीतियाँ।',
                 'divergenceTitle': '1. CPython बनाम V8 मेमोरी और GC का अंतर',
-                'divergenceDesc': 'Python तुरंत मेमोरी खाली करता है जबकि V8 लेजी GC का उपयोग करता है। termux-playwright मेमोरी कैप और forceGarbageCollection() द्वारा इसे नियंत्रित करता है।',
+                'divergenceDesc': 'Python तुरंत मेमोरी खाली करता है जबकि V8 लेजी GC का उपयोग करता है। amv-playwright मेमोरी कैप और forceGarbageCollection() द्वारा इसे नियंत्रित करता है।',
                 'actionsTitle': '2. मजबूत रनटाइम सुरक्षात्मक उपाय',
                 'action1Title': 'सिंक्रोनस सिग्नल और एग्जिट रीपर',
                 'action1Desc': 'Node.js एग्जिट पर शुद्ध सिंक्रोनस C-लेवल कॉल्स का उपयोग करके ज़ॉम्비 प्रोसेस को रोकता है।',

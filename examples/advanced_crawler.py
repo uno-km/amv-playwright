@@ -10,7 +10,7 @@ Demonstrates:
 """
 
 import asyncio
-from termux_playwright import (
+from amv_playwright import (
     async_playwright_termux,
     launch,
     TermuxWakeLock,

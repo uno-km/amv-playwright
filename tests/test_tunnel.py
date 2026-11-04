@@ -5,13 +5,13 @@
 import asyncio
 import socket
 import pytest
-from termux_playwright.tunnel import (
+from amv_playwright.tunnel import (
     query_dns_a,
     is_ip_address,
     AsyncTunnelProxy,
     SyncTunnelProxy,
 )
-from termux_playwright.browser import BrowserBuilder, build_chromium_args
+from amv_playwright.browser import BrowserBuilder, build_chromium_args
 
 
 def test_is_ip_address():

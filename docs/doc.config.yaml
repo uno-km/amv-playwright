@@ -1,17 +1,17 @@
 # docs/doc.config.yaml
-name: "Termux-Playwright"
-package_name_pypi: "termux-playwright"
-package_name_npm: "termux-playwright"
+name: "AMV-Playwright"
+package_name_pypi: "amv-playwright"
+package_name_npm: "amv-playwright"
 version: "v1.81.0"
 release_name: "Active Stable"
 license: "Apache-2.0"
 platform: "Android ARM64 / Termux Bionic"
-github_repo_url: "https://github.com/uno-km/termux-playwright"
+github_repo_url: "https://github.com/uno-km/amv-playwright"
 
 tagline_en: "Non-Root Chromium Browser Automation & CDP Engine for Android Termux"
 tagline_ko: "안드로이드 Termux 환경을 위한 비루팅 크로미움 브라우저 자동화 및 CDP 컨트롤러"
 
-quick_install_cmd: "pip install termux-playwright\n# or: npm install termux-playwright"
+quick_install_cmd: "pip install amv-playwright\n# or: npm install amv-playwright"
 
 why_challenge_en: "Official browser automation drivers fail on Android Termux due to missing X11/Wayland servers, glibc vs bionic ABI incompatibility, and sandboxing constraints."
 why_challenge_ko: "공식 브라우저 자동화 도구들은 glibc/bionic ABI 불일치와 X11 디스플레이 서버 부재로 인해 안드로이드 모바일 환경에서 구동되지 않습니다."
@@ -45,7 +45,7 @@ matrix_table:
     status: "Production"
 
 code_example_py: |
-  from termux_playwright import chromium
+  from amv_playwright import chromium
 
   async def main():
       browser = await chromium.launch(headless=True)
@@ -59,7 +59,7 @@ code_example_py: |
   asyncio.run(main())
 
 code_example_js: |
-  import { chromium } from "termux-playwright";
+  import { chromium } from "amv-playwright";
 
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();

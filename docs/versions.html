@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Version Archive & Changelog | Termux-Playwright</title>
+  <title>Version Archive & Changelog | AMV-Playwright</title>
   <meta name="description" content="Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root or graphical servers.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="assets/style.css">
@@ -13,15 +13,15 @@
 <body>
   <header>
     <a href="index.html" class="header-brand">
-      <img src="favicon.svg" alt="Termux-Playwright Logo">
-      <h1 data-i18n="common.brand">Termux-Playwright</h1>
+      <img src="favicon.svg" alt="AMV-Playwright Logo">
+      <h1 data-i18n="common.brand">AMV-Playwright</h1>
     </a>
     <div class="header-controls">
       <span class="release-tag" data-i18n="common.releaseTag">v1.80.1 (Active Stable)</span>
       <div class="lang-selector-wrapper"></div>
-      <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
-      <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm (Node.js)</a>
-      <a href="https://github.com/uno-km/termux-playwright" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="https://pypi.org/project/amv-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
+      <a href="https://www.npmjs.com/package/amv-playwright" target="_blank" class="header-btn npm-btn" data-i18n="common.npmBtn">npm (Node.js)</a>
+      <a href="https://github.com/uno-km/amv-playwright" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
     </div>
   </header>
 
@@ -45,11 +45,11 @@
       <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
       <li><a href="/lib/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
       <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-      <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
-      <li><a href="/lib/playwright/" class="active">Termux-Playwright (Automation)</a></li>
-      <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-      <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-      <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+      <li><a href="/lib/bitnet/">AMV-BitNet (1.58-bit LLM)</a></li>
+      <li><a href="/lib/playwright/" class="active">AMV-Playwright (Automation)</a></li>
+      <li><a href="/lib/diffusion/">AMV-Diffusion (Image AI)</a></li>
+      <li><a href="/lib/stt/">AMV-STT (Voice STT)</a></li>
+      <li><a href="/lib/train/">AMV-Train (LoRA Engine)</a></li>
       <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
       <li><a href="/foundation/">AMEVA Foundation</a></li>
       <li><a href="/">Founder Digital CV</a></li>
@@ -65,7 +65,7 @@
 
     <main class="content">
       <h2>Version Archive & Comprehensive Changelog</h2>
-      <p class="subtitle">Immutable release history, technical patch specifications, and hardware verification records for Termux-Playwright.</p>
+      <p class="subtitle">Immutable release history, technical patch specifications, and hardware verification records for AMV-Playwright.</p>
 
       <div class="version-card current-version">
         <div class="version-header">
@@ -83,7 +83,7 @@
             Exported backward-compatible diagnostic aliases (<code>run_doctor_health_check = doctor</code>, <code>run_doctor = doctor</code>, <code>check_health = doctor</code>) to eliminate <code>ImportError</code> across diverse test suites and automation pipelines.
           </li>
           <li><strong>Process Environment Auto-Configuration Hook (<code>__init__.py</code>)</strong>:
-            Injected <code>configure_environment(strict=False)</code> on module load (<code>import termux_playwright</code>) to auto-populate <code>PLAYWRIGHT_CHROMIUM_PATH</code> and <code>PLAYWRIGHT_NODEJS_PATH</code>, preventing vanilla Playwright consumers from failing on missing desktop x86 cache paths.
+            Injected <code>configure_environment(strict=False)</code> on module load (<code>import amv_playwright</code>) to auto-populate <code>PLAYWRIGHT_CHROMIUM_PATH</code> and <code>PLAYWRIGHT_NODEJS_PATH</code>, preventing vanilla Playwright consumers from failing on missing desktop x86 cache paths.
           </li>
           <li><strong>Real-Device Multi-SoC Hardware Validation</strong>:
             Certified with 100% PASS on Samsung Galaxy A34/A35 (MediaTek Dimensity / Cortex-A78/A55, Android 13, Linux 5.15) across Sync, JS Evaluation, DOM styling, Screenshot capture (17KB PNG), and 7/7 Doctor diagnostics.
@@ -126,7 +126,7 @@
         
         <h4>Key Capabilities</h4>
         <ul>
-          <li>Full feature parity across Python (<code>pip install termux-playwright</code>) and Node.js (<code>npm install termux-playwright</code>).</li>
+          <li>Full feature parity across Python (<code>pip install amv-playwright</code>) and Node.js (<code>npm install amv-playwright</code>).</li>
           <li>TypeScript definitions (<code>lib/index.d.ts</code>) covering all browser options, stealth injectors, and process managers.</li>
           <li>Zero-compilation Node.js architecture running directly on Termux native Node.js runtime.</li>
         </ul>
@@ -150,7 +150,7 @@
         </div>
         <p class="version-meta"><strong>Release Date:</strong> August 22, 2026</p>
         <ul>
-          <li><strong>Persistent Disk Session Ledger (<code>~/.termux_playwright_sessions</code>)</strong>: Guarantees 100% orphan process cleanup even across hard kernel <code>SIGKILL</code> or Low Memory Killer (LMK) terminations.</li>
+          <li><strong>Persistent Disk Session Ledger (<code>~/.amv_playwright_sessions</code>)</strong>: Guarantees 100% orphan process cleanup even across hard kernel <code>SIGKILL</code> or Low Memory Killer (LMK) terminations.</li>
           <li><strong>Zero-ReDoS Token Parser</strong>: Cryptographically secure 8-character hex session tokens (<code>--termux-session-id=...</code>) preventing regex denial of service.</li>
         </ul>
       </div>

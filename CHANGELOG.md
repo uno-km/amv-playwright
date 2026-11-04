@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## v2.0.0 (2026-11-04) — Python import name follows the amv-playwright package name
+
+### Changed
+- The Python package is now `amv_playwright` (previously `termux_playwright`). Code, CLI entry points, scripts, docs and cross-package references use the amv-* names.
+- `import termux_playwright` keeps working through a deprecated alias that returns the same module objects and emits a `DeprecationWarning`. The alias will be removed in a future major release.
+
+### Unchanged
+- On-disk cache and data directories (for example `~/.cache/termux-*`) keep their names, so models already downloaded on devices stay in use.
+- Termux platform commands (`termux-tts-speak`, `termux-wake-lock`, `termux-api`, ...) keep their names.
+
+---
+
+
 ## [1.81.2] - 2026-09-07
 
 ### Changed

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 import math
 import pytest
-from termux_playwright.physics import (
+from amv_playwright.physics import (
     Point,
     CubicBezierTrajectory,
     HumanMouse,

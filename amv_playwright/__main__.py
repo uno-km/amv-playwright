@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
-"""Main CLI router for termux-playwright."""
+"""Main CLI router for amv-playwright."""
 
 import sys
 import argparse
-from termux_playwright import __version__
-from termux_playwright.installer import doctor, run_installation_pipeline
-from termux_playwright.patcher import cli_patch_core_bundle
-from termux_playwright.reaper import cli_reap_orphans
+from amv_playwright import __version__
+from amv_playwright.installer import doctor, run_installation_pipeline
+from amv_playwright.patcher import cli_patch_core_bundle
+from amv_playwright.reaper import cli_reap_orphans
 
 def cli_crawl(url: str, selector: str = None, bypass_tunnel: bool = False, dns_server: str = "8.8.8.8", timeout: int = 30000):
     """Execute live crawling with optional direct socket DNS bypass-tunnel."""
     import asyncio
-    from termux_playwright import async_playwright_termux, launch
+    from amv_playwright import async_playwright_termux, launch
 
     async def _run():
-        print(f"[*] termux-playwright crawl: {url}")
+        print(f"[*] amv-playwright crawl: {url}")
         if bypass_tunnel:
             print(f"[*] Bypass-Tunnel: ACTIVE (DNS: {dns_server})")
         else:
@@ -57,8 +57,8 @@ def main(argv=None):
         argv = sys.argv[1:]
 
     parser = argparse.ArgumentParser(
-        prog="termux-playwright",
-        description=f"termux-playwright v{__version__}: Production-grade Playwright and Chromium Web Automation for Android Termux."
+        prog="amv-playwright",
+        description=f"amv-playwright v{__version__}: Production-grade Playwright and Chromium Web Automation for Android Termux."
     )
     parser.add_argument("-v", "--version", action="version", version=f"%(prog)s {__version__}")
     subparsers = parser.add_subparsers(dest="command", help="Available subcommands")

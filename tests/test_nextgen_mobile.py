@@ -1,7 +1,7 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 import pytest
-from termux_playwright.mobile import (
+from amv_playwright.mobile import (
     RotationMode,
     CellularIpRotator,
     DEFAULT_IP_ENDPOINTS,

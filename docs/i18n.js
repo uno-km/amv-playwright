@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
  */
 /**
- * Termux-Playwright Documentation - Multilingual (i18n) Core Engine
+ * AMV-Playwright Documentation - Multilingual (i18n) Core Engine
  * Client-Side Internationalization with Multi-Tier Storage & Auto-Detector
  * @license MIT
  */
@@ -21,7 +21,7 @@
     };
 
     const DEFAULT_LANG = 'en';
-    const STORAGE_KEY = 'termux_playwright_doc_lang';
+    const STORAGE_KEY = 'amv_playwright_doc_lang';
 
     class I18nManager {
         constructor() {

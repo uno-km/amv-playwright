@@ -1,6 +1,6 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
-"""Physics and human interaction engine for termux-playwright.
+"""Physics and human interaction engine for amv-playwright.
 
 Implements Cubic Bézier curve trajectories, Fitts's Law acceleration/deceleration,
 micro-jitter, target overshoot, and Gaussian randomized keyboard typing.

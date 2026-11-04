@@ -4,7 +4,7 @@
   <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Node.js & Memory Architecture - Termux-Playwright</title>
+    <title>Node.js & Memory Architecture - AMV-Playwright</title>
     <meta name="description" content="In-depth guide to running Playwright in Node.js on Android Termux. V8 garbage collection, PM2 daemons, and LMK survival.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
@@ -17,14 +17,14 @@
     <header>
         <a href="index.html" class="header-brand">
             <img src="favicon.svg" alt="Logo">
-            <h1 data-i18n="common.brand">Termux-Playwright</h1>
+            <h1 data-i18n="common.brand">AMV-Playwright</h1>
         </a>
         <div class="header-controls">
             <span class="release-tag" data-i18n="common.releaseTag">v1.61.3 (Dual Engine)</span>
             <div class="lang-selector-wrapper"></div>
-            <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (Python)</a>
-            <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="header-btn" style="background:#cb3837;color:#fff;">npm (Node.js)</a>
-            <a href="https://github.com/uno-km/termux-playwright" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repository</a>
+            <a href="https://pypi.org/project/amv-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (Python)</a>
+            <a href="https://www.npmjs.com/package/amv-playwright" target="_blank" class="header-btn" style="background:#cb3837;color:#fff;">npm (Node.js)</a>
+            <a href="https://github.com/uno-km/amv-playwright" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repository</a>
         </div>
     </header>
 
@@ -47,10 +47,10 @@
                 <li><a href="/lib/mcp/">AMEVA-MCP-Hub (Polyglot WASM)</a></li>
                 <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
                 <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-                <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-                <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-                <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-                <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+                <li><a href="/lib/playwright/">AMV-Playwright (Automation)</a></li>
+                <li><a href="/lib/stt/">AMV-STT (Voice STT)</a></li>
+                <li><a href="/lib/diffusion/">AMV-Diffusion (Image AI)</a></li>
+                <li><a href="/lib/train/">AMV-Train (LoRA Engine)</a></li>
                 <li><a href="/app/workstation/">AMEVA Workstation (Web App)</a></li>
                 <li><a href="/foundation/">AMEVA Foundation</a></li>
                 <li><a href="/index.html">Founder Digital CV</a></li>
@@ -126,7 +126,7 @@
                 <h3 data-i18n="nodejs.recipesTitle">3. Node.js / TypeScript Production Recipes</h3>
                 <div class="code-block">
                     <h4>JavaScript (ESM / CommonJS):</h4>
-                    <pre><code>const { launch, setupStealthContext, blockHeavyResources, forceGarbageCollection } = require('termux-playwright');
+                    <pre><code>const { launch, setupStealthContext, blockHeavyResources, forceGarbageCollection } = require('amv-playwright');
 
 async function main() {
     // 1. Launch with low memory mode & WakeLock
@@ -181,7 +181,7 @@ pm2 monit</code></pre>
     </div>
 
     <footer>
-        <span data-i18n="common.footerText">&copy; 2026 Termux-Playwright Project. Released under the MIT License.</span>
+        <span data-i18n="common.footerText">&copy; 2026 AMV-Playwright Project. Released under the MIT License.</span>
     </footer>
 </body>
 </html>

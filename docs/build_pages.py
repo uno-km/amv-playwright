@@ -1,7 +1,7 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
-Build all HTML pages for Termux-Playwright GitHub Pages documentation.
+Build all HTML pages for AMV-Playwright GitHub Pages documentation.
 Dual-Engine (Python & Node.js / TypeScript) Architecture + Ultimate SEO & AI GEO (Generative Engine Optimization)
 """
 import os
@@ -10,14 +10,14 @@ def get_header(active_page):
     return f"""    <header>
         <a href="index.html" class="header-brand">
             <img src="favicon.svg" alt="Logo">
-            <h1 data-i18n="common.brand">Termux-Playwright</h1>
+            <h1 data-i18n="common.brand">AMV-Playwright</h1>
         </a>
         <div class="header-controls">
             <span class="release-tag" data-i18n="common.releaseTag">v1.61.3 (Dual Engine)</span>
             <div class="lang-selector-wrapper"></div>
-            <a href="https://pypi.org/project/termux-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (Python)</a>
-            <a href="https://www.npmjs.com/package/termux-playwright" target="_blank" class="header-btn" style="background:#cb3837;color:#fff;">npm (Node.js)</a>
-            <a href="https://github.com/uno-km/termux-playwright" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repository</a>
+            <a href="https://pypi.org/project/amv-playwright/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (Python)</a>
+            <a href="https://www.npmjs.com/package/amv-playwright" target="_blank" class="header-btn" style="background:#cb3837;color:#fff;">npm (Node.js)</a>
+            <a href="https://github.com/uno-km/amv-playwright" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub Repository</a>
         </div>
     </header>"""
 
@@ -54,7 +54,7 @@ def get_sidebar(active_page):
 
 def get_footer():
     return """    <footer>
-        <span data-i18n="common.footerText">&copy; 2026 Termux-Playwright Project. Released under the MIT License.</span>
+        <span data-i18n="common.footerText">&copy; 2026 AMV-Playwright Project. Released under the MIT License.</span>
     </footer>"""
 
 # 1. index.html
@@ -63,23 +63,23 @@ index_html = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termux-Playwright | Production Browser Automation & Scraping on Android</title>
-    <meta name="description" content="Official Termux-Playwright: Production-grade Chromium browser automation on Android Termux without root or PRoot. Supports Python (PyPI) and Node.js (npm).">
-    <meta name="keywords" content="termux playwright, android web scraping, termux python crawler, termux nodejs automation, playwright android without root, cloudflare turnstile bypass termux, android 14 phantom process killer, termux-playwright npm">
+    <title>AMV-Playwright | Production Browser Automation & Scraping on Android</title>
+    <meta name="description" content="Official AMV-Playwright: Production-grade Chromium browser automation on Android Termux without root or PRoot. Supports Python (PyPI) and Node.js (npm).">
+    <meta name="keywords" content="termux playwright, android web scraping, termux python crawler, termux nodejs automation, playwright android without root, cloudflare turnstile bypass termux, android 14 phantom process killer, amv-playwright npm">
     <meta name="author" content="uno-km">
     
     <!-- Open Graph & Social SEO -->
-    <meta property="og:title" content="Termux-Playwright: Dual-Engine Browser Automation on Android">
+    <meta property="og:title" content="AMV-Playwright: Dual-Engine Browser Automation on Android">
     <meta property="og:description" content="Run genuine Chromium automation on mobile ARM64 hardware without root or PRoot. Python & Node.js dual-engine support.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://uno-km.github.io/termux-playwright/">
+    <meta property="og:url" content="https://uno-km.github.io/amv-playwright/">
     
     <!-- 1. SoftwareApplication Schema -->
     <script type="application/ld+json">
     {{
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Termux-Playwright",
+      "name": "AMV-Playwright",
       "operatingSystem": "Android Termux (ARM64, aarch64)",
       "applicationCategory": "DeveloperApplication",
       "offers": {{
@@ -89,7 +89,7 @@ index_html = f"""<!DOCTYPE html>
       }},
       "softwareVersion": "1.61.3",
       "description": "Production-grade Playwright & Chromium browser automation and stealth runtime optimizer for Android Termux without root or PRoot.",
-      "url": "https://uno-km.github.io/termux-playwright/",
+      "url": "https://uno-km.github.io/amv-playwright/",
       "aggregateRating": {{
         "@type": "AggregateRating",
         "ratingValue": "5.0",
@@ -98,9 +98,9 @@ index_html = f"""<!DOCTYPE html>
         "worstRating": "1"
       }},
       "sameAs": [
-        "https://github.com/uno-km/termux-playwright",
-        "https://pypi.org/project/termux-playwright/",
-        "https://www.npmjs.com/package/termux-playwright"
+        "https://github.com/uno-km/amv-playwright",
+        "https://pypi.org/project/amv-playwright/",
+        "https://www.npmjs.com/package/amv-playwright"
       ]
     }}
     </script>
@@ -116,15 +116,15 @@ index_html = f"""<!DOCTYPE html>
           "name": "How do I run Playwright on Android Termux with Python & Node.js?",
           "acceptedAnswer": {{
             "@type": "Answer",
-            "text": "For Python, run 'pip install termux-playwright && termux-playwright-install'. For Node.js, run 'npm install termux-playwright && npx termux-playwright install'. Both automate native Termux Chromium without PRoot or root."
+            "text": "For Python, run 'pip install amv-playwright && amv-playwright-install'. For Node.js, run 'npm install amv-playwright && npx amv-playwright install'. Both automate native Termux Chromium without PRoot or root."
           }}
         }},
         {{
           "@type": "Question",
-          "name": "Does Termux-Playwright support both Python and Node.js / JavaScript?",
+          "name": "Does AMV-Playwright support both Python and Node.js / JavaScript?",
           "acceptedAnswer": {{
             "@type": "Answer",
-            "text": "Yes! Termux-Playwright is a 100% dual-engine library published on PyPI (Python) and npm (Node.js/TypeScript) with identical feature parity, anti-bot stealth, and session memory leak protection."
+            "text": "Yes! AMV-Playwright is a 100% dual-engine library published on PyPI (Python) and npm (Node.js/TypeScript) with identical feature parity, anti-bot stealth, and session memory leak protection."
           }}
         }},
         {{
@@ -154,9 +154,9 @@ index_html = f"""<!DOCTYPE html>
             <p data-i18n="home.subtitle">Dual-engine (Python & Node.js) Chromium browser automation on ARM64 mobile hardware without root, PRoot, or X11 virtualization.</p>
 
             <div class="badges-bar">
-                <a href="https://pypi.org/project/termux-playwright/" target="_blank"><img src="https://img.shields.io/pypi/v/termux-playwright.svg?color=blue" alt="PyPI Version"></a>
-                <a href="https://www.npmjs.com/package/termux-playwright" target="_blank"><img src="https://img.shields.io/npm/v/termux-playwright.svg?color=red" alt="npm Version"></a>
-                <a href="https://pepy.tech/projects/termux-playwright" target="_blank"><img src="https://img.shields.io/pepy/dt/termux-playwright?color=orange" alt="Total Downloads"></a>
+                <a href="https://pypi.org/project/amv-playwright/" target="_blank"><img src="https://img.shields.io/pypi/v/amv-playwright.svg?color=blue" alt="PyPI Version"></a>
+                <a href="https://www.npmjs.com/package/amv-playwright" target="_blank"><img src="https://img.shields.io/npm/v/amv-playwright.svg?color=red" alt="npm Version"></a>
+                <a href="https://pepy.tech/projects/amv-playwright" target="_blank"><img src="https://img.shields.io/pepy/dt/amv-playwright?color=orange" alt="Total Downloads"></a>
                 <img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python Version">
                 <img src="https://img.shields.io/badge/node-16+-brightgreen.svg" alt="Node Version">
                 <img src="https://img.shields.io/badge/platform-Android%20Termux%20(aarch64)-green.svg" alt="Platform">
@@ -168,9 +168,9 @@ index_html = f"""<!DOCTYPE html>
                 <p data-i18n="home.quickInstallDesc">Select your runtime and run the 1-line installation command in Termux:</p>
                 <div style="margin-top: 12px;">
                     <h4 style="margin: 8px 0 4px 0; color: #0055cc;">🐍 Python Edition (PyPI):</h4>
-                    <pre><code>pip install termux-playwright && termux-playwright-install</code></pre>
+                    <pre><code>pip install amv-playwright && amv-playwright-install</code></pre>
                     <h4 style="margin: 14px 0 4px 0; color: #cb3837;">☕ Node.js / TypeScript Edition (npm):</h4>
-                    <pre><code>npm install termux-playwright && npx termux-playwright install</code></pre>
+                    <pre><code>npm install amv-playwright && npx amv-playwright install</code></pre>
                 </div>
             </div>
 
@@ -178,7 +178,7 @@ index_html = f"""<!DOCTYPE html>
             <p data-i18n="home.whyText">Upstream Playwright is hardcoded to strictly support desktop Linux glibc, macOS, and Windows. When invoked on Android Termux, it fails due to incompatible pre-compiled binaries, Bionic libc syscall differences, dynamic shared memory (/dev/shm) crashes, and Android kernel process reaping.</p>
 
             <h3 data-i18n="home.solTitle">The Architectural Solution</h3>
-            <p data-i18n="home.solText">Termux-Playwright provides native Bionic binary orchestration, targeted session process isolation (ProcessReaper), persistent disk ledger recovery (.tp_ledger), prototype-safe anti-bot stealth, and flash memory wear protection.</p>
+            <p data-i18n="home.solText">AMV-Playwright provides native Bionic binary orchestration, targeted session process isolation (ProcessReaper), persistent disk ledger recovery (.tp_ledger), prototype-safe anti-bot stealth, and flash memory wear protection.</p>
 
             <h3 data-i18n="home.capTitle">Key Capabilities &amp; Built-in Hardening</h3>
             <div class="features-grid">
@@ -209,7 +209,7 @@ index_html = f"""<!DOCTYPE html>
             <div style="margin-top: 16px;">
                 <h4 style="color: #0055cc; margin-bottom: 6px;">🐍 Python Canonical Recipe (`asyncio`):</h4>
                 <pre><code>import asyncio
-from termux_playwright import async_playwright_termux, launch, setup_stealth_context
+from amv_playwright import async_playwright_termux, launch, setup_stealth_context
 
 async def main():
     async with async_playwright_termux() as p:
@@ -226,7 +226,7 @@ if __name__ == "__main__":
     asyncio.run(main())</code></pre>
 
                 <h4 style="color: #cb3837; margin: 20px 0 6px 0;">☕ Node.js / JavaScript Canonical Recipe (`async/await`):</h4>
-                <pre><code>const {{ launch, setupStealthContext, blockHeavyResources, forceGarbageCollection }} = require('termux-playwright');
+                <pre><code>const {{ launch, setupStealthContext, blockHeavyResources, forceGarbageCollection }} = require('amv-playwright');
 
 async function main() {{
     // Automatically provisions session ledger, eMMC RAM cache, and WakeLock
@@ -262,11 +262,11 @@ main().catch(console.error);</code></pre>
             <h3>Frequently Asked Questions (FAQ)</h3>
             <div class="card">
                 <h4>Q: Can I use this for 24/7 autonomous scraping on an old Android phone?</h4>
-                <p>Yes! Termux-Playwright includes automated CPU WakeLock handling (`wake_lock=True`), eMMC RAM-disk caching, and V8 heap limiters to ensure 24/7 background operation without kernel LMK process termination.</p>
+                <p>Yes! AMV-Playwright includes automated CPU WakeLock handling (`wake_lock=True`), eMMC RAM-disk caching, and V8 heap limiters to ensure 24/7 background operation without kernel LMK process termination.</p>
             </div>
             <div class="card">
                 <h4>Q: Why not use PRoot Linux (Ubuntu / Debian)?</h4>
-                <p>PRoot intercepts all system calls using `ptrace`, creating severe 3x~5x CPU latency, 60% higher RAM consumption, and broken `/dev/shm` shared memory. Termux-Playwright runs directly on native Android Bionic libc for maximum speed.</p>
+                <p>PRoot intercepts all system calls using `ptrace`, creating severe 3x~5x CPU latency, 60% higher RAM consumption, and broken `/dev/shm` shared memory. AMV-Playwright runs directly on native Android Bionic libc for maximum speed.</p>
             </div>
         </main>
     </div>
@@ -280,8 +280,8 @@ installation_html = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Installation Guide | Termux-Playwright (Python & Node.js)</title>
-    <meta name="description" content="Complete 1-line and step-by-step installation instructions for Termux-Playwright across Python (PyPI) and Node.js (npm).">
+    <title>Installation Guide | AMV-Playwright (Python & Node.js)</title>
+    <meta name="description" content="Complete 1-line and step-by-step installation instructions for AMV-Playwright across Python (PyPI) and Node.js (npm).">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <script src="i18n.js"></script>
@@ -300,9 +300,9 @@ installation_html = f"""<!DOCTYPE html>
             <div class="alert alert-tip">
                 <span class="alert-title">⚡ 1-Line Quick Installation</span>
                 <p><strong>🐍 Python (pip):</strong></p>
-                <pre><code>pip install termux-playwright && termux-playwright-install</code></pre>
+                <pre><code>pip install amv-playwright && amv-playwright-install</code></pre>
                 <p style="margin-top: 10px;"><strong>☕ Node.js / TypeScript (npm):</strong></p>
-                <pre><code>npm install termux-playwright && npx termux-playwright install</code></pre>
+                <pre><code>npm install amv-playwright && npx amv-playwright install</code></pre>
             </div>
 
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
@@ -328,11 +328,11 @@ source myenv/bin/activate</code></pre>
             </div>
 
             <h4>Step 3: Install Package from PyPI</h4>
-            <pre><code>pip install termux-playwright</code></pre>
+            <pre><code>pip install amv-playwright</code></pre>
 
             <h4>Step 4: Execute Core Patcher &amp; Diagnostics</h4>
-            <pre><code>termux-playwright-patch
-termux-playwright-doctor</code></pre>
+            <pre><code>amv-playwright-patch
+amv-playwright-doctor</code></pre>
 
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
@@ -341,11 +341,11 @@ termux-playwright-doctor</code></pre>
             <h4>Step 1: Install Node.js & Chromium via Termux pkg</h4>
             <pre><code>pkg update -y && pkg install -y chromium nodejs-lts termux-api</code></pre>
 
-            <h4>Step 2: Install termux-playwright from npm</h4>
-            <pre><code>npm install termux-playwright</code></pre>
+            <h4>Step 2: Install amv-playwright from npm</h4>
+            <pre><code>npm install amv-playwright</code></pre>
 
             <h4>Step 3: Run Node.js Diagnostic Doctor</h4>
-            <pre><code>npx termux-playwright doctor</code></pre>
+            <pre><code>npx amv-playwright doctor</code></pre>
         </main>
     </div>
 {get_footer()}
@@ -358,7 +358,7 @@ quickstart_html = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quickstart &amp; Recipes | Termux-Playwright</title>
+    <title>Quickstart &amp; Recipes | AMV-Playwright</title>
     <meta name="description" content="Ready-to-run copy-paste recipes for web scraping, anti-bot bypass, and 24/7 background mobile crawlers in Python and Node.js.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
@@ -379,7 +379,7 @@ quickstart_html = f"""<!DOCTYPE html>
             
             <h4 style="color: #0055cc;">🐍 Python:</h4>
             <pre><code>import asyncio
-from termux_playwright import async_playwright_termux, launch
+from amv_playwright import async_playwright_termux, launch
 
 async def main():
     async with async_playwright_termux() as p:
@@ -393,7 +393,7 @@ if __name__ == "__main__":
     asyncio.run(main())</code></pre>
 
             <h4 style="color: #cb3837; margin-top: 16px;">☕ Node.js:</h4>
-            <pre><code>const {{ launch }} = require('termux-playwright');
+            <pre><code>const {{ launch }} = require('amv-playwright');
 
 async function main() {{
     const browser = await launch({{ headless: true }});
@@ -411,7 +411,7 @@ main().catch(console.error);</code></pre>
             
             <h4 style="color: #0055cc;">🐍 Python:</h4>
             <pre><code>import asyncio
-from termux_playwright import async_playwright_termux, launch, setup_stealth_context
+from amv_playwright import async_playwright_termux, launch, setup_stealth_context
 
 async def main():
     async with async_playwright_termux() as p:
@@ -431,7 +431,7 @@ if __name__ == "__main__":
     asyncio.run(main())</code></pre>
 
             <h4 style="color: #cb3837; margin-top: 16px;">☕ Node.js:</h4>
-            <pre><code>const {{ launch, setupStealthContext }} = require('termux-playwright');
+            <pre><code>const {{ launch, setupStealthContext }} = require('amv-playwright');
 
 async function main() {{
     const browser = await launch({{ headless: true, stealth: true }});
@@ -453,7 +453,7 @@ main().catch(console.error);</code></pre>
             
             <h4 style="color: #0055cc;">🐍 Python:</h4>
             <pre><code>import asyncio
-from termux_playwright import async_playwright_termux, launch, block_heavy_resources
+from amv_playwright import async_playwright_termux, launch, block_heavy_resources
 
 async def run_worker():
     while True:
@@ -474,7 +474,7 @@ if __name__ == "__main__":
     asyncio.run(run_worker())</code></pre>
 
             <h4 style="color: #cb3837; margin-top: 16px;">☕ Node.js:</h4>
-            <pre><code>const {{ launch, blockHeavyResources, forceGarbageCollection }} = require('termux-playwright');
+            <pre><code>const {{ launch, blockHeavyResources, forceGarbageCollection }} = require('amv-playwright');
 
 async function runWorker() {{
     while (true) {{
@@ -509,7 +509,7 @@ api_reference_html = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Reference | Termux-Playwright</title>
+    <title>API Reference | AMV-Playwright</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <script src="i18n.js"></script>
@@ -523,12 +523,12 @@ api_reference_html = f"""<!DOCTYPE html>
 
         <main class="content">
             <h2>API Reference Manual</h2>
-            <p>Comprehensive documentation of all public functions, classes, and parameter options in <code>termux_playwright</code> (Python) and <code>termux-playwright</code> (Node.js).</p>
+            <p>Comprehensive documentation of all public functions, classes, and parameter options in <code>amv_playwright</code> (Python) and <code>amv-playwright</code> (Node.js).</p>
 
             <div class="alert alert-tip">
                 <span class="alert-title">📦 Package Identifiers</span>
-                <p><strong>Python (PyPI):</strong> <code>import termux_playwright</code></p>
-                <p><strong>Node.js (npm):</strong> <code>const termuxPlaywright = require('termux-playwright')</code></p>
+                <p><strong>Python (PyPI):</strong> <code>import amv_playwright</code></p>
+                <p><strong>Node.js (npm):</strong> <code>const termuxPlaywright = require('amv-playwright')</code></p>
             </div>
 
             <h3 style="color: #0055cc;">🐍 Python Public API Specification</h3>
@@ -575,7 +575,7 @@ nodejs_html = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Node.js & Memory Architecture - Termux-Playwright</title>
+    <title>Node.js & Memory Architecture - AMV-Playwright</title>
     <meta name="description" content="In-depth guide to running Playwright in Node.js on Android Termux. V8 garbage collection, PM2 daemons, and LMK survival.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
@@ -651,7 +651,7 @@ nodejs_html = f"""<!DOCTYPE html>
                 <h3 data-i18n="nodejs.recipesTitle">3. Node.js / TypeScript Production Recipes</h3>
                 <div class="code-block">
                     <h4>JavaScript (ESM / CommonJS):</h4>
-                    <pre><code>const {{ launch, setupStealthContext, blockHeavyResources, forceGarbageCollection }} = require('termux-playwright');
+                    <pre><code>const {{ launch, setupStealthContext, blockHeavyResources, forceGarbageCollection }} = require('amv-playwright');
 
 async function main() {{
     // 1. Launch with low memory mode & WakeLock
@@ -715,7 +715,7 @@ versions_html = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Version Archive &amp; Release Notes | Termux-Playwright</title>
+    <title>Version Archive &amp; Release Notes | AMV-Playwright</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <script src="i18n.js"></script>
@@ -744,8 +744,8 @@ versions_html = f"""<!DOCTYPE html>
                     <h3>v1.61.3 — Dual-Engine (Python & Node.js) Synchronization Release</h3>
                     <p class="release-date">Release Date: 2026-08-19 | PyPI & npm Synchronized</p>
                     <ul>
-                        <li><strong>Official npm Package Release:</strong> Published official Node.js / TypeScript package at <a href="https://www.npmjs.com/package/termux-playwright" target="_blank">npm: termux-playwright</a>.</li>
-                        <li><strong>1-Line Auto-Installer:</strong> Added <code>npx termux-playwright install</code> to provision Chromium and Bionic dependencies automatically.</li>
+                        <li><strong>Official npm Package Release:</strong> Published official Node.js / TypeScript package at <a href="https://www.npmjs.com/package/amv-playwright" target="_blank">npm: amv-playwright</a>.</li>
+                        <li><strong>1-Line Auto-Installer:</strong> Added <code>npx amv-playwright install</code> to provision Chromium and Bionic dependencies automatically.</li>
                         <li><strong>Mobile Engineering Pro-Tips:</strong> Added documentation for <code>venv --system-site-packages</code>, <code>pnpm</code> hardlink optimization, and PM2 mobile daemons.</li>
                     </ul>
                 </div>
@@ -818,7 +818,7 @@ phantom_process_html = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Android 14+ Phantom Process Killer Guide | Termux-Playwright</title>
+    <title>Android 14+ Phantom Process Killer Guide | AMV-Playwright</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <script src="i18n.js"></script>
@@ -882,62 +882,62 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://uno-km.github.io/termux-playwright/sitemap.xml
+Sitemap: https://uno-km.github.io/amv-playwright/sitemap.xml
 """
 
 # 9. sitemap.xml
 sitemap_xml = """<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://uno-km.github.io/termux-playwright/</loc>
+        <loc>https://uno-km.github.io/amv-playwright/</loc>
         <lastmod>2026-08-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://uno-km.github.io/termux-playwright/installation.html</loc>
+        <loc>https://uno-km.github.io/amv-playwright/installation.html</loc>
         <lastmod>2026-08-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://uno-km.github.io/termux-playwright/quickstart.html</loc>
+        <loc>https://uno-km.github.io/amv-playwright/quickstart.html</loc>
         <lastmod>2026-08-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://uno-km.github.io/termux-playwright/nodejs.html</loc>
+        <loc>https://uno-km.github.io/amv-playwright/nodejs.html</loc>
         <lastmod>2026-08-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://uno-km.github.io/termux-playwright/api-reference.html</loc>
+        <loc>https://uno-km.github.io/amv-playwright/api-reference.html</loc>
         <lastmod>2026-08-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://uno-km.github.io/termux-playwright/versions.html</loc>
+        <loc>https://uno-km.github.io/amv-playwright/versions.html</loc>
         <lastmod>2026-08-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://uno-km.github.io/termux-playwright/phantom-process.html</loc>
+        <loc>https://uno-km.github.io/amv-playwright/phantom-process.html</loc>
         <lastmod>2026-08-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://uno-km.github.io/termux-playwright/llms.txt</loc>
+        <loc>https://uno-km.github.io/amv-playwright/llms.txt</loc>
         <lastmod>2026-08-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://uno-km.github.io/termux-playwright/llms-full.txt</loc>
+        <loc>https://uno-km.github.io/amv-playwright/llms-full.txt</loc>
         <lastmod>2026-08-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>

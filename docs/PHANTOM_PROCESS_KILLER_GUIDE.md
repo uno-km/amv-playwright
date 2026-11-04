@@ -130,11 +130,11 @@ adb shell "/system/bin/device_config set_sync_disabled_for_tests persistent"
 
 ## 🛡️ Method 3: Software-Level Mitigation (`single_process=True`) (Zero Setup)
 
-If you cannot access ADB or do not wish to modify device settings, `termux-playwright` provides a built-in software mitigation:
+If you cannot access ADB or do not wish to modify device settings, `amv-playwright` provides a built-in software mitigation:
 
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch
+from amv_playwright import async_playwright_termux, launch
 
 async def main():
     async with async_playwright_termux() as p:

@@ -35,7 +35,7 @@ jobs:
         run: |
           python -c "
           import urllib.request, json
-          req = urllib.request.Request('https://pypi.org/pypi/playwright/json', headers={'User-Agent': 'termux-playwright-ci'})
+          req = urllib.request.Request('https://pypi.org/pypi/playwright/json', headers={'User-Agent': 'amv-playwright-ci'})
           with urllib.request.urlopen(req) as resp:
               data = json.loads(resp.read().decode('utf-8'))
               latest_version = data['info']['version']
@@ -51,7 +51,7 @@ jobs:
         run: |
           python -c "
           import os, sys, importlib.util
-          from termux_playwright.patcher import locate_core_bundle_path, is_core_bundle_patched
+          from amv_playwright.patcher import locate_core_bundle_path, is_core_bundle_patched
           print('== Running Structural Integrity Check ==')
           try:
               bundle_path = locate_core_bundle_path()

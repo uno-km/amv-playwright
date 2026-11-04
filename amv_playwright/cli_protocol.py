@@ -1,15 +1,15 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
-termux_playwright.cli_protocol
+amv_playwright.cli_protocol
 AMEVA Component Protocol v1 — Playwright CLI 엔트리포인트
 
 사용:
-    termux-playwright component info --json
-    termux-playwright component doctor-lite --json
-    termux-playwright instance list --json
-    termux-playwright instance start --json
-    termux-playwright instance stop INSTANCE_ID --json
+    amv-playwright component info --json
+    amv-playwright component doctor-lite --json
+    amv-playwright instance list --json
+    amv-playwright instance start --json
+    amv-playwright instance stop INSTANCE_ID --json
 """
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ import sys
 
 def main(argv=None):
     parser = argparse.ArgumentParser(
-        prog="termux-playwright",
+        prog="amv-playwright",
         description="Termux Playwright — [AMEVA Protocol v1] component/instance CLI"
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -34,20 +34,20 @@ def main(argv=None):
     # ────────────────────────────────────────────────────────────────────────
 
     # 기존 별도 엔드포인트 안내 명령
-    subparsers.add_parser("install", help="Install Playwright + Chromium (use termux-playwright-install)")
-    subparsers.add_parser("doctor",  help="Run diagnostics (use termux-playwright-doctor)")
+    subparsers.add_parser("install", help="Install Playwright + Chromium (use amv-playwright-install)")
+    subparsers.add_parser("doctor",  help="Run diagnostics (use amv-playwright-doctor)")
 
     args = parser.parse_args(argv)
 
     if args.command in ("install",):
-        print("[INFO] Run 'termux-playwright-install' directly.", file=sys.stderr)
+        print("[INFO] Run 'amv-playwright-install' directly.", file=sys.stderr)
         sys.exit(0)
     elif args.command == "doctor":
-        print("[INFO] Run 'termux-playwright-doctor' directly.", file=sys.stderr)
+        print("[INFO] Run 'amv-playwright-doctor' directly.", file=sys.stderr)
         sys.exit(0)
     elif args.command in ("component", "model", "instance") and _protocol_available:
         from ameva_component.cli_support import dispatch_protocol
-        from termux_playwright.control import PlaywrightControl
+        from amv_playwright.control import PlaywrightControl
         dispatch_protocol(args, PlaywrightControl())
     elif args.command in ("component", "model", "instance"):
         print("[ERROR] ameva-component-sdk not installed.", file=sys.stderr)

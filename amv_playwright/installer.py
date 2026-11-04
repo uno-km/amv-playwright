@@ -36,7 +36,7 @@ def resolve_latest_compatible_version() -> str:
     """Query PyPI API to discover the latest compatible Playwright release."""
     api_url = "https://pypi.org/pypi/playwright/json"
     try:
-        req = urllib.request.Request(api_url, headers={"User-Agent": "termux-playwright-installer"})
+        req = urllib.request.Request(api_url, headers={"User-Agent": "amv-playwright-installer"})
         with urllib.request.urlopen(req, timeout=10) as resp:
             if resp.status == 200:
                 data = json.loads(resp.read().decode("utf-8"))
@@ -73,7 +73,7 @@ def fetch_pypi_wheel_info(version: Optional[str] = None) -> Tuple[str, str, str]
 
     for attempt in range(1, MAX_NETWORK_RETRIES + 1):
         try:
-            req = urllib.request.Request(api_url, headers={"User-Agent": "termux-playwright-installer"})
+            req = urllib.request.Request(api_url, headers={"User-Agent": "amv-playwright-installer"})
             with urllib.request.urlopen(req, timeout=15) as resp:
                 if resp.status != 200:
                     raise InstallationError(f"PyPI API returned HTTP {resp.status}")
@@ -198,7 +198,7 @@ def install_system_dependencies(include_build_tools: bool = False) -> None:
                 print(" [!] CRITICAL: Termux Package Mirror Error")
                 print(" 👉 Run 'termux-change-repo' in Termux to switch to a healthy mirror")
                 print("    (e.g., choose 'Mirrors by Tsinghua' or 'Mirrors by BFSU').")
-                print(" 👉 Then run: pkg update -y && termux-playwright-install")
+                print(" 👉 Then run: pkg update -y && amv-playwright-install")
                 print("=" * 65 + "\n")
                 msg = _format_error_report(
                     phase="Native System Package Provisioning (pkg install)",
@@ -237,7 +237,7 @@ def install_playwright_wheel(version: Optional[str] = None) -> None:
             reason=f"Failed to locate matching architecture wheel on PyPI: {e}",
             remedies=[
                 "Verify device has internet access to https://pypi.org.",
-                "Specify a known LTS version explicitly: termux-playwright-install (or set version='1.61.0')."
+                "Specify a known LTS version explicitly: amv-playwright-install (or set version='1.61.0')."
             ]
         )
         raise InstallationError(msg) from e
@@ -249,7 +249,7 @@ def install_playwright_wheel(version: Optional[str] = None) -> None:
         print(f"[*] Downloading Playwright {resolved_version} wheel from: {download_url}")
         for attempt in range(1, MAX_NETWORK_RETRIES + 1):
             try:
-                req = urllib.request.Request(download_url, headers={"User-Agent": "termux-playwright-installer"})
+                req = urllib.request.Request(download_url, headers={"User-Agent": "amv-playwright-installer"})
                 with urllib.request.urlopen(req, timeout=30) as resp, open(download_target, "wb") as out_f:
                     shutil.copyfileobj(resp, out_f, length=64 * 1024)
                 break
@@ -334,7 +334,7 @@ def install_python_dependencies() -> None:
 def run_installation_pipeline(version: Optional[str] = None) -> None:
     """Execute complete end-to-end installation and verification pipeline."""
     print("=" * 60)
-    print("[*] [Termux-Playwright] Deterministic Installation Pipeline")
+    print("[*] [AMV-Playwright] Deterministic Installation Pipeline")
     print("=" * 60)
 
     if is_termux():
@@ -375,7 +375,7 @@ def run_installation_pipeline(version: Optional[str] = None) -> None:
             phase="CPU Architecture Validation",
             reason=str(e),
             remedies=[
-                "Termux-Playwright requires a 64-bit ARM CPU (aarch64/arm64) or x86_64.",
+                "AMV-Playwright requires a 64-bit ARM CPU (aarch64/arm64) or x86_64.",
                 "32-bit ARM (armv7l) does not have compatible Chromium / Node.js binaries."
             ]
         )
@@ -407,7 +407,7 @@ def run_installation_pipeline(version: Optional[str] = None) -> None:
             reason=f"Failed to inject platform verification bypass: {e}",
             remedies=[
                 "Verify Playwright package is installed: python -c 'import playwright; print(playwright.__file__)'",
-                "Run manual patcher CLI: termux-playwright-patch"
+                "Run manual patcher CLI: amv-playwright-patch"
             ]
         )
         raise InstallationError(msg) from e
@@ -418,7 +418,7 @@ def run_installation_pipeline(version: Optional[str] = None) -> None:
 def doctor() -> bool:
     """Perform diagnostic health check and report system readiness."""
     print("\n" + "=" * 60)
-    print("[*] [Termux-Playwright] Diagnostic Health Check")
+    print("[*] [AMV-Playwright] Diagnostic Health Check")
     print("=" * 60)
 
     all_healthy = True
@@ -472,7 +472,7 @@ def doctor() -> bool:
     if pw_dir:
         try:
             patched = is_core_bundle_patched()
-            status_str = "[OK] Applied" if patched else "[FAIL] Not patched (Run termux-playwright-patch)"
+            status_str = "[OK] Applied" if patched else "[FAIL] Not patched (Run amv-playwright-patch)"
             print(f"[*] 6. JS Bypass Patch    : {status_str}")
             if not patched:
                 all_healthy = False

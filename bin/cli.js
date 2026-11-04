@@ -5,7 +5,7 @@
  */
 
 /**
- * Termux-Playwright Command Line Interface (CLI) for Node.js
+ * AMV-Playwright Command Line Interface (CLI) for Node.js
  * @license MIT
  */
 
@@ -26,7 +26,7 @@ const { ProcessReaper } = require('../lib/reaper');
 
 function printBanner() {
     console.log('====================================================');
-    console.log(' Termux-Playwright Doctor & Diagnostic Suite (Node.js)');
+    console.log(' AMV-Playwright Doctor & Diagnostic Suite (Node.js)');
     console.log('====================================================');
 }
 
@@ -76,14 +76,14 @@ function runDoctor() {
 
 function runInstall() {
     console.log('====================================================');
-    console.log(' Termux-Playwright Auto-Installer & Provisioner');
+    console.log(' AMV-Playwright Auto-Installer & Provisioner');
     console.log('====================================================');
     if (isTermux()) {
         console.log('[1/2] Automatically provisioning chromium & system tools via pkg...');
         try {
             execSync('pkg update -y && pkg install -y x11-repo && pkg update -y && pkg install -y chromium nodejs-lts termux-api procps', { stdio: 'inherit' });
         } catch (e) {
-            console.warn('[Termux-Playwright] Warning: Failed to run pkg update/install automatically.');
+            console.warn('[AMV-Playwright] Warning: Failed to run pkg update/install automatically.');
         }
     } else {
         console.log('[1/2] Non-Termux desktop OS detected. Skipping pkg install.');
@@ -93,14 +93,14 @@ function runInstall() {
 }
 
 function runReap() {
-    console.log('[Termux-Playwright] Scanning for orphaned session processes and dead ledgers...');
+    console.log('[AMV-Playwright] Scanning for orphaned session processes and dead ledgers...');
     const count = ProcessReaper.reapUntrackedLedgerOrphans();
-    console.log(`[Termux-Playwright] Done. Reaped ${count} orphan processes.`);
+    console.log(`[AMV-Playwright] Done. Reaped ${count} orphan processes.`);
 }
 
 function runHelp() {
     console.log(`
-Usage: termux-playwright <command> [options]
+Usage: amv-playwright <command> [options]
 
 Commands:
   crawl <url>   Navigate to URL, scrape target elements, with optional tunnel bypass
@@ -115,17 +115,17 @@ Commands:
   help          Show this help message
 
 Examples:
-  npx termux-playwright crawl https://example.com --bypass-tunnel
-  npx termux-playwright crawl https://uno-km.vercel.app/lib/diffusion/create --bypass-tunnel -s "#promptInput"
-  npx termux-playwright doctor
-  npx termux-playwright reap
+  npx amv-playwright crawl https://example.com --bypass-tunnel
+  npx amv-playwright crawl https://uno-km.vercel.app/lib/diffusion/create --bypass-tunnel -s "#promptInput"
+  npx amv-playwright doctor
+  npx amv-playwright reap
 `);
 }
 
 async function runCrawl(crawlArgs) {
     const url = crawlArgs.find(a => !a.startsWith('-'));
     if (!url) {
-        console.error('Error: crawl command requires a URL argument. e.g. termux-playwright crawl https://example.com');
+        console.error('Error: crawl command requires a URL argument. e.g. amv-playwright crawl https://example.com');
         process.exit(1);
     }
 
@@ -148,7 +148,7 @@ async function runCrawl(crawlArgs) {
         timeout = parseInt(crawlArgs[toIdx + 1], 10) || 30000;
     }
 
-    console.log(`[*] termux-playwright crawl (Node.js): ${url}`);
+    console.log(`[*] amv-playwright crawl (Node.js): ${url}`);
     if (bypassTunnel) {
         console.log(`[*] Bypass-Tunnel: ACTIVE (DNS: ${dnsServer})`);
     } else {

@@ -3,14 +3,14 @@
 import os
 import signal
 import pytest
-from termux_playwright.reaper import (
+from amv_playwright.reaper import (
     ProcessReaper,
     TermuxWakeLock,
     SIGKILL_SIGNAL,
     SIGTERM_SIGNAL,
     _terminate_pid_gracefully,
 )
-from termux_playwright.exceptions import ProcessLifecycleError
+from amv_playwright.exceptions import ProcessLifecycleError
 
 @pytest.fixture(autouse=True)
 def reset_reaper_state(monkeypatch):
@@ -84,7 +84,7 @@ def test_terminate_pid_gracefully_waitpid_reaps_child(monkeypatch):
     def mock_kill(pid, sig):
         signals_sent.append((pid, sig))
 
-    monkeypatch.setattr("termux_playwright.reaper.HAS_POSIX_WAITPID", True)
+    monkeypatch.setattr("amv_playwright.reaper.HAS_POSIX_WAITPID", True)
     monkeypatch.setattr("os.kill", mock_kill)
     # waitpid returns (pid, status) immediately for direct child
     monkeypatch.setattr("os.waitpid", lambda pid, flags: (pid, 0))
@@ -260,7 +260,7 @@ def test_discover_session_pids_tier3_ps_execution(monkeypatch):
     assert pids == {5544}
 
 def test_cli_reap_orphans_runs(monkeypatch, tmp_path, capsys):
-    from termux_playwright.reaper import cli_reap_orphans
+    from amv_playwright.reaper import cli_reap_orphans
 
     fake_proc_dir = tmp_path / "proc" / "9988"
     fake_proc_dir.mkdir(parents=True)

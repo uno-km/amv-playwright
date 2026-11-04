@@ -1,6 +1,6 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
-"""WAF and bot challenge evaluator for termux-playwright.
+"""WAF and bot challenge evaluator for amv-playwright.
 
 Detects Cloudflare Turnstile, Cloudflare Managed Challenge, hCaptcha, and reCAPTCHA.
 Provides coordinated auto-resolution via HumanMouse interaction models.

@@ -97,7 +97,7 @@ def get_wheel_tag_for_arch(arch: str) -> str:
     if arch not in SUPPORTED_ARCHITECTURES:
         raise UnsupportedPlatformError(
             f"Unsupported CPU architecture: '{arch}'. "
-            f"termux-playwright supports: {list(SUPPORTED_ARCHITECTURES.keys())}"
+            f"amv-playwright supports: {list(SUPPORTED_ARCHITECTURES.keys())}"
         )
     return SUPPORTED_ARCHITECTURES[arch]
 

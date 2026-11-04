@@ -1,6 +1,6 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
-"""Dual-Mode Cellular IP Rotator for termux-playwright.
+"""Dual-Mode Cellular IP Rotator for amv-playwright.
 
 Supports Termux Native device execution and PC ADB Bridge execution to rotate
 mobile carrier LTE/5G IP addresses via airplane mode toggling, followed by
@@ -120,7 +120,7 @@ class CellularIpRotator:
             try:
                 req = urllib.request.Request(
                     endpoint,
-                    headers={"User-Agent": "Mozilla/5.0 (termux-playwright IP Rotator)"},
+                    headers={"User-Agent": "Mozilla/5.0 (amv-playwright IP Rotator)"},
                 )
                 with urllib.request.urlopen(req, timeout=timeout) as resp:
                     ip = resp.read().decode("utf-8").strip()

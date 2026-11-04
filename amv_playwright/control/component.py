@@ -1,7 +1,7 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
-termux_playwright.control.component
+amv_playwright.control.component
 AMEVA Component Protocol v1 — PlaywrightControl
 
 model 관련 모든 명령 → OPERATION_NOT_SUPPORTED
@@ -24,14 +24,14 @@ from ameva_component.control import ComponentControl
 
 class PlaywrightControl(ComponentControl):
     """
-    termux-playwright ComponentControl.
+    amv-playwright ComponentControl.
 
     브라우저 자동화 패키지이므로 모델 개념 없음.
     list_models, install_model, activate_model, deactivate_model, model_status
     → 전부 OPERATION_NOT_SUPPORTED.
     """
 
-    COMPONENT_ID   = "termux-playwright"
+    COMPONENT_ID   = "amv-playwright"
     COMPONENT_TYPE = "browser"
     CAPABILITIES   = ("browser.navigate", "browser.extract",
                       "browser.screenshot", "browser.action")
@@ -40,12 +40,12 @@ class PlaywrightControl(ComponentControl):
         self._state_file = ComponentStateFile(self.COMPONENT_ID)
         self._inst_reg   = InstanceRegistry(self.COMPONENT_ID)
         # Phase 4: Heartbeat Writer
-        from termux_playwright.control.status import PlaywrightStatusWriter
+        from amv_playwright.control.status import PlaywrightStatusWriter
         self._heartbeat = PlaywrightStatusWriter(self)
 
     def _get_version(self) -> str:
         try:
-            from termux_playwright import __version__; return __version__
+            from amv_playwright import __version__; return __version__
         except Exception: return "1.80.1"
 
     def component_info(self) -> dict:
@@ -106,7 +106,7 @@ class PlaywrightControl(ComponentControl):
     def _check_chromium(self) -> dict[str, Any]:
         """Chromium 바이너리 존재 + 실행 권한 확인 — 실행 금지."""
         try:
-            from termux_playwright.platform import find_chromium_binary
+            from amv_playwright.platform import find_chromium_binary
             path = find_chromium_binary()
             if path:
                 try:
@@ -144,7 +144,7 @@ class PlaywrightControl(ComponentControl):
         _log = logging.getLogger(__name__)
         results: list[dict[str, Any]] = []
         try:
-            from termux_playwright.reaper import ProcessReaper
+            from amv_playwright.reaper import ProcessReaper
             reaper = ProcessReaper()
             for pid in (reaper.get_pids() if hasattr(reaper, "get_pids") else []):
                 try:
@@ -188,7 +188,7 @@ class PlaywrightControl(ComponentControl):
         """기존 installer.run_doctor() 전체 실행 — 실제 Chromium 실행 포함."""
         lite = self.doctor_lite()
         try:
-            from termux_playwright.installer import run_doctor
+            from amv_playwright.installer import run_doctor
             result = run_doctor()
             lite["full_doctor"] = result if isinstance(result, dict) else {"output": str(result)}
         except Exception as e:

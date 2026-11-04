@@ -1,4 +1,4 @@
-# Termux-Playwright Full Technical Specification (v1.2.0)
+# AMV-Playwright Full Technical Specification (v1.2.0)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
@@ -6,10 +6,10 @@ Non-Root Chromium Browser Automation & CDP Engine for Android Termux
 Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) WebSocket sessions on Android Bionic libc without root or graphical servers.
 
 ## 2. Package & Installation
-- PyPI: termux-playwright
-- Command: pip install termux-playwright
-# or: npm install termux-playwright
-- Repository: https://github.com/uno-km/termux-playwright
+- PyPI: amv-playwright
+- Command: pip install amv-playwright
+# or: npm install amv-playwright
+- Repository: https://github.com/uno-km/amv-playwright
 
 ## 3. Core Capabilities
 - **Direct CDP Control Channel**: Connects directly via Chrome DevTools Protocol without heavy WebDriver server binaries.
@@ -18,7 +18,7 @@ Controls genuine Chromium processes via direct Chrome DevTools Protocol (CDP) We
 
 ## 4. Canonical Implementation
 ```python
-from termux_playwright import chromium
+from amv_playwright import chromium
 
 async def main():
     browser = await chromium.launch(headless=True)

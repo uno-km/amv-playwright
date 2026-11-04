@@ -1,6 +1,6 @@
-# [Open Source] Deep Engineering Architecture & Library Development for Running Playwright & Chromium in Android Termux (termux-playwright)
+# [Open Source] Deep Engineering Architecture & Library Development for Running Playwright & Chromium in Android Termux (amv-playwright)
 
-> **In-depth architectural design and technical implementation of `termux-playwright`: A production-grade open-source framework for running official headless Chromium on Android smartphones (ARM64/x86_64) 24/7 autonomously without Root, PRoot, or X11 virtualization.**
+> **In-depth architectural design and technical implementation of `amv-playwright`: A production-grade open-source framework for running official headless Chromium on Android smartphones (ARM64/x86_64) 24/7 autonomously without Root, PRoot, or X11 virtualization.**
 
 ---
 
@@ -14,7 +14,7 @@ In contrast, modern Android smartphones feature high-efficiency hardware:
 * **Built-in Uninterruptible Power Supply (UPS):** Integrated 4000+ mAh battery
 * **Ultra-low Energy Footprint:** Less than 5W under typical full workloads
 
-Attempting to run official Playwright directly inside Termux on Android results in multiple system-level crashes. `termux-playwright` was engineered from the ground up to solve these architectural incompatibilities.
+Attempting to run official Playwright directly inside Termux on Android results in multiple system-level crashes. `amv-playwright` was engineered from the ground up to solve these architectural incompatibilities.
 
 ---
 
@@ -40,7 +40,7 @@ Introduced in Android 12, the Phantom Process Killer terminates background apps 
 
 ---
 
-## 3. termux-playwright Architecture and Core Solutions
+## 3. amv-playwright Architecture and Core Solutions
 
 ### 3.1 Layered Runtime Component Matrix
 
@@ -53,18 +53,18 @@ Introduced in Android 12, the Phantom Process Killer terminates background apps 
 | **4. Power Management** | `termux-api` | **`pkg`** | C Binary | CPU WakeLock acquisition during screen-off states |
 | **5. Pure Python A** | `typing-extensions` | **`pip`** | Pure Python | Cross-version typing support |
 | **6. Pure Python B** | `pyee` | **`pip`** | Pure Python | Browser DOM event listener dispatching |
-| **7. Platform Core Engine** | `termux-playwright` | **`pip`** | Pure Python | Zombie reaper, disk ledger, stealth injection, eMMC preservation |
+| **7. Platform Core Engine** | `amv-playwright` | **`pip`** | Pure Python | Zombie reaper, disk ledger, stealth injection, eMMC preservation |
 | **8. Core Wheel** | `playwright` (aarch64) | **`pip (injected)`** | Wheel Packaging | Injecting aarch64 wheel as `none-any` |
 | **9. JS Driver Patch** | `coreBundle.js` patch | **Built-in Engine** | Byte Manipulation | Neutralizing Node.js platform assertions |
 
 ### 3.2 Persistent Disk Session Ledger
-Traditional in-memory process trackers lose state when the parent Python process is terminated by the kernel or `SIGKILL`. `termux-playwright` records active session metadata atomically at `$TMPDIR/.tp_ledger/{token}.session`. On subsequent launches, the reaper cross-references the live OS PID table to discover and terminate lingering orphaned processes.
+Traditional in-memory process trackers lose state when the parent Python process is terminated by the kernel or `SIGKILL`. `amv-playwright` records active session metadata atomically at `$TMPDIR/.tp_ledger/{token}.session`. On subsequent launches, the reaper cross-references the live OS PID table to discover and terminate lingering orphaned processes.
 
 ### 3.3 Prototype-Chain Safe Stealth Evasion
-Modern bot detection systems (e.g., Cloudflare Turnstile, DataDome, Akamai) detect naive overrides such as `Object.defineProperty(navigator, 'webdriver')` by validating `navigator.hasOwnProperty('webdriver')`. `termux-playwright` strips the property directly from the prototype chain (`delete Object.getPrototypeOf(navigator).webdriver`) and emulates native C++ function behaviors for `permissions.query` and `window.chrome.runtime`.
+Modern bot detection systems (e.g., Cloudflare Turnstile, DataDome, Akamai) detect naive overrides such as `Object.defineProperty(navigator, 'webdriver')` by validating `navigator.hasOwnProperty('webdriver')`. `amv-playwright` strips the property directly from the prototype chain (`delete Object.getPrototypeOf(navigator).webdriver`) and emulates native C++ function behaviors for `permissions.query` and `window.chrome.runtime`.
 
 ### 3.4 eMMC Flash Memory Preservation (RAM Cache Redirection)
-Frequent disk writes accelerate degradation of mobile eMMC/UFS storage. `termux-playwright` redirects browser caching to RAM via `--disk-cache-dir=/dev/shm`, `--disk-cache-size=1`, and `--media-cache-size=1` flags, minimizing physical storage wear.
+Frequent disk writes accelerate degradation of mobile eMMC/UFS storage. `amv-playwright` redirects browser caching to RAM via `--disk-cache-dir=/dev/shm`, `--disk-cache-size=1`, and `--media-cache-size=1` flags, minimizing physical storage wear.
 
 ### 3.5 Single Process Execution Mode (`single_process=True`)
 To operate within the 32-process limit enforced by Android's Phantom Process Killer without requiring Root or ADB debugging privileges, `single_process=True` consolidates browser sub-tasks into a single process boundary.
@@ -75,7 +75,7 @@ To operate within the 32-process limit enforced by Android's Phantom Process Kil
 
 ### 4.1 1-Line Automated Installation (Recommended)
 ```bash
-pip install termux-playwright && termux-playwright-install
+pip install amv-playwright && amv-playwright-install
 ```
 
 ### 4.2 Manual 5-Step Pipeline
@@ -88,13 +88,13 @@ python -m venv --system-site-packages myenv
 source myenv/bin/activate
 
 # Step 3: Install Python package
-pip install termux-playwright
+pip install amv-playwright
 
 # Step 4: Apply atomic core driver patch
-termux-playwright-patch
+amv-playwright-patch
 
 # Step 5: Run self-diagnostic doctor check
-termux-playwright-doctor
+amv-playwright-doctor
 ```
 
 ---
@@ -104,7 +104,7 @@ termux-playwright-doctor
 ### Example 1: Headless Stealth Browser Execution
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch, setup_stealth_context
+from amv_playwright import async_playwright_termux, launch, setup_stealth_context
 
 async def main():
     async with async_playwright_termux() as p:
@@ -130,7 +130,7 @@ if __name__ == "__main__":
 ### Example 2: 24/7 Autonomous Low-Memory Daemon (WakeLock & Resource Filtering)
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch, block_heavy_resources
+from amv_playwright import async_playwright_termux, launch, block_heavy_resources
 
 async def run_worker():
     while True:
@@ -159,7 +159,7 @@ if __name__ == "__main__":
 
 ## 6. Benchmarks and Architectural Comparison
 
-| Metric | Desktop Linux (x86_64) | PRoot Ubuntu Container | termux-playwright (Native) |
+| Metric | Desktop Linux (x86_64) | PRoot Ubuntu Container | amv-playwright (Native) |
 | :--- | :---: | :---: | :---: |
 | **Initial Memory (RAM)** | ~450 MB | ~1.2 GB | **~140 MB (68% reduction)** |
 | **Cold Start Time** | ~1.2 s | ~8.5 s | **~1.8 s** |
@@ -171,8 +171,8 @@ if __name__ == "__main__":
 
 ## 7. Official Resources and Links
 
-* **PyPI Package:** [https://pypi.org/project/termux-playwright/](https://pypi.org/project/termux-playwright/)
-* **GitHub Repository:** [https://github.com/uno-km/termux-playwright](https://github.com/uno-km/termux-playwright)
-* **Documentation Portal:** [https://uno-km.github.io/termux-playwright/](https://uno-km.github.io/termux-playwright/)
-* **AI Coding Agent Feed (`llms.txt`):** [https://uno-km.github.io/termux-playwright/llms.txt](https://uno-km.github.io/termux-playwright/llms.txt)
-* **AI Full API Reference (`llms-full.txt`):** [https://uno-km.github.io/termux-playwright/llms-full.txt](https://uno-km.github.io/termux-playwright/llms-full.txt)
+* **PyPI Package:** [https://pypi.org/project/amv-playwright/](https://pypi.org/project/amv-playwright/)
+* **GitHub Repository:** [https://github.com/uno-km/amv-playwright](https://github.com/uno-km/amv-playwright)
+* **Documentation Portal:** [https://uno-km.github.io/amv-playwright/](https://uno-km.github.io/amv-playwright/)
+* **AI Coding Agent Feed (`llms.txt`):** [https://uno-km.github.io/amv-playwright/llms.txt](https://uno-km.github.io/amv-playwright/llms.txt)
+* **AI Full API Reference (`llms-full.txt`):** [https://uno-km.github.io/amv-playwright/llms-full.txt](https://uno-km.github.io/amv-playwright/llms-full.txt)

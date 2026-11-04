@@ -1,11 +1,11 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 import pytest
-from termux_playwright.waf import (
+from amv_playwright.waf import (
     WafChallengeType,
     TurnstileEvaluator,
 )
-from termux_playwright.physics import HumanMouse
+from amv_playwright.physics import HumanMouse
 
 
 class MockLocator:

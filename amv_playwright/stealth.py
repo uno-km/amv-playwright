@@ -1,6 +1,6 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
-"""Anti-bot stealth and evasion engine for termux-playwright.
+"""Anti-bot stealth and evasion engine for amv-playwright.
 
 Provides prototype-safe fingerprint masking, Sub-pixel Canvas 2D LSB noise injection,
 AudioContext frequency deviation noise injection, and WebGL hardware masking.

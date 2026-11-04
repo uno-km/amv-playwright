@@ -1,12 +1,12 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
-"""Basic Termux-Playwright Crawler Example.
+"""Basic AMV-Playwright Crawler Example.
 
 Demonstrates simple, headless page navigation and title extraction on Android Termux.
 """
 
 import asyncio
-from termux_playwright import async_playwright_termux, launch, block_heavy_resources
+from amv_playwright import async_playwright_termux, launch, block_heavy_resources
 
 async def run_crawler():
     print("🚀 [Termux] Initializing Playwright crawler...")

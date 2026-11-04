@@ -1,8 +1,8 @@
-# termux-playwright (Full Comprehensive AI Coding Agent Reference Specification)
+# amv-playwright (Full Comprehensive AI Coding Agent Reference Specification)
 > The authoritative, production-grade Playwright integration, runtime optimizer, and anti-bot stealth toolkit for Android Termux.
 
 ## Core Package Metadata
-- Package Name: `termux-playwright`
+- Package Name: `amv-playwright`
 - Current Version: `1.61.2`
 - Supported Platforms: Android Termux (aarch64, arm64, x86_64), Linux, macOS, Windows (development fallback)
 - Python Versions: 3.8, 3.9, 3.10, 3.11, 3.12+
@@ -89,7 +89,7 @@ Manages Android CPU WakeLock via Termux:API (`termux-wake-lock` / `termux-wake-u
 
 ## Critical Rules & Prohibitions for LLMs
 
-1. NEVER call `playwright.chromium.launch()` directly on Termux without `termux_playwright.launch()`. Standard Playwright looks in `~/.cache/ms-playwright` and crashes on Android Bionic.
+1. NEVER call `playwright.chromium.launch()` directly on Termux without `amv_playwright.launch()`. Standard Playwright looks in `~/.cache/ms-playwright` and crashes on Android Bionic.
 2. ALWAYS use `async_playwright_termux()` or `sync_playwright_termux()` context managers instead of standard `async_playwright()`. It ensures child process tracking and automatic session zombie reaping.
 3. When creating a Python virtual environment (`venv`) on Termux, ALWAYS pass `--system-site-packages` (e.g. `python -m venv --system-site-packages venv`) so Python inherits system-compiled C-extensions (`python-greenlet`).
 4. For exclusive, critical high-priority scraping with zero previous cache/profile interference, pass `standalone_mode=True, wake_lock=True` to `launch()`.
@@ -108,7 +108,7 @@ Manages Android CPU WakeLock via Termux:API (`termux-wake-lock` / `termux-wake-u
 ### Pattern 1: Stealth Cloudflare Evasion Crawler
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch, setup_stealth_context
+from amv_playwright import async_playwright_termux, launch, setup_stealth_context
 
 async def main():
     async with async_playwright_termux() as p:
@@ -131,7 +131,7 @@ if __name__ == "__main__":
 ### Pattern 2: 24/7 Low-Memory Resilient Autonomous Worker
 ```python
 import asyncio
-from termux_playwright import async_playwright_termux, launch, block_heavy_resources
+from amv_playwright import async_playwright_termux, launch, block_heavy_resources
 
 async def run_worker():
     while True:
@@ -155,7 +155,7 @@ if __name__ == "__main__":
 
 ---
 
-## Node.js & TypeScript API Reference (`npm install termux-playwright`)
+## Node.js & TypeScript API Reference (`npm install amv-playwright`)
 
 ### Node.js Export Signatures
 ```typescript
@@ -191,7 +191,7 @@ export class TermuxWakeLock {
 
 ### Pattern 3: Node.js / TypeScript Stealth & Memory-Managed Worker
 ```javascript
-const { launch, setupStealthContext, blockHeavyResources, forceGarbageCollection } = require('termux-playwright');
+const { launch, setupStealthContext, blockHeavyResources, forceGarbageCollection } = require('amv-playwright');
 
 async function runWorker() {
     const browser = await launch({

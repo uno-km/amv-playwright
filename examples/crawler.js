@@ -10,7 +10,7 @@
 const { launch, setupStealthContext, blockHeavyResources } = require('../lib');
 
 async function run() {
-    console.log('[Termux-Playwright JS] Launching optimized Chromium...');
+    console.log('[AMV-Playwright JS] Launching optimized Chromium...');
     
     const browser = await launch({
         headless: true,
@@ -30,14 +30,14 @@ async function run() {
         // Block heavy media to save mobile data and CPU
         await blockHeavyResources(page, { images: true, media: true, fonts: true });
 
-        console.log('[Termux-Playwright JS] Navigating to target website...');
+        console.log('[AMV-Playwright JS] Navigating to target website...');
         await page.goto('https://news.ycombinator.com', { timeout: 45000, waitUntil: 'domcontentloaded' });
         
         const title = await page.title();
-        console.log(`[Termux-Playwright JS] Harvested Page Title: "${title}"`);
+        console.log(`[AMV-Playwright JS] Harvested Page Title: "${title}"`);
     } finally {
         await browser.close();
-        console.log('[Termux-Playwright JS] Browser closed and session ledger cleaned up.');
+        console.log('[AMV-Playwright JS] Browser closed and session ledger cleaned up.');
     }
 }
 

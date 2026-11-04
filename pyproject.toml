@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amv-playwright"
-version = "1.82.0"
+version = "2.0.0"
 description = "Production-grade Playwright & Chromium browser automation and stealth runtime optimizer for Android Termux (Dual-Engine Python & Node.js)"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -35,10 +35,10 @@ Repository = "https://github.com/uno-km/amv-playwright"
 "Bug Tracker" = "https://github.com/uno-km/amv-playwright/issues"
 
 [project.scripts]
-amv-playwright = "termux_playwright.cli_protocol:main"
+amv-playwright = "amv_playwright.cli_protocol:main"
 
 [project.entry-points."ameva.components"]
-amv-playwright = "termux_playwright.adapter:create_adapter"
+amv-playwright = "amv_playwright.adapter:create_adapter"
 
 [tool.setuptools.packages.find]
-include = ["termux_playwright*"]
+include = ["amv_playwright*", "termux_playwright"]

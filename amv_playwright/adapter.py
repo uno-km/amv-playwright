@@ -1,7 +1,7 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
-termux_playwright.adapter
+amv_playwright.adapter
 ==========================
 AMEVA Component Protocol v1 — Orchestrator Adapter (v0.8.1 호환)
 
@@ -14,7 +14,7 @@ from typing import Any, AsyncIterator
 
 from ameva_component.adapter_base import BaseOrchestratorAdapter
 from ameva_component.exceptions import OperationNotSupported
-from termux_playwright.control.component import PlaywrightControl
+from amv_playwright.control.component import PlaywrightControl
 
 
 class PlaywrightOrchestratorAdapter(BaseOrchestratorAdapter):
@@ -30,7 +30,7 @@ class PlaywrightOrchestratorAdapter(BaseOrchestratorAdapter):
     - drain_instance → 진행 중인 브라우저 세션 완료 후 신규 접수 중단
     """
 
-    COMPONENT_ID = "termux-playwright"
+    COMPONENT_ID = "amv-playwright"
 
     def __init__(self, control: PlaywrightControl | None = None) -> None:
         self._control = control or PlaywrightControl()
@@ -51,7 +51,7 @@ class PlaywrightOrchestratorAdapter(BaseOrchestratorAdapter):
     # ── infer: 브라우저 자동화 패키지는 streaming inference 미지원 ──
 
     async def infer(self, request: dict[str, Any]) -> AsyncIterator[dict[str, Any]]:
-        """termux-playwright는 브라우저 자동화 패키지입니다.
+        """amv-playwright는 브라우저 자동화 패키지입니다.
         LLM Streaming inference는 미지원 — OperationNotSupported를 발생시킵니다.
 
         P0-2: yield 방식은 상위 소비자가 Frame을 정상으로 처리할 위험이 있어 raise로 변경.
